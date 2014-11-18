@@ -21,15 +21,13 @@ group :development, :test do
   gem "binding_of_caller"
   gem "faker"
   gem "pry-rails"
-end
-gem "httparty"
-
-group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
   gem "rubocop", require: false
   gem "rails_best_practices", require: false
   gem "brakeman", require: false
 end
 
+gem "httparty"
 gem 'sidekiq'
 
 
