@@ -4,24 +4,23 @@ class API::V1::LegislatorsController < ActionController::API
 
   def search
     location = find_location
+
     unless location
-      render { "not a valid address" }
-    end
+      render :text => "not a valid address", :status => 404
+    else
 
     my_json = { "legislators" => [{"first_name" => "John","last_name" => "Doe","role" => "Senator","State" => "NC","Party" => "Democrat","ID" => 1}, {"first_name" => "Jane","last_name" => "Smith","role" => "Representative","State" => "NC","Party" => "Republican","ID" => 2} ] }
     render json: my_json
+    end
   end
 
   def find_location
     address = legislator_params[:address]
-    ip_address = legislator_params[:ip_address]
-    location = Geocoder.coordinates(ip_address) if ip_address
-    location = Geocoder.coordinates(address) if address
-    location
+    location = Geocoder.coordinates(address)
   end
 
   def legislator_params
-    params.permit(:address, :ip_address)
+    params.permit(:address)
   end
 
 end
