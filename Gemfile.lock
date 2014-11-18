@@ -66,6 +66,7 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     fastercsv (1.5.5)
+    geocoder (1.2.6)
     haml (4.0.5)
       tilt
     highline (1.6.21)
@@ -217,6 +218,7 @@ DEPENDENCIES
   brakeman
   dotenv-rails
   faker
+  geocoder
   httparty
   pg
   pry-rails
