@@ -8,7 +8,7 @@ class API::V1::LegislatorsController < ActionController::API
       render :text => "not a valid address", :status => 404
     else
       @sunshine_response = get_legislators(@location)
-      # @legislators_json = format_legislator_json(@sunshine_response)
+      @legislators_json = format_legislator_json(@sunshine_response)
       my_json = { "legislators" => [{"first_name" => "John","last_name" => "Doe","role" => "Senator","State" => "NC","Party" => "Democrat","ID" => 1}, {"first_name" => "Jane","last_name" => "Smith","role" => "Representative","State" => "NC","Party" => "Republican","ID" => 2} ] }
       render json: my_json
     end
@@ -27,7 +27,12 @@ class API::V1::LegislatorsController < ActionController::API
   end
 
   def format_legislator_json(sunshine_response)
-
+    legislators = Array.new
+    sunshine_response["response"]["legislators"].each do |legislator|
+      # Push first name, role, state, party
+      legislators.push(legislator["legislator"]["lastname"])
+    end
+    legislators
   end
 
   def legislator_params
