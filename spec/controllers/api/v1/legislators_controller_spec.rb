@@ -18,12 +18,22 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
     it "assigns a location with address" do
       get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
-      expect(assigns(:location))
+      expect(assigns(:location)).not_to be_nil
     end
 
     it "returns message if address is invalid" do
       get :search, { address: "" }
       expect(response.body).to eq("not a valid address")
+    end
+
+    it "assigns sunshine_response" do
+      get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
+      expect(assigns(:sunshine_response)).not_to be_nil
+    end
+
+    it "assigns legislator_json" do
+      get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
+      expect(assigns(:legislators_json)).not_to be_nil
     end
 
   end
