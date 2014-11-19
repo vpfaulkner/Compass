@@ -31,6 +31,7 @@ class Sunshine < ActiveRecord::Base
         legislator_hash["phone"] = legislator["legislator"]["phone"]
         legislator_hash["district"] = legislator["legislator"]["district"]
         legislator_hash["twitter_id"] = legislator["legislator"]["twitter_id"]
+        legislator_hash["picture_url"] = "http://theunitedstates.io/images/congress/225x275/" + legislator["legislator"]["bioguide_id"] + ".jpg"
       end
       legislators.push(legislator_hash)
     end
