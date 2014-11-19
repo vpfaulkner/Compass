@@ -38,5 +38,30 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
   end
 
+  describe "GET #profile" do
+
+    it "responds successfully with an HTTP 200 status code" do
+      get :profile, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
+    it "renders JSON" do
+      get :profile, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(response.header['Content-Type']).to include 'application/json'
+      expect(JSON.parse(response.body)).not_to be_nil
+    end
+
+    it "assigns a profile" do
+      get :profile, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(assigns(:sunshine_response)).not_to be_nil
+    end
+
+    it "assigns a formatted_profile" do
+      get :profile, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(assigns(:formatted_profile)).not_to be_nil
+    end
+
+  end
 
 end
