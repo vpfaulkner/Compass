@@ -1,4 +1,4 @@
-class API::V1::LegislatorsController < ActionController::API
+class API::V1::LegislatorsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
   include HTTParty
 
