@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
 
-  def get_coordinates(address)
+  def self.get_coordinates(address)
     Geocoder.coordinates(address)
   end
 
