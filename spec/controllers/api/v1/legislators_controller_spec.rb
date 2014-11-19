@@ -52,6 +52,11 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(assigns(:profile)).not_to be_nil
     end
 
+    it "returns message if address is invalid" do
+      get :profile, { lastname: "Burrz", state: "NC", title: "sen" }
+      expect(response.body).to eq("no legislators match this query")
+    end
+
   end
 
 end

@@ -4,7 +4,7 @@ class API::V1::LegislatorsController < ApplicationController
 
   def search
     @location = Location.get_coordinates(legislator_params[:address])
-    unless @location
+    if @location.nil?
       render :text => "not a valid address", :status => 404
     else
       @legislators = Sunshine.search(@location)
@@ -14,7 +14,11 @@ class API::V1::LegislatorsController < ApplicationController
 
   def profile
     @profile = Sunshine.profile(legislator_params[:lastname], legislator_params[:state],  legislator_params[:title])
-    render json:  @profile
+    if @profile["legislators"].empty?
+      render :text => "no legislators match this query", :status => 404
+    else
+      render json:  @profile
+    end
   end
 
   private
