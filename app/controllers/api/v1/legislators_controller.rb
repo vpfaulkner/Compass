@@ -3,7 +3,7 @@ class API::V1::LegislatorsController < ApplicationController
   include HTTParty
 
   def search
-    @location = find_location
+    @location = Location.new.get_coordinates(legislator_params[:address])
     unless @location
       render :text => "not a valid address", :status => 404
     else
@@ -18,11 +18,6 @@ class API::V1::LegislatorsController < ApplicationController
   end
 
   private
-
-  def find_location
-    address = legislator_params[:address]
-    location = Geocoder.coordinates(address)
-  end
 
   def legislator_params
     params.permit(:address, :lastname, :state, :title)
