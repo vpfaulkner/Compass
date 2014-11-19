@@ -9,10 +9,11 @@ class API::V1::LegislatorsController < ActionController::API
     else
       @sunshine_response = get_legislators(@location)
       @legislators_json = format_legislator_json(@sunshine_response)
-      my_json = { "legislators" => [{"first_name" => "John","last_name" => "Doe","role" => "Senator","State" => "NC","Party" => "Democrat","ID" => 1}, {"first_name" => "Jane","last_name" => "Smith","role" => "Representative","State" => "NC","Party" => "Republican","ID" => 2} ] }
-      render json: my_json
+      render json: @legislators_json
     end
   end
+
+  private
 
   def find_location
     address = legislator_params[:address]
@@ -27,12 +28,19 @@ class API::V1::LegislatorsController < ActionController::API
   end
 
   def format_legislator_json(sunshine_response)
+    json = Hash.new
     legislators = Array.new
     sunshine_response["response"]["legislators"].each do |legislator|
-      # Push first name, role, state, party
-      legislators.push(legislator["legislator"]["lastname"])
+      legislator_hash = Hash.new
+      legislator_hash["firstname"] = legislator["legislator"]["firstname"]
+      legislator_hash["lastname"] = legislator["legislator"]["lastname"]
+      legislator_hash["state"] = legislator["legislator"]["state"]
+      legislator_hash["party"] = legislator["legislator"]["party"]
+      legislator_hash["role"] = legislator["legislator"]["title"]
+      legislators.push(legislator_hash)
     end
-    legislators
+    json["legislators"] = legislators
+    json
   end
 
   def legislator_params
