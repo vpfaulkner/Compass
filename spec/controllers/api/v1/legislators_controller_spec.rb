@@ -28,7 +28,7 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
     it "assigns legislator_json" do
       get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
-      expect(assigns(:legislators_json)).not_to be_nil
+      expect(assigns(:legislators)).not_to be_nil
     end
 
   end
@@ -47,14 +47,9 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(JSON.parse(response.body)).not_to be_nil
     end
 
-    it "assigns a sunshine_response" do
+    it "assigns a profile" do
       get :profile, { lastname: "Burr", state: "NC", title: "sen" }
-      expect(assigns(:sunshine_response)).not_to be_nil
-    end
-
-    it "assigns a formatted_profile" do
-      get :profile, { lastname: "Burr", state: "NC", title: "sen" }
-      expect(assigns(:formatted_profile)).not_to be_nil
+      expect(assigns(:profile)).not_to be_nil
     end
 
   end

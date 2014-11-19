@@ -1,24 +1,30 @@
 class Sunshine < ActiveRecord::Base
 
-  def self.search(location)
-    @sunshine_response = Sunshine.get_legislators(location)
-    Sunshine.format_json(@sunshine_response, "search")
+  def search(location)
+    @sunshine_json = get_legislators(location)
+    format_json(@sunshine_json, "search")
   end
 
-  def self.profile(sunshine_response)
-    Sunshine.format_json(sunshine_response, "profile")
-  end
-
-  def self.get_legislators(location)
+  def get_legislators(location)
     latitude = location[0]
     longitude = location[1]
     HTTParty.get('http://services.sunlightlabs.com/api/legislators.allForLatLong.json',
                 query: {apikey: ENV['SUNLIGHT_KEY'],latitude: latitude, longitude: longitude},)
   end
 
-  def self.format_json(sunshine_response, request_type)
+  def profile(lastname, state, title)
+    @sunshine_json = get_legislator(lastname, state, title)
+    format_json(@sunshine_json, "profile")
+  end
+
+  def get_legislator(lastname, state, title)
+    HTTParty.get('http://services.sunlightlabs.com/api/legislators.getList.json',
+                query: {apikey: ENV['SUNLIGHT_KEY'],lastname: lastname, state: state}, title: title)
+  end
+
+  def format_json(sunshine_json, request_type)
     legislators = Array.new
-    sunshine_response["response"]["legislators"].each do |legislator|
+    sunshine_json["response"]["legislators"].each do |legislator|
       legislator_hash = Hash.new
       legislator_hash["firstname"] = legislator["legislator"]["firstname"]
       legislator_hash["lastname"] = legislator["legislator"]["lastname"]

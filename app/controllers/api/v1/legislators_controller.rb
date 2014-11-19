@@ -7,26 +7,17 @@ class API::V1::LegislatorsController < ApplicationController
     unless @location
       render :text => "not a valid address", :status => 404
     else
-      @legislators_json = Sunshine.search(@location)
-      render json: @legislators_json
+      @legislators = Sunshine.new.search(@location)
+      render json: @legislators
     end
   end
 
   def profile
-    @sunshine_response = find_legislator
-    @formatted_profile = Sunshine.profile(@sunshine_response)
-    render json:  @formatted_profile
+    @profile = Sunshine.new.profile(legislator_params[:lastname], legislator_params[:state],  legislator_params[:title])
+    render json:  @profile
   end
 
   private
-
-  def find_legislator
-    lastname = legislator_params[:lastname]
-    state = legislator_params[:state]
-    title = legislator_params[:title]
-    HTTParty.get('http://services.sunlightlabs.com/api/legislators.getList.json',
-                query: {apikey: ENV['SUNLIGHT_KEY'],lastname: lastname, state: state}, title: title)
-  end
 
   def find_location
     address = legislator_params[:address]
