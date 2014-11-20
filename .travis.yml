@@ -9,4 +9,4 @@ script:
 deploy:
   provider: heroku
   app: peaceful-sea-4129 # optional if it's the same as your repo name
-  api_key: "cBjgzJ1TVtFGDbP+aSLKCpQ2LGWr0XU44QzKrhZe4NuS3PlLbbh7vmaGzCyubyuch/5w0ggzXoFihfsziwO6/ozGRd1pBuZoyvFkh3Y3ttWnb06ZvBWlR85wTkUIt9oIjqyqNKFYWox8BxMymCvf1oBEKsLLYc3ADE+K4ujBvHI="
+  HEROKU_KEY: "cBjgzJ1TVtFGDbP+aSLKCpQ2LGWr0XU44QzKrhZe4NuS3PlLbbh7vmaGzCyubyuch/5w0ggzXoFihfsziwO6/ozGRd1pBuZoyvFkh3Y3ttWnb06ZvBWlR85wTkUIt9oIjqyqNKFYWox8BxMymCvf1oBEKsLLYc3ADE+K4ujBvHI="
