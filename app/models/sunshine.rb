@@ -31,13 +31,13 @@ class Sunshine < ActiveRecord::Base
       legislator_hash["state"] = legislator["legislator"]["state"]
       legislator_hash["party"] = legislator["legislator"]["party"]
       legislator_hash["role"] = legislator["legislator"]["title"]
+      legislator_hash["picture_url"] = "http://theunitedstates.io/images/congress/225x275/" + legislator["legislator"]["bioguide_id"] + ".jpg"
       if request_type == "profile"
         legislator_hash["website"] = legislator["legislator"]["website"]
         legislator_hash["middlename"] = legislator["legislator"]["middlename"]
         legislator_hash["phone"] = legislator["legislator"]["phone"]
         legislator_hash["district"] = legislator["legislator"]["district"]
         legislator_hash["twitter_id"] = legislator["legislator"]["twitter_id"]
-        legislator_hash["picture_url"] = "http://theunitedstates.io/images/congress/225x275/" + legislator["legislator"]["bioguide_id"] + ".jpg"
       end
       legislators.push(legislator_hash)
     end
