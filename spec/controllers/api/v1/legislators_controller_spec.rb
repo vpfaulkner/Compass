@@ -31,6 +31,13 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(assigns(:legislators)).not_to be_nil
     end
 
+    it "finds Burr, Hagan, and Butterfield" do
+      get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
+      expect(assigns(:legislators)["legislators"][0]["lastname"]).to eq("Burr")
+      expect(assigns(:legislators)["legislators"][1]["lastname"]).to eq("Hagan")
+      expect(assigns(:legislators)["legislators"][2]["lastname"]).to eq("Butterfield")
+    end
+
   end
 
   describe "GET #profile" do
