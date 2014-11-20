@@ -21,10 +21,15 @@ class API::V1::LegislatorsController < ApplicationController
     end
   end
 
+  def funding
+    @legislator_entity_id = Sunshine.legislator_entity_id_lookup(legislator_params[:bioguide_id])
+    @funding_industries = Sunshine.legislator_funding_industries(@legislator_entity_id)
+  end
+
   private
 
   def legislator_params
-    params.permit(:address, :lastname, :state, :title)
+    params.permit(:address, :lastname, :state, :title, :bioguide_id)
   end
 
 end

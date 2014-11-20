@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'search' => 'legislators#search'
       get 'profile' => 'legislators#profile'
+      get 'funding' => 'legislators#funding'
     end
   end
 

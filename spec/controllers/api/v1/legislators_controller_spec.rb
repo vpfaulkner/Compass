@@ -71,4 +71,24 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
   end
 
+  describe "Get #funding" do
+
+    it "responds successfully with an HTTP 200 status code" do
+      get :funding, { bioguide_id: "B001135" }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
+    it "assigns a legislator_entity_id" do
+      get :funding, { bioguide_id: "B001135" }
+      expect(assigns(:legislator_entity_id)).to eq("2c44128cb0a74cb28409b806aee12aef")
+    end
+
+    it "assigns funding_industries" do
+      get :funding, { bioguide_id: "B001135" }
+      expect(assigns(:funding_industries)).not_to be_nil
+    end
+
+  end
+
 end
