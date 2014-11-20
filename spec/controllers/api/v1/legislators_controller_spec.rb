@@ -64,6 +64,11 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(response.body).to eq("no legislators match this query")
     end
 
+    it "finds Burr's Twitter" do
+      get :profile, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(assigns(:profile)["legislators"][0]["twitter_id"]).to eq("SenatorBurr")
+    end
+
   end
 
 end
