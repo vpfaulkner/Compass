@@ -13,6 +13,8 @@ class Sunshine < ActiveRecord::Base
   end
 
   def self.profile(lastname, state, title)
+    # Get political rating
+    # binding.pry
     @sunshine_json = Sunshine.get_legislator(lastname, state, title)
     Sunshine.format_json(@sunshine_json, "profile")
   end
