@@ -18,9 +18,9 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
     it "finds Burr, Hagan, and Butterfield" do
       get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
-      expect(assigns(:api_response)["legislators"][0]["lastname"]).to eq("Burr")
-      expect(assigns(:api_response)["legislators"][1]["lastname"]).to eq("Hagan")
-      expect(assigns(:api_response)["legislators"][2]["lastname"]).to eq("Butterfield")
+      expect(JSON.parse(response.body)["legislators"][0]["lastname"]).to eq("Burr")
+      expect(JSON.parse(response.body)["legislators"][1]["lastname"]).to eq("Hagan")
+      expect(JSON.parse(response.body)["legislators"][2]["lastname"]).to eq("Butterfield")
     end
 
     # it "returns message if address is invalid" do
@@ -52,12 +52,18 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
-  #
-  #   it "renders JSON" do
-  #     get :profile, { lastname: "Burr", state: "NC", title: "sen" }
-  #     expect(response.header['Content-Type']).to include 'application/json'
-  #     expect(JSON.parse(response.body)).not_to be_nil
-  #   end
+
+    it "renders JSON" do
+      get :profile, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(response.header['Content-Type']).to include 'application/json'
+      expect(JSON.parse(response.body)).not_to be_nil
+    end
+
+    it "finds Burr's Twitter" do
+      get :profile, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(JSON.parse(response.body)["legislators"][0]["twitter_id"]).to eq("SenatorBurr")
+    end
+
   #
   #   it "assigns a profile" do
   #     get :profile, { lastname: "Burr", state: "NC", title: "sen" }
@@ -69,11 +75,8 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
   #     expect(response.body).to eq("no legislators match this query")
   #   end
   #
-  #   it "finds Burr's Twitter" do
-  #     get :profile, { lastname: "Burr", state: "NC", title: "sen" }
-  #     expect(assigns(:profile)["legislators"][0]["twitter_id"]).to eq("SenatorBurr")
-  #   end
-  #
+
+
   end
   #
   # describe "Get #funding" do

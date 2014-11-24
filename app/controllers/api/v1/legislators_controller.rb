@@ -14,14 +14,6 @@ class API::V1::LegislatorsController < ApplicationController
     identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title] }
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
-
-    # OLD
-    # @profile = Sunshine.profile(legislator_params[:lastname], legislator_params[:state],  legislator_params[:title])
-    # if @profile["legislators"].empty?
-    #   render :text => "no legislators match this query", :status => 404
-    # else
-    #   render json:  @profile
-    # end
   end
 
   # Refactor completely
