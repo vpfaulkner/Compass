@@ -1,5 +1,6 @@
 class APIResponse
 
+  attr_reader :api_response
 
   def initialize(identifier, required_fields)
     identified_legislators = find_legislators_by_identifier(identifier)
@@ -24,8 +25,8 @@ class APIResponse
   end
 
   def wrap_legislators_collection(legislators_collection)
-    @legislators = Hash.new
-    @legislators = legislators_collection
+    @api_response = Hash.new
+    @api_response["legislators"] = legislators_collection
   end
 
 end

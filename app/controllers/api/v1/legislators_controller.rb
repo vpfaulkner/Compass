@@ -5,7 +5,8 @@ class API::V1::LegislatorsController < ApplicationController
   def search
     required_fields = ["firstname", "lastname", "state", "party", "role", "picture_url", "bioguide_id"]
     identifier = { address: legislator_params[:address] }
-    render json: APIResponse.new(identifier, required_fields)
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
   end
 
   def profile

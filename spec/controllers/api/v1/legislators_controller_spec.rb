@@ -15,28 +15,33 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(response.header['Content-Type']).to include 'application/json'
       expect(JSON.parse(response.body)).not_to be_nil
     end
+
+    it "finds Burr, Hagan, and Butterfield" do
+      get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
+      expect(assigns(:api_response)["legislators"][0]["lastname"]).to eq("Burr")
+      expect(assigns(:api_response)["legislators"][1]["lastname"]).to eq("Hagan")
+      expect(assigns(:api_response)["legislators"][2]["lastname"]).to eq("Butterfield")
+    end
+
+    #   it "returns message if address is invalid" do
+    #     get :search, { address: "" }
+    #     expect(response.body).to eq("not a valid address")
+    #   end
+
+
+    # it "assigns a location with address" do
+    #   get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
+    #   expect(assigns(:location)).not_to be_nil
+    # end
   #
-  #   it "assigns a location with address" do
-  #     get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
-  #     expect(assigns(:location)).not_to be_nil
-  #   end
-  #
-  #   it "returns message if address is invalid" do
-  #     get :search, { address: "" }
-  #     expect(response.body).to eq("not a valid address")
-  #   end
+
   #
   #   it "assigns legislator_json" do
   #     get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
   #     expect(assigns(:legislators)).not_to be_nil
   #   end
   #
-  #   it "finds Burr, Hagan, and Butterfield" do
-  #     get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
-  #     expect(assigns(:legislators)["legislators"][0]["lastname"]).to eq("Burr")
-  #     expect(assigns(:legislators)["legislators"][1]["lastname"]).to eq("Hagan")
-  #     expect(assigns(:legislators)["legislators"][2]["lastname"]).to eq("Butterfield")
-  #   end
+
   #
   # end
   #
