@@ -19,9 +19,7 @@ class APIResponse
   def find_legislators_by_identifier(identifier)
     if identifier[:address]
       location = Geocoder.coordinates(identifier[:address])
-      if location.nil?
-        raise NoLocationError
-      end
+      raise NoLocationError unless location
       json_response = HTTParty.get('http://services.sunlightlabs.com/api/legislators.allForLatLong.json',
       query: {apikey: ENV['SUNLIGHT_KEY'],latitude: location[0], longitude: location[1]})
     elsif identifier[:lastname] && identifier[:state] && identifier[:title]

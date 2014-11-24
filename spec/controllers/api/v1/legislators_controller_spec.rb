@@ -50,12 +50,10 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(JSON.parse(response.body)["legislators"][0]["ideology_rank"]).to eq(84)
     end
 
-  #   it "returns message if address is invalid" do
-  #     get :profile, { lastname: "Burrz", state: "NC", title: "sen" }
-  #     expect(response.body).to eq("no legislators match this query")
-  #   end
-
-  # Returns ideology rating
+    it "returns no legislators if invalid search" do
+      get :profile, { lastname: "Burrz", state: "NC", title: "sen" }
+      expect(response.body).to eq("{\"legislators\":[]}")
+    end
 
   end
 
