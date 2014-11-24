@@ -10,10 +10,10 @@ class API::V1::LegislatorsController < ApplicationController
   end
 
   def profile
-    required_fields = ["firstname", "lastname", "state", "party", "role", "picture_url", "role", "website", "middlename", "phone", "district", "twitter_id"]
+    required_fields = ["firstname", "lastname", "state", "party", "role", "picture_url", "bioguide_id", "website", "phone", "district", "twitter_id"]
     identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title] }
-    @response = Response.new(identifier, required_fields)
-    render @response
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
 
     # OLD
     # @profile = Sunshine.profile(legislator_params[:lastname], legislator_params[:state],  legislator_params[:title])

@@ -17,9 +17,9 @@ class APIResponse
       location = Geocoder.coordinates(identifier[:address])
       json_response = HTTParty.get('http://services.sunlightlabs.com/api/legislators.allForLatLong.json',
       query: {apikey: ENV['SUNLIGHT_KEY'],latitude: location[0], longitude: location[1]})
-    elsif identifier[:lastname, :state, :title]
+    elsif identifier[:lastname] && identifier[:state] && identifier[:title]
       json_response = HTTParty.get('http://services.sunlightlabs.com/api/legislators.getList.json',
-      query: {apikey: ENV['SUNLIGHT_KEY'],lastname: lastname, state: state, title: title})
+      query: {apikey: ENV['SUNLIGHT_KEY'],lastname: identifier[:lastname], state: identifier[:state], title: identifier[:title]})
     end
     json_response["response"]["legislators"]
   end

@@ -23,10 +23,10 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(assigns(:api_response)["legislators"][2]["lastname"]).to eq("Butterfield")
     end
 
-    #   it "returns message if address is invalid" do
-    #     get :search, { address: "" }
-    #     expect(response.body).to eq("not a valid address")
-    #   end
+    # it "returns message if address is invalid" do
+    #   get :search, { address: "" }
+    #   expect(response.body).to eq("not a valid address")
+    # end
 
 
     # it "assigns a location with address" do
@@ -45,13 +45,13 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
   #
   # end
   #
-  # describe "GET #profile" do
-  #
-  #   it "responds successfully with an HTTP 200 status code" do
-  #     get :profile, { lastname: "Burr", state: "NC", title: "sen" }
-  #     expect(response).to be_success
-  #     expect(response).to have_http_status(200)
-  #   end
+  describe "GET #profile" do
+
+    it "responds successfully with an HTTP 200 status code" do
+      get :profile, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
   #
   #   it "renders JSON" do
   #     get :profile, { lastname: "Burr", state: "NC", title: "sen" }
@@ -74,7 +74,7 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
   #     expect(assigns(:profile)["legislators"][0]["twitter_id"]).to eq("SenatorBurr")
   #   end
   #
-  # end
+  end
   #
   # describe "Get #funding" do
   #
