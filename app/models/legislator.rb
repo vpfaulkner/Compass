@@ -16,7 +16,12 @@ class Legislator
   def add_missing_fields(field, old_legislator_object)
     if field == "picture_url"
       @new_legislator_object["picture_url"] = "http://theunitedstates.io/images/congress/225x275/" + old_legislator_object["legislator"]["bioguide_id"] + ".jpg"
-    # ADD MISSING FIELD LOGIC HERE
+    elsif field == "ideology_rank"
+      name = old_legislator_object["legislator"]["lastname"]
+      legislator = JSON.parse(File.read("#{Rails.root}/app/assets/ideology_ratings.json"))["legislators"].select do |legislator|
+        legislator["Last_name"] == name
+      end
+      @new_legislator_object["ideology_rank"] = legislator[0]["ideology_rank"]
     end
   end
 

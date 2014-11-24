@@ -28,23 +28,8 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
     #   expect(response.body).to eq("not a valid address")
     # end
 
+  end
 
-    # it "assigns a location with address" do
-    #   get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
-    #   expect(assigns(:location)).not_to be_nil
-    # end
-  #
-
-  #
-  #   it "assigns legislator_json" do
-  #     get :search, { address: "208 W. Lavendar Ave, Durham, NC 27704" }
-  #     expect(assigns(:legislators)).not_to be_nil
-  #   end
-  #
-
-  #
-  # end
-  #
   describe "GET #profile" do
 
     it "responds successfully with an HTTP 200 status code" do
@@ -59,26 +44,21 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(JSON.parse(response.body)).not_to be_nil
     end
 
-    it "finds Burr's Twitter" do
+    it "finds Burr's Twitter and ideology rank" do
       get :profile, { lastname: "Burr", state: "NC", title: "sen" }
       expect(JSON.parse(response.body)["legislators"][0]["twitter_id"]).to eq("SenatorBurr")
+      expect(JSON.parse(response.body)["legislators"][0]["ideology_rank"]).to eq(84)
     end
 
-  #
-  #   it "assigns a profile" do
-  #     get :profile, { lastname: "Burr", state: "NC", title: "sen" }
-  #     expect(assigns(:profile)).not_to be_nil
-  #   end
-  #
   #   it "returns message if address is invalid" do
   #     get :profile, { lastname: "Burrz", state: "NC", title: "sen" }
   #     expect(response.body).to eq("no legislators match this query")
   #   end
-  #
 
+  # Returns ideology rating
 
   end
-  #
+
   # describe "Get #funding" do
   #
   #   it "responds successfully with an HTTP 200 status code" do
@@ -97,6 +77,6 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
   #     expect(assigns(:funding_industries)).not_to be_nil
   #   end
   #
-  end
+  # end
 
 end
