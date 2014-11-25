@@ -10,17 +10,18 @@ class API::V1::LegislatorsController < ApplicationController
   end
 
   def profile
-    required_fields = ["firstname", "lastname", "state", "party", "title", "picture_url", "bioguide_id", "ideology_rank", "website", "phone", "district", "twitter_id"]
+    required_fields = ["firstname", "lastname", "state", "party", "title", "picture_url", "bioguide_id", "ideology_rank", "influence_rank", "website", "phone", "district", "twitter_id"]
     identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title] }
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
   end
 
-  # Refactor completely
-  # def funding
-  #   @legislator_entity_id = Sunshine.legislator_entity_id_lookup(legislator_params[:bioguide_id])
-  #   @funding_industries = Sunshine.legislator_funding_industries(@legislator_entity_id)
-  # end
+  def funding_timeline
+    required_fields = ["firstname", "lastname", "state", "party", "title", "campaign_finance_hash"]
+    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title] }
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
+  end
 
   private
 

@@ -18,6 +18,8 @@ class Legislator
       add_picture_field(old_legislator_object)
     elsif field == "ideology_rank"
       add_ideology_field(old_legislator_object)
+    elsif field == "influence_rank"
+      @new_legislator_object["influence_rank"] = 65
     end
   end
 

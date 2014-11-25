@@ -16,17 +16,21 @@ class APIResponse
     end
   end
 
+  # Look to move some of this to database later
   def find_legislators_by_identifier(identifier)
     if identifier[:address]
       location = Geocoder.coordinates(identifier[:address])
       raise NoLocationError unless location
       json_response = HTTParty.get('http://services.sunlightlabs.com/api/legislators.allForLatLong.json',
-      query: {apikey: ENV['SUNLIGHT_KEY'],latitude: location[0], longitude: location[1]})
+                      query: {apikey: ENV['SUNLIGHT_KEY'],latitude: location[0], longitude: location[1]})
+      json_response = json_response["response"]["legislators"]
     elsif identifier[:lastname] && identifier[:state] && identifier[:title]
+      # YAML.load_file("#{Rails.root}/app/assets/legislators-current.yaml")
       json_response = HTTParty.get('http://services.sunlightlabs.com/api/legislators.getList.json',
-      query: {apikey: ENV['SUNLIGHT_KEY'],lastname: identifier[:lastname], state: identifier[:state], title: identifier[:title]})
+                      query: {apikey: ENV['SUNLIGHT_KEY'],lastname: identifier[:lastname], state: identifier[:state], title: identifier[:title]})
+      json_response = json_response["response"]["legislators"]
     end
-    json_response["response"]["legislators"]
+    json_response
   end
 
   def create_legislators_collection(identified_legislators, required_fields)
