@@ -46,6 +46,8 @@ class Legislator
       add_campaign_finance_hash
     elsif field == "elections_timeline_array"
       add_elections_timeline_array
+    elsif field == "contributors_by_category"
+      add_contributors_by_category
     end
   end
 
@@ -91,6 +93,15 @@ class Legislator
       elections_timeline_array.push(term)
     end
     @new_legislator_object["elections_timeline_array"] = elections_timeline_array
+  end
+
+  def add_contributors_by_category
+    top_contributors_energy = [{"name" => "Mike's Oil", "contributions" => 15000}, {"name" => "Joe's Gas", "contributions" => 5000}]
+    top_contributors_legal = [{"name" => "Faulkner and Faulkner Legal", "contributions" => 7000}, {"name" => "Vance and Vance Legal", "contributions" => 3000}]
+    category_energy = { "category" => "energy", "total_contributions" => 3000000, "top_contributors" => top_contributors_energy }
+    category_legal = { "category" => "energy", "total_contributions" => 2000000, "top_contributors" => top_contributors_legal }
+    top_categories = [category_energy, category_legal]
+    @new_legislator_object["contributors_by_category"] = top_categories
   end
 
 end

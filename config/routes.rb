@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'profile' => 'legislators#profile'
       get 'funding_timeline' => 'legislators#funding_timeline'
       get 'elections_timeline' => 'legislators#elections_timeline'
+      get 'contributors_by_category' => 'legislators#contributors_by_category'
     end
   end
 
