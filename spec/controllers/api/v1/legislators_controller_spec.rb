@@ -55,17 +55,21 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       get :funding_timeline, { lastname: "Burr", state: "NC", title: "sen" }
       expect(response).to be_success
       expect(response).to have_http_status(200)
+
+      expect(JSON.parse(response.body)["legislators"][0]["campaign_finance_hash"]["2002"]).to eq(1132900)
     end
 
-  #   it "assigns a legislator_entity_id" do
-  #     get :funding, { bioguide_id: "B001135" }
-  #     expect(assigns(:legislator_entity_id)).to eq("2c44128cb0a74cb28409b806aee12aef")
-  #   end
-  #
-  #   it "assigns funding_industries" do
-  #     get :funding, { bioguide_id: "B001135" }
-  #     expect(assigns(:funding_industries)).not_to be_nil
-  #   end
+  end
+
+  describe "Get #elections_timeline" do
+
+    it "responds successfully with an HTTP 200 status code" do
+      get :elections_timeline, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+
+      expect(JSON.parse(response.body)["legislators"][0]["elections_timeline_array"][0]["start"]).to eq("1995-01-04")
+    end
 
   end
 

@@ -44,6 +44,8 @@ class Legislator
       @new_legislator_object["influence_rank"] = 65
     elsif field == "campaign_finance_hash"
       add_campaign_finance_hash
+    elsif field == "elections_timeline_array"
+      add_elections_timeline_array
     end
   end
 
@@ -72,7 +74,7 @@ class Legislator
     @legislator_record["terms"].each { |term| years_run_for_office.push(term["start"].to_date.year - 1) }
     @legislator_record["id"]["fec"].each do |fec|
       years_with_data.each do |year|
-        next unless years_run_for_office.include?(year)
+        # FIGURE OUT HOW TO REDUCE THESE CALLS
         ny_times_finance_record = Candidate.find(fec, year) rescue nil
         next unless ny_times_finance_record
         campaign_finance_hash[year] ? campaign_finance_hash[year] += \
@@ -81,6 +83,14 @@ class Legislator
       end
     end
     @new_legislator_object["campaign_finance_hash"] = campaign_finance_hash
+  end
+
+  def add_elections_timeline_array
+    elections_timeline_array = Array.new
+    @legislator_record["terms"].each do |term|
+      elections_timeline_array.push(term)
+    end
+    @new_legislator_object["elections_timeline_array"] = elections_timeline_array
   end
 
 end
