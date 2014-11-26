@@ -16,11 +16,11 @@ class Legislator
     elsif field == "lastname"
       @new_legislator_object[field] = @legislator_record["name"]["last"]
     elsif field == "state"
-      @new_legislator_object[field] = @legislator_record["terms"][0]["state"]
+      @new_legislator_object[field] = @legislator_record["terms"].last["state"]
     elsif field == "party"
-      @new_legislator_object[field] = @legislator_record["terms"][0]["party"]
+      @new_legislator_object[field] = @legislator_record["terms"].last["party"]
     elsif field == "title"
-      @new_legislator_object[field] = @legislator_record["terms"][0]["type"]
+      @new_legislator_object[field] = @legislator_record["terms"].last["type"]
     elsif field == "bioguide_id"
       @new_legislator_object[field] = @legislator_record["id"]["bioguide"]
     elsif field == "website"

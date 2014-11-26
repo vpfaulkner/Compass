@@ -3,7 +3,7 @@ class APIResponse
   class NoLocationError < StandardError
   end
 
-  def self.legislators_databse
+  def self.legislators_database
     @legislator_db ||= YAML.load_file("#{Rails.root}/app/assets/legislators-current.yaml")
   end
 
@@ -12,7 +12,7 @@ class APIResponse
   def initialize(identifier, required_fields)
     @api_response = Hash.new
     begin
-      identified_legislators = find_legislators(identifier)
+      identified_legislators = find_legislators(identifier)      
       legislators_collection = create_legislators_collection(identified_legislators, required_fields)
       wrap_legislators_collection(legislators_collection)
     rescue NoLocationError
@@ -43,7 +43,7 @@ class APIResponse
   end
 
   def get_legislator_in_database(last, state, title)
-    APIResponse.legislators_databse.select do |y|
+    APIResponse.legislators_database.select do |y|
       y["name"]["last"] == last &&
       y["terms"].last["state"] == state &&
       y["terms"].last["type"] == title
