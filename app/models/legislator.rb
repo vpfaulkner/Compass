@@ -10,9 +10,6 @@ class Legislator
     end
   end
 
-  required_fields = ["firstname", "lastname", "state", "party", "title", "picture_url", "bioguide_id", "ideology_rank", "influence_rank", "website", "phone", "district", "twitter_id"]
-
-
   def add_field(field)
     if field == "firstname"
       @new_legislator_object[field] = @legislator_record["name"]["first"]
@@ -43,7 +40,10 @@ class Legislator
     elsif field == "ideology_rank"
       add_ideology_field
     elsif field == "influence_rank"
+      # FIX LATER
       @new_legislator_object["influence_rank"] = 65
+    elsif field == "campaign_finance_hash"
+      add_campaign_finance_hash
     end
   end
 
@@ -63,6 +63,24 @@ class Legislator
     sunshine_profile = HTTParty.get('http://services.sunlightlabs.com/api/legislators.getList.json',
                 query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
     @legislator_record.merge!(sunshine_profile["response"]["legislators"][0]["legislator"])
+  end
+
+  def add_campaign_finance_hash
+    campaign_finance_hash = Hash.new
+    years_run_for_office = Array.new
+    years_with_data = [2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014]
+    @legislator_record["terms"].each { |term| years_run_for_office.push(term["start"].to_date.year - 1) }
+    @legislator_record["id"]["fec"].each do |fec|
+      years_with_data.each do |year|
+        next unless years_run_for_office.include?(year)
+        ny_times_finance_record = Candidate.find(fec, year) rescue nil
+        next unless ny_times_finance_record
+        campaign_finance_hash[year] ? campaign_finance_hash[year] += \
+        ny_times_finance_record.total_contributions : campaign_finance_hash[year] \
+        = ny_times_finance_record.total_contributions
+      end
+    end
+    @new_legislator_object["campaign_finance_hash"] = campaign_finance_hash
   end
 
 end
