@@ -32,7 +32,7 @@ class API::V1::LegislatorsController < ApplicationController
 
   def contributors_by_category
     required_fields = ["firstname", "lastname", "state", "party", "title", "contributors_by_category"]
-    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title] }
+    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
   end
@@ -40,7 +40,7 @@ class API::V1::LegislatorsController < ApplicationController
   private
 
   def legislator_params
-    params.permit(:address, :lastname, :state, :title, :bioguide_id)
+    params.permit(:address, :lastname, :state, :title, :bioguide_id, :cycle)
   end
 
 end

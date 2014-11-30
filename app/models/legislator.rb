@@ -96,12 +96,37 @@ class Legislator
   end
 
   def add_contributors_by_category
+    # Add this to json data later
+
+    legislator_id = HTTParty.get('http://transparencydata.org/api/1.0/entities/id_lookup.json',
+                    query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
+    sunshine_sector_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors/sectors.json',
+                    query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2012'})
+    sector_key = {"A" => "Agribusiness",
+                  "B" => "Communications/Electronics",
+                  "C" => "Construction",
+                  "D" => "Defense",
+                  "E" => "Energy/Natural Resources",
+                  "F" => "Finance/Insurance/Real Estate",
+                  "H" => "Health",
+                  "K" => "Lawyers and Lobbyists",
+                  "M" => "Transportation",
+                  "N" => "Misc. Business",
+                  "Q" => "Ideology/Single Issue",
+                  "P" => "Labor",
+                  "W" => "Other",
+                  "Y" => "Unknown",
+                  "Z" => "Administrative Use" }
+    sunshine_sector_breakdown.each { |hash|
+      hash["sector"] = sector_key[hash["sector"]]
+    }
+
     top_contributors_energy = [{"name" => "Mike's Oil", "contributions" => 15000}, {"name" => "Joe's Gas", "contributions" => 5000}]
     top_contributors_legal = [{"name" => "Faulkner and Faulkner Legal", "contributions" => 7000}, {"name" => "Vance and Vance Legal", "contributions" => 3000}]
     category_energy = { "category" => "energy", "total_contributions" => 3000000, "top_contributors" => top_contributors_energy }
     category_legal = { "category" => "energy", "total_contributions" => 2000000, "top_contributors" => top_contributors_legal }
     top_categories = [category_energy, category_legal]
-    @new_legislator_object["contributors_by_category"] = top_categories
+    @new_legislator_object["contributors_by_category"] = sunshine_sector_breakdown
   end
 
 end
