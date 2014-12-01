@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'elections_timeline' => 'legislators#elections_timeline'
       get 'contributors_by_sector' => 'legislators#contributors_by_sector'
       get 'contributors_by_type' => 'legislators#contributors_by_type'
+      get 'top_contributors' => 'legislators#top_contributors'
     end
   end
 

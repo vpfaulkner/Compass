@@ -80,6 +80,7 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
 
+      expect(JSON.parse(response.body)["legislators"][0]["contributors_by_sector"][0]["sector"]).not_to be_nil
     end
 
   end
@@ -91,6 +92,19 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
 
+      expect(JSON.parse(response.body)["legislators"][0]["contributors_by_type"]["Individuals"]).not_to be_nil
+    end
+
+  end
+
+  describe "Get #top_contributors" do
+
+    it "responds successfully with an HTTP 200 status code" do
+      get :top_contributors, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+
+      expect(JSON.parse(response.body)["legislators"][0]["top_contributors"].first["name"]).not_to be_nil
     end
 
   end
