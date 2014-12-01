@@ -31,6 +31,7 @@ gem "httparty"
 gem 'sidekiq'
 gem 'geocoder'
 gem 'campaign_cash'
+gem 'fech'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

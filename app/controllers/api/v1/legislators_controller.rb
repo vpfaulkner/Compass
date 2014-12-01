@@ -30,8 +30,15 @@ class API::V1::LegislatorsController < ApplicationController
     render json: @api_response
   end
 
-  def contributors_by_category
-    required_fields = ["firstname", "lastname", "state", "party", "title", "contributors_by_category"]
+  def contributors_by_sector
+    required_fields = ["firstname", "lastname", "state", "party", "title", "contributors_by_sector"]
+    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
+  end
+
+  def contributors_by_type
+    required_fields = ["firstname", "lastname", "state", "party", "title", "contributors_by_type"]
     identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
@@ -40,7 +47,7 @@ class API::V1::LegislatorsController < ApplicationController
   private
 
   def legislator_params
-    params.permit(:address, :lastname, :state, :title, :bioguide_id, :cycle)
+    params.permit(:address, :lastname, :state, :title, :bioguide_id)
   end
 
 end

@@ -46,8 +46,10 @@ class Legislator
       add_campaign_finance_hash
     elsif field == "elections_timeline_array"
       add_elections_timeline_array
-    elsif field == "contributors_by_category"
-      add_contributors_by_category
+    elsif field == "contributors_by_sector"
+      add_contributors_by_sector
+    elsif field == "contributors_by_type"
+      add_contributors_by_type
     end
   end
 
@@ -70,6 +72,7 @@ class Legislator
   end
 
   def add_campaign_finance_hash
+    # Deprecated
     campaign_finance_hash = Hash.new
     years_run_for_office = Array.new
     years_with_data = [2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014]
@@ -95,9 +98,9 @@ class Legislator
     @new_legislator_object["elections_timeline_array"] = elections_timeline_array
   end
 
-  def add_contributors_by_category
-    # Add this to json data later
-
+  def add_contributors_by_sector
+    # Make iterative over multiple cycles
+    # Add legislator id to JSON
     legislator_id = HTTParty.get('http://transparencydata.org/api/1.0/entities/id_lookup.json',
                     query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
     sunshine_sector_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors/sectors.json',
@@ -120,13 +123,18 @@ class Legislator
     sunshine_sector_breakdown.each { |hash|
       hash["sector"] = sector_key[hash["sector"]]
     }
+    @new_legislator_object["contributors_by_sector"] = sunshine_sector_breakdown
+  end
 
-    top_contributors_energy = [{"name" => "Mike's Oil", "contributions" => 15000}, {"name" => "Joe's Gas", "contributions" => 5000}]
-    top_contributors_legal = [{"name" => "Faulkner and Faulkner Legal", "contributions" => 7000}, {"name" => "Vance and Vance Legal", "contributions" => 3000}]
-    category_energy = { "category" => "energy", "total_contributions" => 3000000, "top_contributors" => top_contributors_energy }
-    category_legal = { "category" => "energy", "total_contributions" => 2000000, "top_contributors" => top_contributors_legal }
-    top_categories = [category_energy, category_legal]
-    @new_legislator_object["contributors_by_category"] = sunshine_sector_breakdown
+  def add_contributors_by_type
+    # Make iterative over multiple cycles
+    # Add legislator id to JSON
+    legislator_id = HTTParty.get('http://transparencydata.org/api/1.0/entities/id_lookup.json',
+                    query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
+    sunshine_type_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors/type_breakdown.json',
+                    query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2014'})
+
+    @new_legislator_object["contributors_by_type"] = sunshine_type_breakdown
   end
 
 end
