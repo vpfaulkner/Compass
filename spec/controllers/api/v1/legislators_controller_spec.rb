@@ -38,7 +38,7 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(JSON.parse(response.body)).not_to be_nil
 
       expect(JSON.parse(response.body)["legislators"][0]["twitter_id"]).to eq("SenatorBurr")
-      expect(JSON.parse(response.body)["legislators"][0]["ideology_rank"]).to eq(84)
+      expect(JSON.parse(response.body)["legislators"][0]["ideology_rank"]).to eq(30)
 
     end
 

@@ -58,9 +58,10 @@ class Legislator
   end
 
   def add_ideology_field
-    name = @legislator_record["name"]["last"]
-    legislator = JSON.parse(File.read("#{Rails.root}/app/assets/ideology_ratings.json"))["legislators"].select do |legislator|
-      legislator["Last_name"] == name
+    lastname = @legislator_record["name"]["last"]
+    state = @legislator_record["terms"].last["state"]
+    legislator = JSON.parse(File.read("#{Rails.root}/app/assets/new_ideology_ratings.json"))["legislators"].select do |legislator|
+      legislator["last"] == lastname && legislator["State"] == state
     end
     @new_legislator_object["ideology_rank"] = legislator[0]["ideology_rank"]
   end

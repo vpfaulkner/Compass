@@ -12,7 +12,7 @@ class APIResponse
   def initialize(identifier, required_fields)
     @api_response = Hash.new
     begin
-      identified_legislators = find_legislators(identifier)      
+      identified_legislators = find_legislators(identifier)
       legislators_collection = create_legislators_collection(identified_legislators, required_fields)
       wrap_legislators_collection(legislators_collection)
     rescue NoLocationError
