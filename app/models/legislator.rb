@@ -52,6 +52,10 @@ class Legislator
       add_contributors_by_type
     elsif field == "top_contributors"
       add_top_contributors
+    elsif field == "funding_score_by_category"
+      add_funding_score_by_category
+    elsif field == "voting_score_by_category"
+      add_voting_score_by_category
     end
   end
 
@@ -146,6 +150,33 @@ class Legislator
     sunshine_type_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors.json',
                               query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2014', limit: 100})
     @new_legislator_object["top_contributors"] = sunshine_type_breakdown
+  end
+
+  def add_funding_score_by_category
+    funding_score_by_catcode = Hash.new
+    funding_array = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
+      query: {apikey: ENV['SUNLIGHT_KEY'],recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+    funding_array.each do |funding_hash|
+      category = funding_hash["contributor_category"]
+      if funding_score_by_catcode[category]
+        funding_score_by_catcode[category][:contributions] += 1
+        funding_score_by_catcode[category][:total] += funding_hash["amount"].to_i
+      else
+        funding_score_by_catcode[category] = {:contributions => 1, :total => funding_hash["amount"].to_i}
+      end
+    end
+    @new_legislator_object["funding_score_by_category"] = funding_score_by_catcode
+  end
+
+  def add_voting_score_by_category
+    voting_score_by_catcode = Hash.new
+    bills_by_category_stance = Hash.new
+    bills_array = HTTParty.get('https://www.govtrack.us/api/v2/vote_voter',
+    query: {person: @legislator_record["id"]["govtrack"], limit: 1000, order_by: "-created", format: "json", fields: "vote__id,created,option__value,vote__category,vote__question"})
+    binding.pry
+    # JSON.parse(File.read("#{Rails.root}/app/assets/113_bills_compressed.json"))["bills"].each do |bill|
+    #   legislator["last"] == lastname && legislator["State"] == state
+    # end
   end
 
 end
