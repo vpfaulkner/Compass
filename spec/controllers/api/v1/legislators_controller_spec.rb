@@ -121,10 +121,10 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
   end
 
-  describe "Get #voting_score_by_category" do
+  describe "Get #voting_score_by_issue" do
 
     it "responds successfully with an HTTP 200 status code" do
-      get :voting_score_by_category, { lastname: "Burr", state: "NC", title: "sen" }
+      get :voting_score_by_issue, { lastname: "Burr", state: "NC", title: "sen" }
       expect(response).to be_success
       expect(response).to have_http_status(200)
 

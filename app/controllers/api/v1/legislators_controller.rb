@@ -58,8 +58,15 @@ class API::V1::LegislatorsController < ApplicationController
     render json: @api_response
   end
 
-  def voting_score_by_category
-    required_fields = ["firstname", "lastname", "state", "party", "title", "voting_score_by_category"]
+  def voting_score_by_issue
+    required_fields = ["firstname", "lastname", "state", "party", "title", "voting_score_by_issue"]
+    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
+  end
+
+  def most_recent_votes
+    required_fields = ["firstname", "lastname", "state", "party", "title", "most_recent_votes"]
     identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response

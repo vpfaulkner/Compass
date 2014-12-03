@@ -54,8 +54,10 @@ class Legislator
       add_top_contributors
     elsif field == "funding_score_by_category"
       add_funding_score_by_category
-    elsif field == "voting_score_by_category"
-      add_voting_score_by_category
+    elsif field == "voting_score_by_issue"
+      add_voting_score_by_issue
+    elsif field == "most_recent_votes"
+      add_most_recent_votes
     end
   end
 
@@ -168,15 +170,88 @@ class Legislator
     @new_legislator_object["funding_score_by_category"] = funding_score_by_catcode
   end
 
-  def add_voting_score_by_category
+  def add_voting_score_by_issue
     voting_score_by_catcode = Hash.new
-    bills_by_category_stance = Hash.new
-    bills_array = HTTParty.get('https://www.govtrack.us/api/v2/vote_voter',
-    query: {person: @legislator_record["id"]["govtrack"], limit: 1000, order_by: "-created", format: "json", fields: "vote__id,created,option__value,vote__category,vote__question"})
-    binding.pry
-    # JSON.parse(File.read("#{Rails.root}/app/assets/113_bills_compressed.json"))["bills"].each do |bill|
-    #   legislator["last"] == lastname && legislator["State"] == state
-    # end
+    bills = []
+    bills_and_legislator_votes = HTTParty.get('https://www.govtrack.us/api/v2/vote_voter',
+      query: {person: @legislator_record["id"]["govtrack"], limit: 4000, order_by: "-created", format: "json", fields: "vote__id,created,option__value,vote__category,vote__question"})
+    bills_and_legislator_votes["objects"].each do |bill_and_legislator_vote|
+      next unless bill_and_legislator_vote["vote"]["category"] == "passage"
+      bill_type = bill_and_legislator_vote["vote"]["question"].split(" ")[0]
+      bill_number = bill_and_legislator_vote["vote"]["question"].split(" ")[1].split(":")[0]
+      bill_identifier = bill_type + bill_number
+      bill = {identifier: bill_identifier, vote: bill_and_legislator_vote["option"]["value"]}
+      bills.push(bill)
+    end
+    bills_and_org_positions = JSON.parse(File.read("#{Rails.root}/app/assets/113_bills_compressed.json"))["bills"]
+    bills.each do |bill|
+      if bill[:vote] == "Yea" || bill[:vote] == "Aye" || bill[:vote] == "Yes"
+        legislator_vote = "Yes"
+      else
+        legislator_vote = "No"
+      end
+      org_positions_on_bill = bills_and_org_positions.select do |bill_and_org_position|
+        bill_and_org_position["identifier"] == bill[:identifier]
+      end
+      next unless org_positions_on_bill.first
+      org_positions_on_bill = org_positions_on_bill.first["organizations"]
+      org_positions_on_bill.each do |org_position|
+        catcode = org_position["catcode"]
+        next if catcode.empty?
+        if org_position["disposition"] == "support"
+          org_vote = "Yes"
+        else
+          org_vote = "No"
+        end
+        if voting_score_by_catcode[catcode]
+          voting_score_by_catcode[catcode] += 1 if org_vote == legislator_vote
+          voting_score_by_catcode[catcode] -= 1 if org_vote != legislator_vote
+        else
+          voting_score_by_catcode[catcode] = 1 if org_vote == legislator_vote
+          voting_score_by_catcode[catcode] = -1 if org_vote != legislator_vote
+        end
+      end
+    end
+    voting_score_by_issue = Hash.new
+    catcodes_directory = JSON.parse(File.read("#{Rails.root}/app/assets/catcodes.json"))["catcodes"]
+    voting_score_by_catcode.each do |voting_score_by_catcode|
+      directory_entry = catcodes_directory.select do |directory_entry|
+        directory_entry["Catcode"] == voting_score_by_catcode.first
+      end
+      next unless directory_entry.first
+      if voting_score_by_issue[directory_entry.first["SectorLong"]]
+        voting_score_by_issue[directory_entry.first["SectorLong"]] += voting_score_by_catcode[1]
+      else
+        voting_score_by_issue[directory_entry.first["SectorLong"]] = voting_score_by_catcode[1]
+      end
+    end
+    voting_score_by_issue["pro-life"] = voting_score_by_catcode["J7120"]
+    voting_score_by_issue["pro-choice"] = voting_score_by_catcode["J7150"]
+    voting_score_by_issue["pro-gun"] = voting_score_by_catcode["J6200"]
+    voting_score_by_issue["anti-gun"] = voting_score_by_catcode["J6100"]
+    voting_score_by_issue["environment"] = voting_score_by_catcode["JE300"]
+
+
+    @new_legislator_object["voting_score_by_issue"] = voting_score_by_issue
+  end
+
+  def add_most_recent_votes
+    most_recent_votes = Array.new
+    bills_and_legislator_votes = HTTParty.get('https://www.govtrack.us/api/v2/vote_voter',
+      query: {person: @legislator_record["id"]["govtrack"], limit: 1000, order_by: "-created", format: "json", fields: "vote__id,created,option__value,vote__category,vote__question"})
+    bills_and_legislator_votes["objects"].each do |bill_and_legislator_vote|
+      next unless bill_and_legislator_vote["vote"]["category"] == "passage"
+      bill_type = bill_and_legislator_vote["vote"]["question"].split(" ")[0]
+      bill_number = bill_and_legislator_vote["vote"]["question"].split(" ")[1].split(":")[0]
+      bill_identifier = bill_type + bill_number
+      vote_description = bill_and_legislator_vote["vote"]["question"]
+      date = Date.parse(bill_and_legislator_vote["created"]).strftime('%Y-%m-%d')
+      vote_value = bill_and_legislator_vote["option"]["value"]
+      vote_hash = {date: date, vote_value: vote_value, vote_description: vote_description}
+      most_recent_votes.push(vote_hash)
+      break if most_recent_votes.count > 100
+    end
+    @new_legislator_object["most_recent_votes"] = most_recent_votes
   end
 
 end
