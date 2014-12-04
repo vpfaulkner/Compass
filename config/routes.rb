@@ -9,9 +9,12 @@ Rails.application.routes.draw do
       get 'contributors_by_sector' => 'legislators#contributors_by_sector'
       get 'contributors_by_type' => 'legislators#contributors_by_type'
       get 'top_contributors' => 'legislators#top_contributors'
+      get 'issue_ratings_dummy' => 'legislators#issue_ratings_dummy'
+
       get 'funding_score_by_category' => 'legislators#funding_score_by_category'
       get 'voting_score_by_issue' => 'legislators#voting_score_by_issue'
-      get 'most_recent_votes' => 'legislators#most_recent_votes' 
+      get 'most_recent_votes' => 'legislators#most_recent_votes'
+      get 'internal_get_norms' => 'legislators#internal_get_norms'
     end
   end
 
