@@ -210,15 +210,46 @@ class Legislator
       issue_score_stats[issue_name][:scores_array].each {|score| scores_equal += 1 if score == issue_score }
       number_of_scores = issue_score_stats[issue_name][:scores_array].length
       normalized_score = ((scores_below.to_f + (0.5 * scores_equal.to_f)) / number_of_scores.to_f) * 100
-      issue_object = {"issue_name" => issue_name, "funding_score" => Random.rand(100) , "agreement_score" => normalized_score.round}
+      issue_object = {"issue_name" => issue_name, "funding_score" => 0 , "agreement_score" => normalized_score.round}
       issue_ratings.push(issue_object)
+    end
+    funding_array = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
+      query: {apikey: ENV['SUNLIGHT_KEY'],recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+    total_funding = 0
+    funding_array.each do |funding_hash|
+      code = funding_hash["contributor_category"]
+      amount = funding_hash["amount"]
+      next if amount.empty?
+      total_funding += amount.to_i
+      if code == "J7120"
+        issue_index = issue_ratings.index { |i| i["issue_name"] == "Pro-Life" }
+      elsif code == "J7150"
+        issue_index = issue_ratings.index { |i| i["issue_name"] == "Pro-Choice" }
+      elsif code == "J6200"
+        issue_index = issue_ratings.index { |i| i["issue_name"] == "Pro-Gun" }
+      elsif code == "J6100"
+        issue_index = issue_ratings.index { |i| i["issue_name"] == "Anti-Gun" }
+      elsif code == "JE300"
+        issue_index = issue_ratings.index { |i| i["issue_name"] == "Environment" }
+      elsif /E11\d0/.match(code)
+        issue_index = issue_ratings.index { |i| i["issue_name"] == "Oil & Energy" }
+      elsif /L..../.match(code)
+        issue_index = issue_ratings.index { |i| i["issue_name"] == "Labor & Union" }
+      elsif /H5\d\d/.match(code)
+        issue_index = issue_ratings.index { |i| i["issue_name"] == "Education" }
+      elsif /F1\d\d\d|F2\d\d\d/.match(code)
+        issue_index = issue_ratings.index { |i| i["issue_name"] == "Financial" }
+      end
+      next unless issue_index
+      issue_ratings[issue_index]["funding_score"] += amount.to_i
+    end
+    issue_ratings.each do |issue|
+      prevous_score = issue["funding_score"]
+      decimal_percent = prevous_score.to_f / total_funding.to_f
+      issue["funding_score"] = (decimal_percent * 100).round(2)
     end
     @new_legislator_object["issue_ratings_dummy"] = issue_ratings
   end
-
-
-
-
 
 
 
@@ -239,21 +270,7 @@ class Legislator
     bills
   end
 
-  def add_funding_score_by_category
-    funding_score_by_catcode = Hash.new
-    funding_array = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
-      query: {apikey: ENV['SUNLIGHT_KEY'],recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
-    funding_array.each do |funding_hash|
-      category = funding_hash["contributor_category"]
-      if funding_score_by_catcode[category]
-        funding_score_by_catcode[category][:contributions] += 1
-        funding_score_by_catcode[category][:total] += funding_hash["amount"].to_i
-      else
-        funding_score_by_catcode[category] = {:contributions => 1, :total => funding_hash["amount"].to_i}
-      end
-    end
-    @new_legislator_object["funding_score_by_category"] = funding_score_by_catcode
-  end
+
 
   def add_voting_score_by_issue
     voting_score_by_issue = Hash.new(0)

@@ -66,7 +66,7 @@ class API::V1::LegislatorsController < ApplicationController
   end
 
 
-
+  # Now part of issue_ratings above
 
   def funding_score_by_category
     required_fields = ["firstname", "lastname", "state", "party", "title", "funding_score_by_category"]
