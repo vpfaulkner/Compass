@@ -176,16 +176,44 @@ class Legislator
   end
 
   def add_issue_ratings_dummy
-    issue_ratings_dummy = { "Pro-Life" => {"funding_score" => 45, "agreement_score" => 75},
-                            "Pro-Choice" => {"funding_score" => 25, "agreement_score" => 15},
-                            "Pro-Gun" => {"funding_score" => 60, "agreement_score" => 50},
-                            "Anti-Gun" => {"funding_score" => 80, "agreement_score" => 20},
-                            "Environment" => {"funding_score" => 53, "agreement_score" => 59},
-                            "Oil & Energy" => {"funding_score" => 86, "agreement_score" => 66},
-                            "Labor & Union" => {"funding_score" => 10, "agreement_score" => 27},
-                            "Education" => {"funding_score" => 10, "agreement_score" => 70},
-                            "Financial" => {"funding_score" => 34, "agreement_score" => 69} }
-    @new_legislator_object["issue_ratings_dummy"] = issue_ratings_dummy
+    json = JSON.parse(File.read("/Users/vancefaulkner/Desktop/combined_scores.json"))
+    combined_scores_json = json["legislators"]
+    issue_score_stats = { "Pro-Life" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
+                          "Pro-Choice" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
+                          "Pro-Gun" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
+                          "Anti-Gun" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
+                          "Environment" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
+                          "Oil & Energy" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
+                          "Labor & Union" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
+                          "Education" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
+                          "Financial" => {aggregate_score: 0, total_legislators: 0, scores_array: []} }
+      combined_scores_json.each do |legislator_json|
+        legislator_json["voting_score_by_issue"].each do |issue|
+          issue_name = issue[0]
+          issue_score = issue[1]
+          issue_score_stats[issue_name][:aggregate_score] += issue_score
+          issue_score_stats[issue_name][:total_legislators] += 1
+          issue_score_stats[issue_name][:scores_array].push(issue_score)
+          issue_score_stats[issue_name][:scores_array].sort!
+      end
+    end
+    legislator = combined_scores_json.select do |json_legislator|
+      json_legislator["firstname"] == @legislator_record["name"]["first"] && json_legislator["lastname"] == @legislator_record["name"]["last"] && json_legislator["state"] == @legislator_record["terms"].last["state"]
+    end
+    issue_ratings = Array.new
+    legislator[0]["voting_score_by_issue"].each do |issue|
+      issue_score = issue[1]
+      issue_name = issue[0]
+      scores_below = 0
+      issue_score_stats[issue_name][:scores_array].each {|score| scores_below += 1 if score < issue_score }
+      scores_equal = 0
+      issue_score_stats[issue_name][:scores_array].each {|score| scores_equal += 1 if score == issue_score }
+      number_of_scores = issue_score_stats[issue_name][:scores_array].length
+      normalized_score = ((scores_below.to_f + (0.5 * scores_equal.to_f)) / number_of_scores.to_f) * 100
+      issue_object = {issue_name => {"funding_score" => Random.rand(100) , "agreement_score" => normalized_score.round}}
+      issue_ratings.push(issue_object)
+    end
+    @new_legislator_object["issue_ratings_dummy"] = issue_ratings
   end
 
 
