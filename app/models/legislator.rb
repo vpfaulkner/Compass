@@ -176,7 +176,7 @@ class Legislator
   end
 
   def add_issue_ratings_dummy
-    json = JSON.parse(File.read("/Users/vancefaulkner/Desktop/combined_scores.json"))
+    json = JSON.parse(File.read("#{Rails.root}/app/assets/combined_scores.json"))
     combined_scores_json = json["legislators"]
     issue_score_stats = { "Pro-Life" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
                           "Pro-Choice" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
