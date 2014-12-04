@@ -210,7 +210,7 @@ class Legislator
       issue_score_stats[issue_name][:scores_array].each {|score| scores_equal += 1 if score == issue_score }
       number_of_scores = issue_score_stats[issue_name][:scores_array].length
       normalized_score = ((scores_below.to_f + (0.5 * scores_equal.to_f)) / number_of_scores.to_f) * 100
-      issue_object = {issue_name => {"funding_score" => Random.rand(100) , "agreement_score" => normalized_score.round}}
+      issue_object = {"issue_name" => issue_name, "funding_score" => Random.rand(100) , "agreement_score" => normalized_score.round}
       issue_ratings.push(issue_object)
     end
     @new_legislator_object["issue_ratings_dummy"] = issue_ratings
