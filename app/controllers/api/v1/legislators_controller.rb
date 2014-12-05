@@ -65,6 +65,16 @@ class API::V1::LegislatorsController < ApplicationController
     render json: @api_response
   end
 
+  def legislator_issue_scores
+    required_fields = ["legislator_issue_scores"]
+    identifier = { all: [], issue: legislator_params[:issue] }
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
+  end
+
+
+
+
 
   # Now part of issue_ratings above
 
@@ -81,9 +91,6 @@ class API::V1::LegislatorsController < ApplicationController
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
   end
-
-
-
 
   def internal_get_norms
     all_legislators_array = Array.new
@@ -109,13 +116,13 @@ class API::V1::LegislatorsController < ApplicationController
     file_counter = 1
     all_legislators_array.each do |legislator|
       counter += 1
-      required_fields = ["firstname", "lastname", "state", "party", "title", "voting_score_by_issue"]
+      required_fields = ["firstname", "lastname", "state", "party", "title", "issue_ratings_dummy"]
       identifier = { lastname: legislator[:last], state: legislator[:state], title: legislator[:title]}
       api_response = APIResponse.new(identifier, required_fields).api_response
       array_wrapper.push(api_response["legislators"][0])
       if counter % 50 == 0
         json = array_wrapper.to_json
-        new_file = File.open("/Users/vancefaulkner/Desktop/voter_score#{file_counter}.txt", "w+") { |file| file.write(json) }
+        new_file = File.open("/Users/vancefaulkner/Desktop/funding_score#{file_counter}.txt", "w+") { |file| file.write(json) }
         file_counter += 1
         array_wrapper = []
       end
@@ -132,7 +139,7 @@ class API::V1::LegislatorsController < ApplicationController
   private
 
   def legislator_params
-    params.permit(:address, :lastname, :state, :title, :bioguide_id)
+    params.permit(:address, :lastname, :state, :title, :bioguide_id, :issue)
   end
 
 end

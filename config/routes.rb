@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'contributors_by_type' => 'legislators#contributors_by_type'
       get 'top_contributors' => 'legislators#top_contributors'
       get 'issue_ratings_dummy' => 'legislators#issue_ratings_dummy'
+      get 'legislator_issue_scores' => 'legislators#legislator_issue_scores'
 
       get 'funding_score_by_category' => 'legislators#funding_score_by_category'
       get 'voting_score_by_issue' => 'legislators#voting_score_by_issue'

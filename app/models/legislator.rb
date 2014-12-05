@@ -60,6 +60,8 @@ class Legislator
       add_most_recent_votes
     elsif field == "issue_ratings_dummy"
       add_issue_ratings_dummy
+    elsif field == "legislator_issue_scores"
+      add_legislator_issue_scores
     end
   end
 
@@ -176,7 +178,7 @@ class Legislator
   end
 
   def add_issue_ratings_dummy
-    json = JSON.parse(File.read("#{Rails.root}/app/assets/combined_scores.json"))
+    json = JSON.parse(File.read("#{Rails.root}/app/assets/combined_funding_and_voting_scores.json"))
     combined_scores_json = json["legislators"]
     issue_score_stats = { "Pro-Life" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
                           "Pro-Choice" => {aggregate_score: 0, total_legislators: 0, scores_array: []},
@@ -201,6 +203,9 @@ class Legislator
       json_legislator["firstname"] == @legislator_record["name"]["first"] && json_legislator["lastname"] == @legislator_record["name"]["last"] && json_legislator["state"] == @legislator_record["terms"].last["state"]
     end
     issue_ratings = Array.new
+    return unless legislator
+    return unless legislator[0]
+    return unless legislator[0]["voting_score_by_issue"]
     legislator[0]["voting_score_by_issue"].each do |issue|
       issue_score = issue[1]
       issue_name = issue[0]
@@ -251,7 +256,27 @@ class Legislator
     @new_legislator_object["issue_ratings_dummy"] = issue_ratings
   end
 
-
+  def add_legislator_issue_scores
+    json = JSON.parse(File.read("#{Rails.root}/app/assets/combined_funding_scores.json"))
+    combined_scores_json = json["legislators"]
+    chosen_issue = @legislator_record[:issue]
+    legislator_issue_ratings = Array.new
+    combined_scores_json.each do |record|
+      issue_hash = Hash.new
+      issue_hash["firstname"] = record["firstname"]
+      issue_hash["lastname"] = record["lastname"]
+      issue_hash["state"] = record["state"]
+      issue_hash["party"] = record["party"]
+      issue_hash["title"] = record["title"]
+      next unless record["issue_ratings_dummy"]
+      issue_match = record["issue_ratings_dummy"].select do |available_issues|
+        available_issues["issue_name"] == chosen_issue
+      end
+      issue_hash["issue_ratings_dummy"] = issue_match
+      legislator_issue_ratings.push(issue_hash)
+    end
+    @new_legislator_object["legislator_issue_scores"] = legislator_issue_ratings
+  end
 
 
 
