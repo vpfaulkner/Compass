@@ -107,8 +107,8 @@ class API::V1::LegislatorsController < ApplicationController
     #                       "Pro-Gun" => {aggregate_score: 0, total_legislators: 0},
     #                       "Anti-Gun" => {aggregate_score: 0, total_legislators: 0},
     #                       "Environment" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Oil & Energy" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Labor & Union" => {aggregate_score: 0, total_legislators: 0},
+    #                       "Oil and Energy" => {aggregate_score: 0, total_legislators: 0},
+    #                       "Labor and Union" => {aggregate_score: 0, total_legislators: 0},
     #                       "Education" => {aggregate_score: 0, total_legislators: 0},
     #                       "Financial" => {aggregate_score: 0, total_legislators: 0} }
     array_wrapper = []
