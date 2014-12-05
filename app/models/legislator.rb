@@ -58,10 +58,10 @@ class Legislator
       add_voting_score_by_issue
     elsif field == "most_recent_votes"
       add_most_recent_votes
-    elsif field == "issue_ratings_dummy"
-      add_issue_ratings_dummy
-    elsif field == "legislator_issue_scores"
-      add_legislator_issue_scores
+    elsif field == "issue_ratings"
+      add_issue_ratings
+    elsif field == "aggregated_legislator_issue_scores"
+      add_aggregated_legislator_issue_scores
     end
   end
 
@@ -163,7 +163,7 @@ class Legislator
     @new_legislator_object["most_recent_votes"] = most_recent_votes
   end
 
-  def add_issue_ratings_dummy
+  def add_issue_ratings
     issue_ratings = Array.new
     voting_json = JSON.parse(File.read("#{Rails.root}/app/assets/aggregated_legislator_voting_scores.json"))
     aggregated_voting_scores_by_legislator = voting_json["legislators"]
@@ -284,9 +284,7 @@ class Legislator
     issue_ratings
   end
 
-
-
-  def add_legislator_issue_scores
+  def add_aggregated_legislator_issue_scores
     json = JSON.parse(File.read("#{Rails.root}/app/assets/combined_funding_scores.json"))
     combined_scores_json = json["legislators"]
     chosen_issue = @legislator_record[:issue]
