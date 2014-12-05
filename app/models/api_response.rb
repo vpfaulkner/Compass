@@ -38,10 +38,12 @@ class APIResponse
   end
 
   def get_local_legislators(address)
-    location = Geocoder.coordinates(address)
-    raise NoLocationError unless location
+    # location = Geocoder.coordinates(address)
+    # raise NoLocationError unless location
+    # latitude = location[0]
+    # longitude = location[1]
     json_response = HTTParty.get('http://services.sunlightlabs.com/api/legislators.allForLatLong.json',
-                    query: {apikey: ENV['SUNLIGHT_KEY'],latitude: location[0], longitude: location[1]})
+                    query: {apikey: ENV['SUNLIGHT_KEY'],latitude: "35.9930150", longitude: "-78.9046430"})
   end
 
   def get_legislator_in_database(last, state, title)

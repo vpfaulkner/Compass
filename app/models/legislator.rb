@@ -284,8 +284,10 @@ class Legislator
     issue_ratings
   end
 
+
+
   def add_aggregated_legislator_issue_scores
-    json = JSON.parse(File.read("#{Rails.root}/app/assets/combined_funding_scores.json"))
+    json = JSON.parse(File.read("#{Rails.root}/app/assets/aggregated_legislator_funding_and_agreement_scores.json"))
     combined_scores_json = json["legislators"]
     chosen_issue = @legislator_record[:issue]
     legislator_issue_ratings = Array.new
