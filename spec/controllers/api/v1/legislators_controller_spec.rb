@@ -109,10 +109,10 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
   end
 
-  describe "Get #issue_ratings" do
+  describe "Get #contributions_by_industry" do
 
     it "responds successfully with an HTTP 200 status code" do
-      get :issue_ratings, { lastname: "Burr", state: "NC", title: "sen" }
+      get :contributions_by_industry, { lastname: "Burr", state: "NC", title: "sen" }
       expect(response).to be_success
       expect(response).to have_http_status(200)
 
@@ -120,6 +120,18 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
     end
 
   end
+
+  # describe "Get #issue_ratings" do
+  #
+  #   it "responds successfully with an HTTP 200 status code" do
+  #     get :issue_ratings, { lastname: "Burr", state: "NC", title: "sen" }
+  #     expect(response).to be_success
+  #     expect(response).to have_http_status(200)
+  #
+  #     # expect(JSON.parse(response.body)["legislators"][0]["top_contributors"].first["name"]).not_to be_nil
+  #   end
+  #
+  # end
 
   describe "Get #aggregated_legislator_issue_scores" do
 

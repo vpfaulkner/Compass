@@ -6,15 +6,18 @@ Rails.application.routes.draw do
       get 'profile' => 'legislators#profile'
       get 'funding_timeline' => 'legislators#funding_timeline'
       get 'elections_timeline' => 'legislators#elections_timeline'
-      get 'contributors_by_sector' => 'legislators#contributors_by_sector'
       get 'contributors_by_type' => 'legislators#contributors_by_type'
       get 'top_contributors' => 'legislators#top_contributors'
-      get 'issue_ratings' => 'legislators#issue_ratings'
-      get 'aggregated_legislator_issue_scores' => 'legislators#aggregated_legislator_issue_scores'
-
-      get 'funding_score_by_category' => 'legislators#funding_score_by_category'
-      get 'voting_score_by_issue' => 'legislators#voting_score_by_issue'
       get 'most_recent_votes' => 'legislators#most_recent_votes'
+      get 'contributions_by_industry' => 'legislators#contributions_by_industry'
+      get 'voting_score_by_industry' => 'legislators#voting_score_by_industry'
+
+
+
+      get 'issue_ratings' => 'legislators#issue_ratings'
+      get 'contributors_by_sector' => 'legislators#contributors_by_sector'
+      get 'aggregated_legislator_issue_scores' => 'legislators#aggregated_legislator_issue_scores'
+      get 'funding_score_by_category' => 'legislators#funding_score_by_category'
       get 'internal_get_norms' => 'legislators#internal_get_norms'
     end
   end
