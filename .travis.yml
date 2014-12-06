@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-- 2.1.2
+- 2.0.0
 script:
 - cp config/database.travis.yml config/database.yml
 - bundle exec rake db:create db:migrate
