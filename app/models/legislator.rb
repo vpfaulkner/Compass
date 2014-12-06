@@ -9,7 +9,7 @@ class Legislator
   end
 
   def self.bill_positions
-    @billpositions ||= File.read("#{Rails.root}/app/assets/bill_positions113through11.json")
+    File.read("#{Rails.root}/app/assets/bill_positions113through11.json")
   end
 
   attr_reader :new_legislator_object
