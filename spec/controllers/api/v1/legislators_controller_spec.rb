@@ -47,17 +47,7 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
   end
 
-  describe "Get #funding_timeline" do
 
-    it "responds successfully with an HTTP 200 status code" do
-      get :funding_timeline, { lastname: "Burr", state: "NC", title: "sen" }
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-
-      expect(JSON.parse(response.body)["legislators"][0]["campaign_finance_hash"]["2002"]).to eq(1132900)
-    end
-
-  end
 
   describe "Get #elections_timeline" do
 
