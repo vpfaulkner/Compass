@@ -134,36 +134,14 @@ class Legislator
     end
     @new_legislator_object["most_recent_votes"] = most_recent_votes
   end
-
-  def add_aggregated_legislator_issue_scores
-    json = JSON.parse(File.read("#{Rails.root}/app/assets/aggregated_legislator_funding_and_agreement_scores.json"))
-    combined_scores_json = json["legislators"]
-    chosen_issue = @legislator_record[:issue]
-    legislator_issue_ratings = Array.new
-    combined_scores_json.each do |record|
-      issue_hash = Hash.new
-      issue_hash["firstname"] = record["firstname"]
-      issue_hash["lastname"] = record["lastname"]
-      issue_hash["state"] = record["state"]
-      issue_hash["party"] = record["party"]
-      issue_hash["title"] = record["title"]
-      next unless record["issue_ratings_dummy"]
-      issue_match = record["issue_ratings_dummy"].select do |available_issues|
-        available_issues["issue_name"] == chosen_issue
-      end
-      issue_hash["issue_ratings_dummy"] = issue_match
-      legislator_issue_ratings.push(issue_hash)
-    end
-    @new_legislator_object["legislator_issue_scores"] = legislator_issue_ratings
-  end
-
+#
   def add_contributions_by_industry
     contributions_by_industry = Hash.new(0)
     total_funding = 0
     funding_transactions = get_funding_transactions
     catcodes_directory = get_code_to_industry_hash
     funding_transactions.each do |transaction|
-      next if transaction["amount"].empty?
+      next if !transaction || transaction["amount"].empty?
       contribution_amount = transaction["amount"].to_i
       total_funding += contribution_amount.to_i
       catcode = transaction["contributor_category"]
@@ -174,10 +152,15 @@ class Legislator
   end
 
   def get_funding_transactions
-    individual_funding_contributions = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
-        query: {apikey: ENV['SUNLIGHT_KEY'],recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+    funding_contributions2014 = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
+        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2014, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+    funding_contributions2012 = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
+        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2012, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+    funding_contributions2010 = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
+        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2010, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+    funding_contributions2014.zip(funding_contributions2012, funding_contributions2010).flatten
   end
-
+#
   def add_voting_score_by_industry
     legislator_votes = get_legislator_votes
     voting_agreements_with_industries = get_voting_agreements_with_industries(legislator_votes)
@@ -247,7 +230,28 @@ class Legislator
     end
     voting_agreements_with_industry
   end
-
+#
+  def add_aggregated_legislator_issue_scores
+    json = JSON.parse(File.read("#{Rails.root}/app/assets/aggregated_legislator_funding_and_agreement_scores.json"))
+    combined_scores_json = json["legislators"]
+    chosen_issue = @legislator_record[:issue]
+    legislator_issue_ratings = Array.new
+    combined_scores_json.each do |record|
+      issue_hash = Hash.new
+      issue_hash["firstname"] = record["firstname"]
+      issue_hash["lastname"] = record["lastname"]
+      issue_hash["state"] = record["state"]
+      issue_hash["party"] = record["party"]
+      issue_hash["title"] = record["title"]
+      next unless record["issue_ratings_dummy"]
+      issue_match = record["issue_ratings_dummy"].select do |available_issues|
+        available_issues["issue_name"] == chosen_issue
+      end
+      issue_hash["issue_ratings_dummy"] = issue_match
+      legislator_issue_ratings.push(issue_hash)
+    end
+    @new_legislator_object["legislator_issue_scores"] = legislator_issue_ratings
+  end
 
   # DEPRECATED
 
