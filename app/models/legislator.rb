@@ -57,8 +57,8 @@ class Legislator
       @new_legislator_object["top_contributors"] = add_top_contributors
     elsif field == "most_recent_votes"
       @new_legislator_object["most_recent_votes"] = add_most_recent_votes
-    elsif field == "voting_score_by_industry"
-      @new_legislator_object["voting_score_by_issue"] = add_voting_score_by_industry
+    elsif field == "agreement_score_by_industry"
+      @new_legislator_object["agreement_score_by_industry"] = add_agreement_score_by_industry
     elsif field == "contributions_by_industry"
       @new_legislator_object["issue_ratings_dummy"] = add_contributions_by_industry
     elsif field == "ideology_rank"
@@ -190,9 +190,9 @@ class Legislator
     funding_contributions2014.zip(funding_contributions2012, funding_contributions2010, funding_contributions2008).flatten
   end
 #
-  def add_voting_score_by_industry
+  def add_agreement_score_by_industry
     legislator_votes = get_legislator_votes
-    voting_agreements_with_industries = get_voting_agreements_with_industries(legislator_votes)
+    agreement_score_by_industry = get_agreement_score_by_industry(legislator_votes)
   end
 
   def get_legislator_votes
@@ -219,7 +219,7 @@ class Legislator
     code_to_industry_hash
   end
 
-  def get_voting_agreements_with_industries(legislator_votes)
+  def get_agreement_score_by_industry(legislator_votes)
     voting_agreements_with_industry = Hash.new
     raw_agreements_per_industry = Hash.new(0)
     agreement_opportunities_per_industry = Hash.new(0)
@@ -260,14 +260,14 @@ class Legislator
   end
 #
   def add_influence_rank
-    voting_score_by_industry = add_voting_score_by_industry
+    agreement_score_by_industry = add_agreement_score_by_industry
     contributions_by_industry = add_contributions_by_industry
     influence_score = 0
     total_funding = contributions_by_industry.inject(0) { |t, (i, c)| t += c if c.is_a? Numeric }
-    voting_score_by_industry.each do |industry, voting_score|
-      next if voting_score < 0
+    agreement_score_by_industry.each do |industry, agreement_score|
+      next if agreement_score < 0
       next unless contributions_by_industry[industry]
-      influence_score += (contributions_by_industry[industry] * voting_score) / total_funding
+      influence_score += (contributions_by_industry[industry] * agreement_score) / total_funding
     end
     influence_score
   end
