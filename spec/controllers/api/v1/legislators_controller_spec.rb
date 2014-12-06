@@ -128,14 +128,5 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
   end
 
 
-  describe "Get #aggregated_legislator_issue_scores" do
-
-    it "responds successfully with an HTTP 200 status code" do
-      get :aggregated_legislator_issue_scores, { lastname: "Burr", state: "NC", title: "sen" }
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-
-  end
 
 end

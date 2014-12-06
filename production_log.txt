@@ -1,0 +1,830 @@
+2014-12-06T20:25:10.787210+00:00 app[web.1]: Completed 200 OK in 323ms (Views: 8.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:12.872157+00:00 app[web.1]: Completed 200 OK in 2440ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:12.872961+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=25358bf6-01cd-4260-adc7-55eb1ba765c3 fwd="71.70.222.116" dyno=web.1 connect=1ms service=2553ms status=304 bytes=521
+2014-12-06T20:25:14.597869+00:00 heroku[web.1]: Process running mem=617M(120.6%)
+2014-12-06T20:25:14.598184+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:25:27.089275+00:00 app[web.1]: E, [2014-12-06T20:25:27.089092 #2] ERROR -- : worker=0 PID:5 timeout (17s > 15s), killing
+2014-12-06T20:25:27.162198+00:00 heroku[router]: at=error code=H13 desc="Connection closed without response" method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=d8ca793a-ccb8-41d6-aafc-b237f0b8d709 fwd="71.70.222.116" dyno=web.1 connect=11ms service=16832ms status=503 bytes=0
+2014-12-06T20:25:27.181017+00:00 app[web.1]: E, [2014-12-06T20:25:27.180880 #2] ERROR -- : reaped #<Process::Status: pid 5 SIGKILL (signal 9)> worker=0
+2014-12-06T20:25:32.022028+00:00 app[web.1]: I, [2014-12-06T20:25:31.976261 #17]  INFO -- : worker=0 ready
+2014-12-06T20:25:33.932602+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:25:33 +0000
+2014-12-06T20:25:35.685412+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:25:35.696274+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:25:38.048850+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=0453646d-96ad-4ba3-b4ac-b7a4985645ad fwd="71.70.222.116" dyno=web.1 connect=1ms service=5223ms status=304 bytes=521
+2014-12-06T20:25:38.038464+00:00 app[web.1]: Completed 200 OK in 2319ms (Views: 46.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:38.905370+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:25:38 +0000
+2014-12-06T20:25:38.966623+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:25:38.966635+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:25:39.639729+00:00 app[web.1]: Completed 200 OK in 673ms (Views: 66.2ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:39.689332+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=ae555703-4619-4cd3-ac0a-e6ffb4b9117a fwd="71.70.222.116" dyno=web.1 connect=8ms service=820ms status=304 bytes=521
+2014-12-06T20:25:39.858884+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:25:39 +0000
+2014-12-06T20:25:40.083282+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:25:40 +0000
+2014-12-06T20:25:39.999984+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:25:39.993186+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:25:39 +0000
+2014-12-06T20:25:40.081208+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=cd2e69a4-ab4e-4695-8f3d-394e8832ac85 fwd="71.70.222.116" dyno=web.1 connect=1ms service=238ms status=304 bytes=521
+2014-12-06T20:25:39.998494+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:25:40.092368+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:25:40.092376+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:25:40.081859+00:00 app[web.1]: Completed 200 OK in 82ms (Views: 1.7ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:40.077369+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:25:40.077361+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:25:40.530740+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=4a57769d-29d4-442f-9d30-7a5c73bd3aaf fwd="71.70.222.116" dyno=web.1 connect=0ms service=694ms status=304 bytes=521
+2014-12-06T20:25:40.482992+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=2c0273d9-1f64-4210-bb08-5bf3a743e15d fwd="71.70.222.116" dyno=web.1 connect=1ms service=638ms status=304 bytes=521
+2014-12-06T20:25:40.485176+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:25:40 +0000
+2014-12-06T20:25:40.531446+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:25:40 +0000
+2014-12-06T20:25:40.493540+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:25:40.483948+00:00 app[web.1]: Completed 200 OK in 391ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:40.490717+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:25:40.537334+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:25:40.530007+00:00 app[web.1]: Completed 200 OK in 452ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:40.537342+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:25:41.779302+00:00 app[web.1]: Completed 200 OK in 1242ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:41.783497+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:25:41.783474+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:25:41.780474+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:25:41 +0000
+2014-12-06T20:25:41.776966+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=9855c0b7-4026-4e63-b489-b8bf82b63802 fwd="71.70.222.116" dyno=web.1 connect=1ms service=1929ms status=304 bytes=521
+2014-12-06T20:25:42.620141+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=7be1e8fd-7248-4eda-8ebb-711df61381a0 fwd="71.70.222.116" dyno=web.1 connect=0ms service=2770ms status=304 bytes=521
+2014-12-06T20:25:42.619535+00:00 app[web.1]: Completed 200 OK in 2126ms (Views: 7.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:43.147747+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:25:43 +0000
+2014-12-06T20:25:44.416262+00:00 app[web.1]: Completed 200 OK in 2633ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:25:44.419671+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=9de7f496-6280-4dda-b503-c133e89b6974 fwd="71.70.222.116" dyno=web.1 connect=2ms service=4512ms status=200 bytes=3773
+2014-12-06T20:25:44.716331+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:25:44.716528+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:25:49.409037+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=76a60acc-e220-4302-a99e-1437f7bbb172 fwd="71.70.222.116" dyno=web.1 connect=1ms service=9566ms status=304 bytes=521
+2014-12-06T20:25:49.410583+00:00 app[web.1]: Completed 200 OK in 4694ms (Views: 2.0ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:34.702498+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:27:34 +0000
+2014-12-06T20:27:34.711809+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:27:34.711838+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:27:34.917965+00:00 app[web.1]: Completed 200 OK in 206ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:34.922830+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=c1c1a571-cc07-400d-8888-3d2aba833432 fwd="71.70.222.116" dyno=web.1 connect=4ms service=226ms status=304 bytes=521
+2014-12-06T20:27:35.451429+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=c0943b55-0ed5-4fcc-aae8-0b7272a9e5ef fwd="71.70.222.116" dyno=web.1 connect=1ms service=15ms status=304 bytes=521
+2014-12-06T20:27:35.534326+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=94ea4389-f149-4dc1-96e2-c82fac37e3ba fwd="71.70.222.116" dyno=web.1 connect=5ms service=19ms status=304 bytes=521
+2014-12-06T20:27:35.439650+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:27:35 +0000
+2014-12-06T20:27:35.499971+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:27:35 +0000
+2014-12-06T20:27:35.529984+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:27:35 +0000
+2014-12-06T20:27:35.562526+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:27:35 +0000
+2014-12-06T20:27:35.667295+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:27:35 +0000
+2014-12-06T20:27:35.680252+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:27:35 +0000
+2014-12-06T20:27:35.671438+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:27:35.448826+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:27:35.451846+00:00 app[web.1]: Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:35.448835+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:27:35.502870+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:27:35.502877+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:27:35.524981+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:27:35 +0000
+2014-12-06T20:27:35.531492+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:27:35.531521+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:27:35.532919+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:27:35.538766+00:00 app[web.1]: Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:35.532986+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:27:35.566677+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:27:35.566684+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:27:35.665714+00:00 app[web.1]: Completed 200 OK in 132ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:35.670238+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:27:35.679342+00:00 app[web.1]: Completed 200 OK in 176ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:35.692070+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:27:35.692079+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:27:35.687820+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=d654cd5d-144c-4d93-ba09-79d350a30e5a fwd="71.70.222.116" dyno=web.1 connect=1ms service=190ms status=304 bytes=521
+2014-12-06T20:27:35.666052+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=b5bb8bb8-fbe2-4cbb-ac47-c7d3a7c094d6 fwd="71.70.222.116" dyno=web.1 connect=4ms service=139ms status=304 bytes=521
+2014-12-06T20:27:35.986036+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=418c0e1d-7006-4909-a619-feb1aea576bb fwd="71.70.222.116" dyno=web.1 connect=4ms service=422ms status=304 bytes=521
+2014-12-06T20:27:35.985446+00:00 app[web.1]: Completed 200 OK in 293ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:35.992535+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:27:35.992546+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:27:36.095931+00:00 app[web.1]: Completed 200 OK in 103ms (Views: 1.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:35.986469+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:27:35 +0000
+2014-12-06T20:27:36.096872+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=a07e65fb-e957-492c-88cc-ff124fd3a467 fwd="71.70.222.116" dyno=web.1 connect=3ms service=540ms status=304 bytes=521
+2014-12-06T20:27:38.250605+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=388dc424-a867-4507-a11b-a0bf65db0ce8 fwd="71.70.222.116" dyno=web.1 connect=1ms service=2687ms status=304 bytes=521
+2014-12-06T20:27:38.235920+00:00 app[web.1]: Completed 200 OK in 2669ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:39.162255+00:00 app[web.1]: Completed 200 OK in 3491ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:27:39.177664+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=95f63e3c-39f1-41d4-9f7e-ac5be77250a3 fwd="71.70.222.116" dyno=web.1 connect=1ms service=3615ms status=304 bytes=521
+2014-12-06T20:27:48.473365+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:27:48.473144+00:00 heroku[web.1]: Process running mem=565M(110.4%)
+2014-12-06T20:28:10.656767+00:00 heroku[web.1]: Process running mem=565M(110.4%)
+2014-12-06T20:28:10.657059+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:28:32.366019+00:00 heroku[web.1]: Process running mem=565M(110.4%)
+2014-12-06T20:28:32.366256+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:28:36.752054+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:28:36 +0000
+2014-12-06T20:28:36.770926+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:28:36.765351+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:28:37.159644+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=8372772a-1b23-4436-98fb-c0f9347306c0 fwd="71.70.222.116" dyno=web.1 connect=1ms service=410ms status=304 bytes=521
+2014-12-06T20:28:37.157221+00:00 app[web.1]: Completed 200 OK in 386ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:38.373103+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=2a4299f7-58ad-45ea-8f24-84400a69ec3a fwd="71.70.222.116" dyno=web.1 connect=1ms service=96ms status=304 bytes=521
+2014-12-06T20:28:38.285082+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:38 +0000
+2014-12-06T20:28:38.419507+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:38 +0000
+2014-12-06T20:28:38.465387+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:28:38.465410+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:38.469356+00:00 app[web.1]: Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:38.487390+00:00 app[web.1]: Completed 200 OK in 62ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:38.530098+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:38 +0000
+2014-12-06T20:28:38.289360+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:28:38.289381+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:38.372721+00:00 app[web.1]: Completed 200 OK in 83ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:38.424932+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:28:38.424954+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:38.462111+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:38 +0000
+2014-12-06T20:28:38.484483+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:38 +0000
+2014-12-06T20:28:38.490621+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:28:38.490690+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:38.529124+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:38 +0000
+2014-12-06T20:28:38.537756+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:28:38.537875+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:38.470158+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=987de0fb-4fcb-42c4-b501-8b62fb3c522c fwd="71.70.222.116" dyno=web.1 connect=3ms service=12ms status=304 bytes=521
+2014-12-06T20:28:38.580239+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=ae263c18-c38d-46b3-bf3a-9c6363657f71 fwd="71.70.222.116" dyno=web.1 connect=3ms service=99ms status=304 bytes=521
+2014-12-06T20:28:38.500835+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=d365f9ea-a314-43ef-badb-a68a6c2241ef fwd="71.70.222.116" dyno=web.1 connect=1ms service=84ms status=304 bytes=521
+2014-12-06T20:28:38.543344+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:28:38.543351+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:38.576496+00:00 app[web.1]: Completed 200 OK in 86ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:38.588386+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:28:38.588396+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:38.577848+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:38 +0000
+2014-12-06T20:28:38.872189+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=f30e0ee8-96c1-469d-8682-3f50ff2bd951 fwd="71.70.222.116" dyno=web.1 connect=1ms service=348ms status=304 bytes=521
+2014-12-06T20:28:38.974256+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=cce22a64-8ee7-46ff-946a-8cda6e42becc fwd="71.70.222.116" dyno=web.1 connect=9ms service=440ms status=304 bytes=521
+2014-12-06T20:28:38.870425+00:00 app[web.1]: Completed 200 OK in 332ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:38.878279+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:28:38.878287+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:38.970731+00:00 app[web.1]: Completed 200 OK in 92ms (Views: 1.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:38.871770+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:38 +0000
+2014-12-06T20:28:39.184974+00:00 app[web.1]: Completed 200 OK in 641ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:39.184107+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=a28c3386-41ea-450a-a0f1-622667068ffe fwd="71.70.222.116" dyno=web.1 connect=2ms service=659ms status=304 bytes=521
+2014-12-06T20:28:42.605164+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=47a61d5e-2887-461d-a747-3792292b941e fwd="71.70.222.116" dyno=web.1 connect=2ms service=4079ms status=304 bytes=521
+2014-12-06T20:28:42.605940+00:00 app[web.1]: Completed 200 OK in 4017ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:54.550713+00:00 heroku[web.1]: Process running mem=588M(115.0%)
+2014-12-06T20:28:54.550926+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:28:56.328312+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=5dc052b6-eac5-42d9-b741-82ad857d7be5 fwd="71.70.222.116" dyno=web.1 connect=10ms service=46ms status=304 bytes=521
+2014-12-06T20:28:56.286809+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:28:56 +0000
+2014-12-06T20:28:56.292933+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:28:56.292939+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:28:56.328149+00:00 app[web.1]: Completed 200 OK in 35ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:57.316068+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=b206a611-cfc1-4b47-b159-1d27adab54e7 fwd="71.70.222.116" dyno=web.1 connect=8ms service=56ms status=304 bytes=521
+2014-12-06T20:28:57.264892+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:57 +0000
+2014-12-06T20:28:57.355340+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:57 +0000
+2014-12-06T20:28:57.364118+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:57 +0000
+2014-12-06T20:28:57.366530+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:57 +0000
+2014-12-06T20:28:57.497071+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:57 +0000
+2014-12-06T20:28:57.514960+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:28:57.514981+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:57.364609+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=062301d3-a5dd-4867-a3b3-e29a33211abd fwd="71.70.222.116" dyno=web.1 connect=2ms service=15ms status=304 bytes=521
+2014-12-06T20:28:57.290613+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:28:57.290740+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:57.317012+00:00 app[web.1]: Completed 200 OK in 26ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:57.359120+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:28:57.359155+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:57.363294+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:57 +0000
+2014-12-06T20:28:57.365674+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:57.372517+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:28:57.372535+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:57.377003+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:28:57.377010+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:57.404493+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:28:57.404502+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:57.496133+00:00 app[web.1]: Completed 200 OK in 91ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:57.509903+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:28:57.509972+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:57.510132+00:00 app[web.1]: Completed 200 OK in 133ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:57.511009+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:57 +0000
+2014-12-06T20:28:57.501953+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=d2cfffda-609f-475c-ba77-26419becb73f fwd="71.70.222.116" dyno=web.1 connect=2ms service=144ms status=304 bytes=521
+2014-12-06T20:28:57.515565+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=155bba7b-7631-487e-bc76-d9fd37dabe52 fwd="71.70.222.116" dyno=web.1 connect=2ms service=157ms status=304 bytes=521
+2014-12-06T20:28:57.585670+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=4b2cf2cc-b71d-4958-afbd-fc5d493d5c18 fwd="71.70.222.116" dyno=web.1 connect=2ms service=221ms status=304 bytes=521
+2014-12-06T20:28:57.586590+00:00 app[web.1]: Completed 200 OK in 71ms (Views: 2.7ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:57.595248+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:28:57.595255+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:28:57.587851+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:28:57 +0000
+2014-12-06T20:28:57.994852+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=af84c743-ef33-4228-8b11-be3ab6bc1d3b fwd="71.70.222.116" dyno=web.1 connect=2ms service=628ms status=304 bytes=521
+2014-12-06T20:28:57.996562+00:00 app[web.1]: Completed 200 OK in 393ms (Views: 6.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:28:59.969619+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=cb2751c7-294f-4ed7-9e4d-c1e53a129859 fwd="71.70.222.116" dyno=web.1 connect=0ms service=2607ms status=304 bytes=521
+2014-12-06T20:28:59.970706+00:00 app[web.1]: Completed 200 OK in 2598ms (Views: 1.7ms | ActiveRecord: 0.0ms)
+2014-12-06T20:29:02.229812+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=fb53ce5d-8cb7-4eb4-96ed-563bcb7d0a76 fwd="71.70.222.116" dyno=web.1 connect=1ms service=4868ms status=304 bytes=521
+2014-12-06T20:29:02.225350+00:00 app[web.1]: Completed 200 OK in 4715ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:29:16.602629+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:29:16.602697+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:29:38.521863+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:29:38.522082+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:30:00.587529+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:30:00.587701+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:30:22.667548+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:30:22.667833+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:30:44.548179+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:30:44.548179+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:31:06.616840+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:31:06.617279+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:31:28.387315+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:31:28.387896+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:31:50.531475+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:31:50.531475+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:32:12.707129+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:32:12.707338+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:32:34.462182+00:00 heroku[web.1]: Process running mem=604M(118.0%)
+2014-12-06T20:32:34.462476+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:32:50.506458+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:32:50 +0000
+2014-12-06T20:32:50.748695+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:32:50 +0000
+2014-12-06T20:32:50.509750+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:32:50.509802+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:32:50.716363+00:00 app[web.1]: Completed 200 OK in 206ms (Views: 4.9ms | ActiveRecord: 0.0ms)
+2014-12-06T20:32:50.752842+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:32:50.752867+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:32:50.714513+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=c502e5b7-8a9c-41cb-999c-e231a4e8d8b7 fwd="71.70.222.116" dyno=web.1 connect=0ms service=212ms status=304 bytes=521
+2014-12-06T20:32:50.775632+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=50a53c23-450c-4bd5-86a9-6d50c53784cb fwd="71.70.222.116" dyno=web.1 connect=1ms service=33ms status=304 bytes=521
+2014-12-06T20:32:50.775514+00:00 app[web.1]: Completed 200 OK in 23ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:32:51.463345+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=f5cdc10c-c8b3-48d9-b3e2-0f03c2c24f68 fwd="71.70.222.116" dyno=web.1 connect=10ms service=105ms status=304 bytes=521
+2014-12-06T20:32:51.398067+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:32:51.398076+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:32:51.466148+00:00 app[web.1]: Completed 200 OK in 68ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:32:51.515984+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:32:51.516007+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:32:51.544212+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:32:51 +0000
+2014-12-06T20:32:51.557552+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:32:51.557561+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:32:51.563725+00:00 app[web.1]: Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:32:51.575637+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:32:51.575643+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:32:51.363852+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:32:51 +0000
+2014-12-06T20:32:51.512237+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:32:51 +0000
+2014-12-06T20:32:51.550771+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:32:51.550779+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:32:51.553456+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:32:51 +0000
+2014-12-06T20:32:51.572959+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:32:51 +0000
+2014-12-06T20:32:51.561505+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=160080bb-b303-48de-815e-7952925d5b1a fwd="71.70.222.116" dyno=web.1 connect=3ms service=21ms status=304 bytes=521
+2014-12-06T20:32:51.707479+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=59f68471-5a01-4834-b65c-2dbdf799ff23 fwd="71.70.222.116" dyno=web.1 connect=0ms service=201ms status=304 bytes=521
+2014-12-06T20:32:51.706763+00:00 app[web.1]: Completed 200 OK in 156ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:32:51.710821+00:00 app[web.1]: Completed 200 OK in 195ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:32:51.714278+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:32:51.714358+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:32:51.715604+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:32:51.826973+00:00 app[web.1]: Completed 200 OK in 102ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:32:51.831201+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:32:51.707839+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:32:51 +0000
+2014-12-06T20:32:51.712477+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:32:51 +0000
+2014-12-06T20:32:51.724850+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:32:51.705971+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=988e368a-e973-43ca-91f1-1471231bf737 fwd="71.70.222.116" dyno=web.1 connect=0ms service=165ms status=304 bytes=521
+2014-12-06T20:32:51.828205+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:32:51 +0000
+2014-12-06T20:32:51.831279+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:32:51.824925+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=b0a05c48-8250-43f6-a842-449febfbac20 fwd="71.70.222.116" dyno=web.1 connect=0ms service=250ms status=304 bytes=521
+2014-12-06T20:32:52.629603+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=e83a464a-8e04-4c8a-a11c-3f4c2bdb024f fwd="71.70.222.116" dyno=web.1 connect=4ms service=1063ms status=200 bytes=11606
+2014-12-06T20:32:52.634440+00:00 app[web.1]: Completed 200 OK in 1059ms (Views: 4.9ms | ActiveRecord: 0.0ms)
+2014-12-06T20:32:55.036681+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=fc12f99f-017d-4008-855a-df69055c18ee fwd="71.70.222.116" dyno=web.1 connect=0ms service=3462ms status=200 bytes=2959
+2014-12-06T20:32:55.029195+00:00 app[web.1]: Completed 200 OK in 3315ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+2014-12-06T20:32:56.557381+00:00 heroku[web.1]: Process running mem=624M(121.9%)
+2014-12-06T20:32:56.557675+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:32:59.082464+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=9039d83a-9246-4d19-92da-2642c6b11e1c fwd="71.70.222.116" dyno=web.1 connect=12ms service=7490ms status=304 bytes=521
+2014-12-06T20:32:59.068310+00:00 app[web.1]: Completed 200 OK in 7222ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:09.042221+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:33:09 +0000
+2014-12-06T20:33:09.047767+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:33:09.047805+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:33:09.087684+00:00 app[web.1]: Completed 200 OK in 39ms (Views: 7.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:09.091934+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=7c42ca1e-3490-4df7-bec3-23f8ff8effba fwd="71.70.222.116" dyno=web.1 connect=7ms service=55ms status=304 bytes=521
+2014-12-06T20:33:10.195236+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=9a289856-0acd-442b-911a-b88b73a371f7 fwd="71.70.222.116" dyno=web.1 connect=8ms service=24ms status=304 bytes=521
+2014-12-06T20:33:10.253023+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=0fd85ba1-0d78-449a-8dd9-d61cc871e0f6 fwd="71.70.222.116" dyno=web.1 connect=6ms service=12ms status=304 bytes=521
+2014-12-06T20:33:10.175133+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:10 +0000
+2014-12-06T20:33:10.243924+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:10 +0000
+2014-12-06T20:33:10.247105+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:33:10.249353+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:33:10.249390+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:10.249730+00:00 app[web.1]: Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:10.256679+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:33:10.256746+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:10.312231+00:00 app[web.1]: Completed 200 OK in 55ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:10.318013+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:33:10.318073+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:10.351247+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:10 +0000
+2014-12-06T20:33:10.371412+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:10 +0000
+2014-12-06T20:33:10.178481+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:33:10.178536+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:10.197691+00:00 app[web.1]: Completed 200 OK in 19ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:10.245994+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:10 +0000
+2014-12-06T20:33:10.247186+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:10.250600+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:10 +0000
+2014-12-06T20:33:10.313167+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:10 +0000
+2014-12-06T20:33:10.369553+00:00 app[web.1]: Completed 200 OK in 51ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:10.374616+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:33:10.374698+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:10.368229+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=2549c076-36c4-428e-adb7-4f00d7482e02 fwd="71.70.222.116" dyno=web.1 connect=0ms service=124ms status=304 bytes=521
+2014-12-06T20:33:10.313431+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=6c478f53-e043-465b-abbd-8c9981c6dfb1 fwd="71.70.222.116" dyno=web.1 connect=1ms service=69ms status=304 bytes=521
+2014-12-06T20:33:11.138438+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=ec812df2-3045-4eb0-90fd-fc3e5803aec6 fwd="71.70.222.116" dyno=web.1 connect=1ms service=897ms status=304 bytes=521
+2014-12-06T20:33:11.141605+00:00 app[web.1]: Completed 200 OK in 892ms (Views: 310.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:11.152704+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:33:11.152723+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:11.143312+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:11 +0000
+2014-12-06T20:33:11.635164+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:33:11.705288+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:15.437287+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=b3afc4fb-4436-46eb-a1e0-e8b98f23aa9f fwd="71.70.222.116" dyno=web.1 connect=4ms service=5131ms status=304 bytes=521
+2014-12-06T20:33:15.401235+00:00 app[web.1]: Completed 200 OK in 4248ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:18.440775+00:00 app[web.1]: Completed 200 OK in 6735ms (Views: 1089.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:18.664686+00:00 heroku[web.1]: Process running mem=698M(136.4%)
+2014-12-06T20:33:18.664686+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:33:18.624121+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=5854ae0b-5c00-4ed0-8759-34f09cdc0ba7 fwd="71.70.222.116" dyno=web.1 connect=0ms service=8381ms status=304 bytes=521
+2014-12-06T20:33:22.133245+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=beb77314-7536-4b50-ae28-5c0a23bef930 fwd="71.70.222.116" dyno=web.1 connect=3ms service=11830ms status=304 bytes=522
+2014-12-06T20:33:22.132227+00:00 app[web.1]: Completed 200 OK in 11758ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:26.283749+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:33:26 +0000
+2014-12-06T20:33:26.299983+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:33:26.299995+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:33:26.331259+00:00 app[web.1]: Completed 200 OK in 31ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:26.351446+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=1c1c97e4-8388-43c4-b8d7-c2f383cc7acd fwd="71.70.222.116" dyno=web.1 connect=1ms service=72ms status=304 bytes=521
+2014-12-06T20:33:27.594699+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=498f1e5d-bc1b-4611-b77c-eaa09469bac0 fwd="71.70.222.116" dyno=web.1 connect=1ms service=10ms status=304 bytes=521
+2014-12-06T20:33:27.588569+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:27 +0000
+2014-12-06T20:33:27.651317+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:27 +0000
+2014-12-06T20:33:27.761036+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:33:27.761099+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:27.817090+00:00 app[web.1]: Completed 200 OK in 155ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:27.817096+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:27 +0000
+2014-12-06T20:33:27.822815+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:27 +0000
+2014-12-06T20:33:27.822820+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:33:27.822821+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:27.591878+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:33:27.591929+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:27.594373+00:00 app[web.1]: Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:27.661288+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:33:27.661372+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:27.734036+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:27 +0000
+2014-12-06T20:33:27.813895+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=7f01fa0c-1215-408c-a6a1-60926d498e6f fwd="71.70.222.116" dyno=web.1 connect=0ms service=167ms status=304 bytes=521
+2014-12-06T20:33:27.922686+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:33:27.922820+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:28.285122+00:00 app[web.1]: Completed 200 OK in 361ms (Views: 257.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:28.394619+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:33:28.394821+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:28.517206+00:00 app[web.1]: Completed 200 OK in 756ms (Views: 8.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:28.527594+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:33:28.307973+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=93ecfb01-5bf7-4424-9374-97e87e5a806a fwd="71.70.222.116" dyno=web.1 connect=1ms service=666ms status=304 bytes=521
+2014-12-06T20:33:28.354373+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:28 +0000
+2014-12-06T20:33:28.518879+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:28 +0000
+2014-12-06T20:33:28.528568+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:28.514931+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=d485b836-235d-48dc-995c-20fde35caa26 fwd="71.70.222.116" dyno=web.1 connect=0ms service=869ms status=304 bytes=521
+2014-12-06T20:33:28.658119+00:00 app[web.1]: Completed 200 OK in 126ms (Views: 5.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:28.666535+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:33:28.659623+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:33:28 +0000
+2014-12-06T20:33:28.669229+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:33:28.660791+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=2a332ab0-5bfd-4d37-8cd4-83a46d00a5d7 fwd="71.70.222.116" dyno=web.1 connect=6ms service=1004ms status=304 bytes=521
+2014-12-06T20:33:29.731778+00:00 app[web.1]: Completed 200 OK in 1336ms (Views: 460.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:29.965691+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=a017c5bb-6a03-465a-8fe3-ae8c6b3e0216 fwd="71.70.222.116" dyno=web.1 connect=6ms service=2309ms status=304 bytes=521
+2014-12-06T20:33:30.918919+00:00 app[web.1]: Completed 200 OK in 3098ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:30.921541+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=0f85f651-adef-4552-bca2-5db44313dcb8 fwd="71.70.222.116" dyno=web.1 connect=1ms service=3274ms status=304 bytes=521
+2014-12-06T20:33:34.354486+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=7784ca30-d34b-4479-81f9-1abe7f9beecb fwd="71.70.222.116" dyno=web.1 connect=0ms service=6642ms status=304 bytes=521
+2014-12-06T20:33:34.356258+00:00 app[web.1]: Completed 200 OK in 5686ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+2014-12-06T20:33:40.565213+00:00 heroku[web.1]: Process running mem=697M(136.3%)
+2014-12-06T20:33:40.565432+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:53:35.925456+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:53:35 +0000
+2014-12-06T20:53:35.968192+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:53:35 +0000
+2014-12-06T20:53:35.977673+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:53:35.977681+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:53:35.978194+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:53:35 +0000
+2014-12-06T20:53:36.023382+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:53:36 +0000
+2014-12-06T20:53:36.026375+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:53:36 +0000
+2014-12-06T20:53:36.032104+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:53:36.056590+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:53:36 +0000
+2014-12-06T20:53:36.078891+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:53:36 +0000
+2014-12-06T20:53:35.928665+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:53:35.928673+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:53:35.931289+00:00 app[web.1]: Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:53:35.971792+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:53:35.971799+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:53:36.025408+00:00 app[web.1]: Completed 200 OK in 48ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+2014-12-06T20:53:35.974751+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:53:35 +0000
+2014-12-06T20:53:35.986688+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:53:35.986697+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:53:36.022365+00:00 app[web.1]: Completed 200 OK in 50ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:53:36.026778+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:53:36.046871+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=c98f0ae6-2575-4170-862a-308282bac604 fwd="71.70.222.116" dyno=web.1 connect=0ms service=82ms status=304 bytes=521
+2014-12-06T20:53:36.081474+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:53:36.026800+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:53:36.029833+00:00 app[web.1]: Completed 200 OK in 43ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+2014-12-06T20:53:36.032857+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:53:36.077513+00:00 app[web.1]: Completed 200 OK in 51ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:53:36.081494+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:53:36.115000+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:53:36.115008+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:53:36.023283+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=d15e1f16-929f-48e2-8012-358ee10097d2 fwd="71.70.222.116" dyno=web.1 connect=0ms service=57ms status=304 bytes=521
+2014-12-06T20:53:36.073432+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=f63864eb-2491-41ff-8ac0-614bf1b12deb fwd="71.70.222.116" dyno=web.1 connect=1ms service=103ms status=304 bytes=521
+2014-
+12-06T20:53:36.284826+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=b0d4d324-69c0-4d5b-84ef-d85c9af5b923 fwd="71.70.222.116" dyno=web.1 connect=3ms service=306ms status=304 bytes=521
+2014-12-06T20:53:36.286901+00:00 app[web.1]: Completed 200 OK in 254ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:53:38.449665+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=df6e3c91-d07a-40a3-ab34-9d567f9d55f9 fwd="71.70.222.116" dyno=web.1 connect=3ms service=2469ms status=304 bytes=521
+2014-12-06T20:53:38.452771+00:00 app[web.1]: Completed 200 OK in 2371ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:53:50.496001+00:00 heroku[web.1]: Process running mem=690M(134.8%)
+2014-12-06T20:53:50.496221+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:53:50.916453+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=6e27018e-a0e7-46f2-b143-eedb2e75de2c fwd="71.70.222.116" dyno=web.1 connect=3ms service=14935ms status=304 bytes=522
+2014-12-06T20:53:50.909400+00:00 app[web.1]: Completed 200 OK in 14794ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+2014-12-06T20:54:12.681426+00:00 heroku[web.1]: Process running mem=691M(135.0%)
+2014-12-06T20:54:12.681426+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:54:34.373438+00:00 heroku[web.1]: Process running mem=691M(135.0%)
+2014-12-06T20:54:34.373653+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:54:56.561053+00:00 heroku[web.1]: Process running mem=691M(135.0%)
+2014-12-06T20:54:56.561398+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:55:18.662242+00:00 heroku[web.1]: Process running mem=691M(135.0%)
+2014-12-06T20:55:18.662532+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:55:40.489183+00:00 heroku[web.1]: Process running mem=691M(135.0%)
+2014-12-06T20:55:40.489413+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:56:02.567731+00:00 heroku[web.1]: Process running mem=691M(135.0%)
+2014-12-06T20:56:02.567773+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:56:05.786462+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:56:05 +0000
+2014-12-06T20:56:05.790418+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:56:05.790425+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:56:06.010617+00:00 app[web.1]: Completed 200 OK in 220ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+2014-12-06T20:56:06.012185+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-412
+9.herokuapp.com request_id=67008707-1a8a-496f-a0f3-ad41a7f995c6 fwd="71.70.222.116" dyno=web.1 connect=1ms service=230ms status=304 bytes=521
+2014-12-06T20:56:07.850152+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:56:07 +0000
+2014-12-06T20:56:08.095830+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:56:08.095791+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:56:09.580173+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:56:09.441983+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=0de7793e-cb4e-4221-a692-70248425e5b8 fwd="71.70.222.116" dyno=web.1 connect=3ms service=1912ms status=304 bytes=521
+2014-12-06T20:56:09.580185+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:56:09.332341+00:00 app[web.1]: Completed 200 OK in 1236ms (Views: 227.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:56:09.802342+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:56:09.729338+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:56:09.573465+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:56:09 +0000
+2014-12-06T20:56:09.599069+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:56:09.785504+00:00 app[web.1]: Completed 200 OK in 186ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:56:09.588544+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:56:09 +0000
+2014-12-06T20:56:09.609252+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:56:09 +0000
+2014-12-06T20:56:09.622206+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:56:09.729350+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:56:09.621432+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:56:09.680875+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:56:09 +0000
+2014-12-06T20:56:09.598599+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:56:09.844254+00:00 app[web.1]: Completed 200 OK in 217ms (Views: 45.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:56:09.816103+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:56:09.602565+00:00 app[web.1]: Completed 200 OK in 22ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:56:09.792984+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:56:09 +0000
+2014-12-06T20:56:09.602002+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=b3b9d334-4933-4dfe-8df1-95680ecbf136 fwd="71.70.222.116" dyno=web.1 connect=1ms service=37ms status=304 bytes=521
+2014-12-06T20:56:09.790025+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=267cdb7f-e8dc-4c1e-aff4-119459956811 fwd="71.70.222.116" dyno=web.1 connect=1ms service=220ms status=304 bytes=521
+2014-12-06T20:56:09.845871+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=501ed63f-7553-45f4-b327-a638cfcc1a72 fwd="71.70.222.116" dyno=web.1 connect=1ms service=246ms status=304 bytes=521
+2014-12-06T20:56:09.848751+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:56:09 +0000
+2014-12-06T20:56:09.860916+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:56:09.860943+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:56:10.488996+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=366ac580-ae22-4c4a-958e-78cc68ab3ebf fwd="71.70.222.116" dyno=web.1 connect=9ms service=875ms status=304 bytes=521
+2014-12-06T20:56:10.490909+00:00 app[web.1]: Completed 200 OK in 630ms (Views: 3.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:56:10.496910+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:56:10.493288+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:56:10 +0000
+2014-12-06T20:56:10.497165+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:56:11.170843+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=7c3a97ed-e714-41b9-8f8f-939da12e2774 fwd="71.70.222.116" dyno=web.1 connect=1ms service=1625ms status=304 bytes=521
+2014-12-06T20:56:11.169711+00:00 app[web.1]: Completed 200 OK in 1099ms (Views: 235.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:56:15.146947+00:00 app[web.1]: Completed 200 OK in 4650ms (Views: 59.0ms | ActiveRecord: 0.0ms)
+2014-12-06T20:56:15.151347+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=883de924-3898-4e91-80d5-0d677a8af4eb fwd="71.70.222.116" dyno=web.1 connect=6ms service=5535ms status=304 bytes=521
+2014-12-06T20:56:24.777778+00:00 heroku[web.1]: Process running mem=722M(141.2%)
+2014-12-06T20:56:24.778076+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:56:25.567916+00:00 app[web.1]: E, [2014-12-06T20:56:25.420539 #2] ERROR -- : worker=0 PID:26 timeout (16s > 15s), killing
+2014-12-06T20:56:25.742807+00:00 heroku[router]: at=error code=H13 desc="Connection closed without response" method=GET path="/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=299cf640-edc5-4997-885a-3b94cd9681d3 fwd="71.70.222.116" dyno=web.1 connect=1ms service=16137ms status=503 bytes=0
+2014-12-06T20:56:25.902547+00:00 app[web.1]: E, [2014-12-06T20:56:25.894640 #2] ERROR -- : reaped #<Process::Status: pid 26 SIGKILL (signal 9)> worker=0
+2014-12-06T20:56:29.203998+00:00 app[web.1]: I, [2014-12-06T20:56:29.164644 #29]  INFO -- : worker=0 ready
+2014-12-06T20:57:09.272309+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=dbff981a-f261-4b47-b298-50a0c8f5630e fwd="71.70.222.116" dyno=web.1 connect=1ms service=37ms status=304 bytes=521
+2014-12-06T20:57:09.239316+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:57:09 +0000
+2014-12-06T20:57:09.242601+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:57:09.242693+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:57:09.271085+00:00 app[web.1]: Completed 200 OK in 28ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:57:11.805086+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:57:11 +0000
+2014-12-06T20:57:13.185449+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:57:13.185535+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:57:18.051888+00:00 app[web.1]: Completed 200 OK in 4866ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+2014-12-06T20:57:18.186987+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:57:18 +0000
+2014-12-06T20:57:18.192498+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:57:18.213013+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:57:18.243084+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:57:18.243173+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:57:18.051851+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=c4319c73-e4b0-4eb1-b0cf-51ba8ffbb9a8 fwd="71.70.222.116" dyno=web.1 connect=1ms service=7891ms status=304 bytes=521
+2014-12-06T20:57:18.183941+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:57:18 +0000
+2014-12-06T20:57:18.187353+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:57:18.187398+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:57:18.191127+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:57:18 +0000
+2014-12-06T20:57:18.194414+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:57:18.194538+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:57:18.207278+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:57:18.239592+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:57:18 +0000
+2014-12-06T20:57:18.335250+00:00 app[web.1]: Completed 200 OK in 141ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:57:18.339405+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:57:18.339456+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:57:18.358771+00:00 app[web.1]: Completed 200 OK in 115ms (Views: 2.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:57:18.366461+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:57:18.366489+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:57:18.334295+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=a1ce4eb5-3b47-43db-8431-4b932b1fa759 fwd="71.70.222.116" dyno=web.1 connect=1ms service=146ms status=304 bytes=521
+2014-12-06T20:57:18.192024+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=6d62f030-14a5-483a-b3ac-c3a09c3caa0e fwd="71.70.222.116" dyno=web.1 connect=10ms service=11ms status=304 bytes=521
+2014-12-06T20:57:18.336605+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:57:18 +0000
+2014-12-06T20:57:18.359833+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:57:18 +0000
+2014-12-06T20:57:18.362966+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=d270f3cc-7331-4233-b58b-9b68dbcb957d fwd="71.70.222.116" dyno=web.1 connect=1ms service=127ms status=304 bytes=521
+2014-12-06T20:57:18.600778+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=c8d06ffa-0b3a-4930-bbbe-ece1f05a7382 fwd="71.70.222.116" dyno=web.1 connect=1ms service=368ms status=304 bytes=521
+2014-12-06T20:57:18.596114+00:00 app[web.1]: Completed 200 OK in 382ms (Views: 75.1ms | ActiveRecord: 0.0ms)
+2014-12-06T20:57:18.604886+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:57:18 +0000
+2014-12-06T20:57:18.603660+00:00 app[web.1]: Completed 200 OK in 264ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+2014-12-06T20:57:18.610636+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:57:18.610672+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:57:18.616947+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=d739840a-44cf-467c-9651-76e7fa092638 fwd="71.70.222.116" dyno=web.1 connect=1ms service=465ms status=304 bytes=521
+2014-12-06T20:57:21.078087+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=0d775c9a-f877-4786-80e6-9a14d066cc64 fwd="71.70.222.116" dyno=web.1 connect=2ms service=2834ms status=304 bytes=521
+2014-12-06T20:57:21.079700+00:00 app[web.1]: Completed 200 OK in 2469ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:57:22.831568+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=29166a65-e58f-482b-9328-edb50a2821a6 fwd="71.70.222.116" dyno=web.1 connect=1ms service=4587ms status=304 bytes=521
+2014-12-06T20:57:22.833643+00:00 app[web.1]: Completed 200 OK in 4467ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+2014-12-06T20:57:30.397931+00:00 heroku[web.1]: Process running mem=605M(118.2%)
+2014-12-06T20:57:30.398159+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:57:52.503722+00:00 heroku[web.1]: Process running mem=605M(118.2%)
+2014-12-06T20:57:52.503945+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:58:14.635870+00:00 heroku[web.1]: Process running mem=605M(118.2%)
+2014-12-06T20:58:14.636092+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:58:21.751793+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 20:58:21 +0000
+2014-12-06T20:58:21.755226+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T20:58:21.755234+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T20:58:21.989818+00:00 app[web.1]: Completed 200 OK in 234ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T20:58:21.991195+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=89ea6dbd-02eb-47e2-aef7-df8e1810f538 fwd="71.70.222.116" dyno=web.1 connect=4ms service=243ms status=304 bytes=521
+2014-12-06T20:58:22.765384+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=fb2f6e3e-cbf7-4f6e-aaf2-3301b9b7ab36 fwd="71.70.222.116" dyno=web.1 connect=1ms service=170ms status=304 bytes=521
+2014-12-06T20:58:22.670474+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:58:22 +0000
+2014-12-06T20:58:22.858174+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=ccccfa14-ba7d-476f-a2eb-f0c1a3e69ad9 fwd="71.70.222.116" dyno=web.1 connect=1ms service=54ms status=304 bytes=521
+2014-12-06T20:58:22.677103+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T20:58:22.807897+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:58:22 +0000
+2014-12-06T20:58:22.857448+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T20:58:22.857459+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:58:22.859168+00:00 app[web.1]: Completed 200 OK in 48ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T20:58:22.865648+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:58:22 +0000
+2014-12-06T20:58:22.899794+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T20:58:22.899901+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:58:22.677130+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:58:22.724987+00:00 app[web.1]: Completed 200 OK in 47ms (Views: 9.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:58:22.907847+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T20:58:22.907888+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:58:22.911877+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:58:22 +0000
+2014-12-06T20:58:22.810991+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T20:58:22.810997+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:58:22.846261+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:58:22 +0000
+2014-12-06T20:58:22.862444+00:00 app[web.1]: Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T20:58:22.896688+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:58:22 +0000
+2014-12-06T20:58:22.917664+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T20:58:22.917676+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:58:22.861581+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=04cdb773-660a-4406-bb3c-1b3f4bac0770 fwd="71.70.222.116" dyno=web.1 connect=0ms service=19ms status=304 bytes=521
+2014-12-06T20:58:22.974471+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=f48cdb03-61aa-4129-8661-4ea17934d257 fwd="71.70.222.116" dyno=web.1 connect=1ms service=82ms status=304 bytes=521
+2014-12-06T20:58:22.977318+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:58:22 +0000
+2014-12-06T20:58:22.983433+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:58:23.185675+00:00 app[web.1]: Completed 200 OK in 268ms (Views: 3.3ms | ActiveRecord: 0.0ms)
+2014-12-06T20:58:22.975915+00:00 app[web.1]: Completed 200 OK in 76ms (Views: 2.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:58:22.983325+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T20:58:23.135126+00:00 app[web.1]: Completed 200 OK in 227ms (Views: 29.8ms | ActiveRecord: 0.0ms)
+2014-12-06T20:58:23.192981+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 20:58:23 +0000
+2014-12-06T20:58:23.161871+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=13766058-9493-4bbe-9166-7d8f14811a4d fwd="71.70.222.116" dyno=web.1 connect=0ms service=312ms status=304 bytes=521
+2014-12-06T20:58:23.185952+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=248ef9ae-5a31-4d37-9a16-f7613bf181b0 fwd="71.70.222.116" dyno=web.1 connect=3ms service=279ms status=304 bytes=521
+2014-12-06T20:58:23.249847+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T20:58:23.249911+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T20:58:24.437000+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=f26558b4-ab03-45f7-8836-334f5a2f6a02 fwd="71.70.222.116" dyno=web.1 connect=2ms service=1526ms status=304 bytes=521
+2014-12-06T20:58:24.431068+00:00 app[web.1]: Completed 200 OK in 1447ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+2014-12-06T20:58:34.754540+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=f7bba559-457c-4c8a-a65a-a3c38351c36d fwd="71.70.222.116" dyno=web.1 connect=2ms service=11842ms status=304 bytes=522
+2014-12-06T20:58:34.754351+00:00 app[web.1]: Completed 200 OK in 11503ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+2014-12-06T20:58:36.419778+00:00 heroku[web.1]: Process running mem=638M(124.7%)
+2014-12-06T20:58:36.419994+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:58:58.545724+00:00 heroku[web.1]: Process running mem=638M(124.7%)
+2014-12-06T20:58:58.545959+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:59:20.694308+00:00 heroku[web.1]: Process running mem=638M(124.7%)
+2014-12-06T20:59:20.694649+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T20:59:42.498729+00:00 heroku[web.1]: Process running mem=638M(124.7%)
+2014-12-06T20:59:42.499068+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:00:04.635791+00:00 heroku[web.1]: Process running mem=638M(124.7%)
+2014-12-06T21:00:04.636069+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:00:07.096451+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=20091e0c-1cba-44bd-9741-9f239c706313 fwd="71.70.222.116" dyno=web.1 connect=0ms service=30ms status=304 bytes=521
+2014-12-06T21:00:07.069211+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 21:00:07 +0000
+2014-12-06T21:00:07.073728+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T21:00:07.073735+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T21:00:07.097126+00:00 app[web.1]: Completed 200 OK in 23ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:07.862076+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=ba6f8912-adc2-488d-8261-f63564f588e8 fwd="71.70.222.116" dyno=web.1 connect=7ms service=16ms status=304 bytes=521
+2014-12-06T21:00:07.848736+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:07 +0000
+2014-12-06T21:00:07.903725+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:07 +0000
+2014-12-06T21:00:07.929239+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:07 +0000
+2014-12-06T21:00:07.968630+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:07 +0000
+2014-12-06T21:00:07.856919+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T21:00:07.856950+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:07.860400+00:00 app[web.1]: Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:07.918614+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T21:00:07.918622+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:07.928858+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:07 +0000
+2014-12-06T21:00:07.932126+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T21:00:07.932132+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:07.932331+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T21:00:07.932359+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:07.935037+00:00 app[web.1]: Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:07.975448+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T21:00:07.975456+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:07.939843+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=0edbdfe4-e2fb-4af4-9a56-2b1c8a0da836 fwd="71.70.222.116" dyno=web.1 connect=1ms service=13ms status=304 bytes=521
+2014-12-06T21:00:08.115063+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=cd15e02d-5007-4fa6-b7e5-325251af9c50 fwd="71.70.222.116" dyno=web.1 connect=0ms service=190ms status=304 bytes=521
+2014-12-06T21:00:08.118759+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=c84db128-951f-4360-b248-f784846e9e39 fwd="71.70.222.116" dyno=web.1 connect=3ms service=217ms status=304 bytes=521
+2014-12-06T21:00:08.114214+00:00 app[web.1]: Completed 200 OK in 182ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:08.115433+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:08 +0000
+2014-12-06T21:00:08.114517+00:00 app[web.1]: Completed 200 OK in 196ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:08.115459+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:08 +0000
+2014-12-06T21:00:08.125847+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T21:00:08.125855+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:08.249343+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:08 +0000
+2014-12-06T21:00:08.132304+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T21:00:08.132324+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:08.247525+00:00 app[web.1]: Completed 200 OK in 122ms (Views: 1.8ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:08.256526+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T21:00:08.256548+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:08.247530+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=89761fe9-7fbd-4995-b847-17fbb5895d78 fwd="71.70.222.116" dyno=web.1 connect=1ms service=283ms status=304 bytes=521
+2014-12-06T21:00:08.600513+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=e42fce99-f7f7-4f64-89a9-f581b1cb9987 fwd="71.70.222.116" dyno=web.1 connect=3ms service=633ms status=304 bytes=521
+2014-12-06T21:00:08.596600+00:00 app[web.1]: Completed 200 OK in 464ms (Views: 12.7ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:09.827628+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=d504b34b-1c6a-4543-af72-f8dd74cd9120 fwd="71.70.222.116" dyno=web.1 connect=4ms service=1861ms status=304 bytes=521
+2014-12-06T21:00:09.827657+00:00 app[web.1]: Completed 200 OK in 1852ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:11.013008+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=bca9f9ec-8393-45d6-8ce2-7a8727819dc6 fwd="71.70.222.116" dyno=web.1 connect=6ms service=3045ms status=304 bytes=521
+2014-12-06T21:00:11.011419+00:00 app[web.1]: Completed 200 OK in 2755ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:25.529171+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 21:00:25 +0000
+2014-12-06T21:00:25.565812+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T21:00:25.565855+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T21:00:25.829294+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=2c0282cb-0179-488e-b2da-6c5186e65462 fwd="71.70.222.116" dyno=web.1 connect=5ms service=306ms status=304 bytes=521
+2014-12-06T21:00:25.831730+00:00 app[web.1]: Completed 200 OK in 266ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:26.455546+00:00 heroku[web.1]: Process running mem=689M(134.7%)
+2014-12-06T21:00:26.455726+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:00:26.535689+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:26 +0000
+2014-12-06T21:00:26.644080+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:26 +0000
+2014-12-06T21:00:26.539240+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T21:00:26.539261+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:26.601563+00:00 app[web.1]: Completed 200 OK in 62ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:26.661532+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T21:00:26.698400+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:26 +0000
+2014-12-06T21:00:26.702043+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:26.761046+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:26 +0000
+2014-12-06T21:00:26.647788+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T21:00:26.647934+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:26.654803+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:26 +0000
+2014-12-06T21:00:26.664129+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:26.701591+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T21:00:26.712541+00:00 app[web.1]: Completed 200 OK in 64ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:26.764392+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T21:00:26.764498+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:26.722126+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=4e1a9aa1-04a8-4e3f-a110-5fac625ef827 fwd="71.70.222.116" dyno=web.1 connect=0ms service=81ms status=304 bytes=521
+2014-12-06T21:00:26.819434+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=ae80bcba-e47e-4c85-860d-60daedb954de fwd="71.70.222.116" dyno=web.1 connect=1ms service=179ms status=304 bytes=521
+2014-12-06T21:00:26.938382+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=5249a02d-c231-43fc-9031-c609f34b89f9 fwd="71.70.222.116" dyno=web.1 connect=5ms service=287ms status=304 bytes=521
+2014-12-06T21:00:26.818736+00:00 app[web.1]: Completed 200 OK in 117ms (Views: 31.6ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:26.831265+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T21:00:26.831322+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:26.851228+00:00 app[web.1]: Completed 200 OK in 87ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:26.881186+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T21:00:26.881190+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:26.924018+00:00 app[web.1]: Completed 200 OK in 93ms (Views: 14.9ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:26.963239+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T21:00:27.012282+00:00 app[web.1]: Completed 200 OK in 348ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:26.819961+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:26 +0000
+2014-12-06T21:00:26.875766+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:26 +0000
+2014-12-06T21:00:26.940681+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:00:26 +0000
+2014-12-06T21:00:26.963433+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:00:26.848729+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=be84a67b-dda2-4c1c-a6f0-d8692175adca fwd="71.70.222.116" dyno=web.1 connect=5ms service=199ms status=304 bytes=521
+2014-12-06T21:00:27.012110+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=7ba7fd73-b82a-4ce8-b123-7b32e2cd71bc fwd="71.70.222.116" dyno=web.1 connect=5ms service=361ms status=304 bytes=521
+2014-12-06T21:00:26.599933+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=57739737-7147-4ffd-991e-46d678c057a0 fwd="71.70.222.116" dyno=web.1 connect=1ms service=69ms status=304 bytes=521
+2014-12-06T21:00:40.258581+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=0a56c4b2-c067-44c8-a3a7-5d38c3a65bf5 fwd="71.70.222.116" dyno=web.1 connect=6ms service=13606ms status=304 bytes=522
+2014-12-06T21:00:40.258754+00:00 app[web.1]: Completed 200 OK in 13380ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:42.025341+00:00 app[web.1]: Completed 200 OK in 15062ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T21:00:42.021966+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=1b0bae5a-7efc-41f8-9c6f-2bbb8aa37e55 fwd="71.70.222.116" dyno=web.1 connect=5ms service=15372ms status=304 bytes=522
+2014-12-06T21:00:48.623053+00:00 heroku[web.1]: Process running mem=701M(136.9%)
+2014-12-06T21:00:48.623053+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:01:10.659676+00:00 heroku[web.1]: Process running mem=701M(136.9%)
+2014-12-06T21:01:10.659959+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:01:32.470493+00:00 heroku[web.1]: Process running mem=701M(136.9%)
+2014-12-06T21:01:32.470493+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:01:54.549363+00:00 heroku[web.1]: Process running mem=701M(136.9%)
+2014-12-06T21:01:54.549597+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:01:55.519835+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:01:55 +0000
+2014-12-06T21:01:55.524545+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T21:01:55.524650+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:01:57.523714+00:00 app[web.1]: Completed 200 OK in 1999ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+2014-12-06T21:01:57.526045+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=ee083ee9-a6b8-4ab0-b7d2-756bfbe21372 fwd="71.70.222.116" dyno=web.1 connect=1ms service=2009ms status=200 bytes=3773
+2014-12-06T21:02:16.724321+00:00 heroku[web.1]: Process running mem=743M(145.2%)
+2014-12-06T21:02:16.724545+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:02:22.298074+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=64f472f1-8c8c-4d5e-a27a-b36911ad13e9 fwd="71.70.222.116" dyno=web.1 connect=1ms service=44ms status=304 bytes=521
+2014-12-06T21:02:22.259070+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 21:02:22 +0000
+2014-12-06T21:02:22.272297+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T21:02:22.272306+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T21:02:22.296821+00:00 app[web.1]: Completed 200 OK in 24ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:31.551934+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:31 +0000
+2014-12-06T21:02:31.764709+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T21:02:31.764753+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:32.113116+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=045ac3d2-8da6-493b-ace7-98412f5834c4 fwd="71.70.222.116" dyno=web.1 connect=0ms service=648ms status=304 bytes=521
+2014-12-06T21:02:32.024154+00:00 app[web.1]: Completed 200 OK in 247ms (Views: 24.3ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:32.250014+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T21:02:32.250023+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:32.254451+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:32 +0000
+2014-12-06T21:02:32.226257+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:32 +0000
+2014-12-06T21:02:32.262974+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T21:02:32.262990+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:32.351615+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:32 +0000
+2014-12-06T21:02:32.437380+00:00 app[web.1]: Completed 200 OK in 174ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:32.439797+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:32 +0000
+2014-12-06T21:02:32.441225+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:32 +0000
+2014-12-06T21:02:32.451877+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:32.433286+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T21:02:32.437623+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:32.440116+00:00 app[web.1]: Completed 200 OK in 190ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:32.450119+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T21:02:32.450218+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:32.451644+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T21:02:32.583342+00:00 app[web.1]: Completed 200 OK in 131ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:32.588948+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T21:02:32.588972+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:32.445557+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=e86011dd-638a-4174-a725-fcc384420f07 fwd="71.70.222.116" dyno=web.1 connect=0ms service=198ms status=304 bytes=521
+2014-12-06T21:02:32.587601+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=2511c432-8abc-4226-8573-cde072ddd0c2 fwd="71.70.222.116" dyno=web.1 connect=2ms service=307ms status=304 bytes=521
+2014-12-06T21:02:32.584272+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:32 +0000
+2014-12-06T21:02:32.691529+00:00 app[web.1]: Completed 200 OK in 248ms (Views: 77.6ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:32.444793+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=ebd7ad8d-64ae-46eb-aa3f-0c2e5bb64c00 fwd="71.70.222.116" dyno=web.1 connect=3ms service=224ms status=304 bytes=521
+2014-12-06T21:02:32.784466+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=954e90fc-b7a8-434a-94dd-feb54cf2affc fwd="71.70.222.116" dyno=web.1 connect=0ms service=539ms status=304 bytes=521
+2014-12-06T21:02:32.811556+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:32 +0000
+2014-12-06T21:02:32.997905+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T21:02:32.997977+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:33.002429+00:00 app[web.1]: Completed 200 OK in 552ms (Views: 4.0ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:33.009933+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=61a39613-ee87-457e-9684-2e8a8a49fecf fwd="71.70.222.116" dyno=web.1 connect=1ms service=730ms status=304 bytes=521
+2014-12-06T21:02:34.373497+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=c2f8613b-f7ad-45f9-b7e1-af8453659e47 fwd="71.70.222.116" dyno=web.1 connect=1ms service=2091ms status=304 bytes=521
+2014-12-06T21:02:34.375486+00:00 app[web.1]: Completed 200 OK in 1786ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:38.485905+00:00 heroku[web.1]: Process running mem=751M(146.7%)
+2014-12-06T21:02:38.486148+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:02:49.318867+00:00 app[web.1]: E, [2014-12-06T21:02:49.140377 #2] ERROR -- : worker=2 PID:23 timeout (16s > 15s), killing
+2014-12-06T21:02:49.505190+00:00 heroku[router]: at=error code=H13 desc="Connection closed without response" method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=fe65a764-3806-4f9f-b53e-6c578a96bf1f fwd="71.70.222.116" dyno=web.1 connect=8ms service=17215ms status=503 bytes=0
+2014-12-06T21:02:49.689305+00:00 app[web.1]: E, [2014-12-06T21:02:49.689190 #2] ERROR -- : reaped #<Process::Status: pid 23 SIGKILL (signal 9)> worker=2
+2014-12-06T21:02:53.098441+00:00 app[web.1]: I, [2014-12-06T21:02:53.061922 #32]  INFO -- : worker=2 ready
+2014-12-06T21:02:54.470139+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 21:02:54 +0000
+2014-12-06T21:02:54.473687+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T21:02:54.473708+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T21:02:54.669871+00:00 app[web.1]: Completed 200 OK in 196ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:54.674259+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=fcb4dbd6-c751-42a5-aa1f-cdd2bc24642a fwd="71.70.222.116" dyno=web.1 connect=2ms service=208ms status=304 bytes=521
+2014-12-06T21:02:55.522759+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=dffbc399-9f28-4a0a-a625-41a0c554bf52 fwd="71.70.222.116" dyno=web.1 connect=0ms service=36ms status=304 bytes=521
+2014-12-06T21:02:55.569302+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=3a5addb7-fc15-4092-af8b-e2b67c714897 fwd="71.70.222.116" dyno=web.1 connect=1ms service=9ms status=304 bytes=521
+2014-12-06T21:02:55.489530+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:55 +0000
+2014-12-06T21:02:55.564041+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:55 +0000
+2014-12-06T21:02:55.567075+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T21:02:55.567169+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:55.567880+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T21:02:55.567907+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:55.569969+00:00 app[web.1]: Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:55.573329+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T21:02:55.573388+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:55.645694+00:00 app[web.1]: Completed 200 OK in 76ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:55.649409+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T21:02:55.706682+00:00 app[web.1]: Completed 200 OK in 57ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:55.719708+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T21:02:55.719716+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:55.506550+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T21:02:55.506560+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:55.516301+00:00 app[web.1]: Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:55.564290+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:55 +0000
+2014-12-06T21:02:55.570739+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:55 +0000
+2014-12-06T21:02:55.646662+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:55 +0000
+2014-12-06T21:02:55.649492+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:55.708211+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:55 +0000
+2014-12-06T21:02:55.645241+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=4550e58c-87e6-45e2-afc8-110794baedef fwd="71.70.222.116" dyno=web.1 connect=1ms service=83ms status=304 bytes=521
+2014-12-06T21:02:55.706332+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=9f71d914-0ff9-4980-88e2-ff93d83e9698 fwd="71.70.222.116" dyno=web.1 connect=0ms service=139ms status=304 bytes=521
+2014-12-06T21:02:56.065979+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=24659de0-5a8e-4122-be3e-75d2298b7971 fwd="71.70.222.116" dyno=web.1 connect=1ms service=496ms status=200 bytes=2243
+2014-12-06T21:02:56.171404+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=9fbea19d-b5cd-4c83-8f77-0b637d2af21f fwd="71.70.222.116" dyno=web.1 connect=0ms service=605ms status=304 bytes=521
+2014-12-06T21:02:56.064707+00:00 app[web.1]: Completed 200 OK in 345ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:56.069055+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T21:02:56.069090+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:02:56.167201+00:00 app[web.1]: Completed 200 OK in 594ms (Views: 3.8ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:56.065812+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:56 +0000
+2014-12-06T21:02:57.322641+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=9b66826e-7801-4e53-b907-9ed846743b74 fwd="71.70.222.116" dyno=web.1 connect=89ms service=1603ms status=304 bytes=521
+2014-12-06T21:02:57.323960+00:00 app[web.1]: Completed 200 OK in 1255ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+2014-12-06T21:02:57.763532+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:02:57 +0000
+2014-12-06T21:03:00.068671+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T21:03:00.069210+00:00 app[web.1]:   Parameters: {"lastname"=>"Burr", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:03:00.608560+00:00 heroku[web.1]: Process running mem=544M(106.4%)
+2014-12-06T21:03:00.608762+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:03:04.228949+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Burr&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=5b50c4ef-1f6d-4153-ae25-9621f8e596c5 fwd="71.70.222.116" dyno=web.1 connect=1ms service=8667ms status=304 bytes=521
+2014-12-06T21:03:04.229415+00:00 app[web.1]: Completed 200 OK in 4143ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:17.765496+00:00 heroku[router]: at=info method=GET path="/api/v1/search.json?address=d" host=peaceful-sea-4129.herokuapp.com request_id=3798a78a-600b-4c86-902a-45451bdb9fad fwd="71.70.222.116" dyno=web.1 connect=1ms service=35ms status=304 bytes=521
+2014-12-06T21:03:17.732408+00:00 app[web.1]: Started GET "/api/v1/search.json?address=d" for 71.70.222.116 at 2014-12-06 21:03:17 +0000
+2014-12-06T21:03:17.747371+00:00 app[web.1]: Processing by API::V1::LegislatorsController#search as JSON
+2014-12-06T21:03:17.747379+00:00 app[web.1]:   Parameters: {"address"=>"d"}
+2014-12-06T21:03:17.765494+00:00 app[web.1]: Completed 200 OK in 18ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:18.591832+00:00 app[web.1]: Started GET "/api/v1/profile.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:03:18 +0000
+2014-12-06T21:03:18.600325+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:03:18.739234+00:00 app[web.1]: Started GET "/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:03:18 +0000
+2014-12-06T21:03:18.772640+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_sector as JSON
+2014-12-06T21:03:18.772649+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:03:18.782716+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributors_by_type as JSON
+2014-12-06T21:03:18.782776+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:03:18.595644+00:00 app[web.1]: Processing by API::V1::LegislatorsController#profile as JSON
+2014-12-06T21:03:18.686963+00:00 app[web.1]: Completed 200 OK in 86ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:18.755879+00:00 app[web.1]: Started GET "/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:03:18 +0000
+2014-12-06T21:03:18.685408+00:00 heroku[router]: at=info method=GET path="/api/v1/profile.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=ab8e16cc-eaa0-4c15-b159-5edb1ce3ccfa fwd="71.70.222.116" dyno=web.1 connect=0ms service=98ms status=304 bytes=521
+2014-12-06T21:03:18.918022+00:00 app[web.1]: Started GET "/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:03:18 +0000
+2014-12-06T21:03:18.986958+00:00 app[web.1]: Started GET "/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:03:18 +0000
+2014-12-06T21:03:19.018649+00:00 app[web.1]: Started GET "/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:03:19 +0000
+2014-12-06T21:03:19.031309+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:03:18.985099+00:00 app[web.1]: Completed 200 OK in 212ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:18.990372+00:00 app[web.1]: Processing by API::V1::LegislatorsController#most_recent_votes as JSON
+2014-12-06T21:03:18.990434+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:03:19.025937+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_type.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=b3d9df85-bf94-4803-b5e5-e803556c763d fwd="71.70.222.116" dyno=web.1 connect=0ms service=302ms status=304 bytes=521
+2014-12-06T21:03:19.014056+00:00 app[web.1]: Completed 200 OK in 226ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:19.030981+00:00 app[web.1]: Processing by API::V1::LegislatorsController#contributions_by_industry as JSON
+2014-12-06T21:03:19.176453+00:00 app[web.1]: Processing by API::V1::LegislatorsController#elections_timeline as JSON
+2014-12-06T21:03:19.176463+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:03:18.984036+00:00 heroku[router]: at=info method=GET path="/api/v1/contributors_by_sector.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=fa2c0420-f84b-4682-9e30-c49ebdf87ecb fwd="71.70.222.116" dyno=web.1 connect=1ms service=262ms status=304 bytes=521
+2014-12-06T21:03:19.288446+00:00 app[web.1]: Started GET "/api/v1/top_contributors.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:03:19 +0000
+2014-12-06T21:03:19.419480+00:00 app[web.1]: Started GET "/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" for 71.70.222.116 at 2014-12-06 21:03:19 +0000
+2014-12-06T21:03:19.287309+00:00 app[web.1]: Completed 200 OK in 297ms (Views: 4.3ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:19.297835+00:00 app[web.1]: Processing by API::V1::LegislatorsController#top_contributors as JSON
+2014-12-06T21:03:19.297869+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:03:19.418230+00:00 app[web.1]: Completed 200 OK in 120ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:19.422840+00:00 app[web.1]: Processing by API::V1::LegislatorsController#agreement_score_by_industry as JSON
+2014-12-06T21:03:19.422847+00:00 app[web.1]:   Parameters: {"lastname"=>"Hagan", "state"=>"NC", "title"=>"sen"}
+2014-12-06T21:03:19.292923+00:00 heroku[router]: at=info method=GET path="/api/v1/most_recent_votes.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=2807ff2e-f3c8-4c0c-8e23-d7f846f27f17 fwd="71.70.222.116" dyno=web.1 connect=0ms service=557ms status=304 bytes=521
+2014-12-06T21:03:19.418941+00:00 heroku[router]: at=info method=GET path="/api/v1/top_contributors.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=a75ff094-bef5-417c-9994-5c7d6efc8f08 fwd="71.70.222.116" dyno=web.1 connect=7ms service=648ms status=304 bytes=521
+2014-12-06T21:03:20.138549+00:00 app[web.1]: Completed 200 OK in 891ms (Views: 632.1ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:20.691188+00:00 heroku[router]: at=info method=GET path="/api/v1/elections_timeline.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=98acc18c-189d-4caf-a994-2c143997264a fwd="71.70.222.116" dyno=web.1 connect=1ms service=1964ms status=304 bytes=521
+2014-12-06T21:03:20.984579+00:00 heroku[router]: at=info method=GET path="/api/v1/agreement_score_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=cfdc7e66-a711-4325-b70c-888c7e8b93f7 fwd="71.70.222.116" dyno=web.1 connect=12ms service=2096ms status=304 bytes=521
+2014-12-06T21:03:20.984494+00:00 app[web.1]: Completed 200 OK in 1561ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:22.408039+00:00 heroku[web.1]: Process running mem=674M(131.8%)
+2014-12-06T21:03:22.408261+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:03:23.016714+00:00 app[web.1]: Completed 200 OK in 3985ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+2014-12-06T21:03:23.030078+00:00 heroku[router]: at=info method=GET path="/api/v1/contributions_by_industry.json?lastname=Hagan&state=NC&title=sen" host=peaceful-sea-4129.herokuapp.com request_id=dd23072b-4db2-49a6-819a-2cf9adb84adf fwd="71.70.222.116" dyno=web.1 connect=0ms service=4294ms status=200 bytes=2959
+2014-12-06T21:03:44.591474+00:00 heroku[web.1]: Process running mem=687M(134.4%)
+2014-12-06T21:03:44.591767+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:04:06.675016+00:00 heroku[web.1]: Process running mem=687M(134.4%)
+2014-12-06T21:04:06.675279+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:04:28.547110+00:00 heroku[web.1]: Process running mem=687M(134.4%)
+2014-12-06T21:04:28.547427+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2014-12-06T21:04:50.568774+00:00 heroku[web.1]: Process running mem=687M(134.4%)
+2014-12-06T21:04:50.569062+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)

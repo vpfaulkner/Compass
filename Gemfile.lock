@@ -49,6 +49,7 @@ GEM
       i18n (~> 0.5)
     geocoder (1.2.6)
     hike (1.2.3)
+    hodel_3000_compliant_logger (0.1.1)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -62,6 +63,9 @@ GEM
     minitest (5.4.3)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    oink (0.10.1)
+      activerecord
+      hodel_3000_compliant_logger
     pg (0.17.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -162,6 +166,7 @@ DEPENDENCIES
   faker
   geocoder
   httparty
+  oink
   pg
   pry-rails
   quiet_assets

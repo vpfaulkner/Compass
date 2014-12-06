@@ -1,11 +1,11 @@
 class Legislator
 
   def self.ideology_json
-    @ideology_json ||= File.read("#{Rails.root}/app/assets/new_ideology_ratings.json")
+    ideology_json ||= File.read("#{Rails.root}/app/assets/new_ideology_ratings.json")
   end
 
   def self.catcodes
-    @catcodes_json ||= File.read("#{Rails.root}/app/assets/catcodes.json")
+    catcodes_json ||= File.read("#{Rails.root}/app/assets/catcodes.json")
   end
 
   def self.bill_positions
