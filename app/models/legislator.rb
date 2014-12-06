@@ -60,7 +60,7 @@ class Legislator
     elsif field == "agreement_score_by_industry"
       @new_legislator_object["agreement_score_by_industry"] = add_agreement_score_by_industry
     elsif field == "contributions_by_industry"
-      @new_legislator_object["issue_ratings_dummy"] = add_contributions_by_industry
+      @new_legislator_object["contributions_by_industry"] = add_contributions_by_industry
     elsif field == "ideology_rank"
       @new_legislator_object["ideology_rank"] = add_ideology_field
     elsif field == "influence_rank"
