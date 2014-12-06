@@ -9,7 +9,7 @@ class Legislator
   end
 
   def self.bill_positions
-    File.read("#{Rails.root}/app/assets/bill_positions113through11.json")
+    bill_positions ||= File.read("#{Rails.root}/app/assets/bill_positions113through11.json")
   end
 
   attr_reader :new_legislator_object
@@ -66,7 +66,7 @@ class Legislator
     elsif field == "influence_rank"
       @new_legislator_object["influence_rank"] = add_influence_rank
 
-
+    #Depricated
     elsif field == "aggregated_legislator_issue_scores"
       add_aggregated_legislator_issue_scores
     elsif field == "issue_ratings"
