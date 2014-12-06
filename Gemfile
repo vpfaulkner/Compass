@@ -10,7 +10,6 @@ gem 'rails-api'
 
 gem 'spring', :group => :development
 
-
 gem 'pg'
 
 gem "quiet_assets", group: :development
@@ -22,16 +21,12 @@ group :development, :test do
   gem "faker"
   gem "pry-rails"
   gem 'rspec-rails', '~> 3.0'
-  gem "rubocop", require: false
-  gem "rails_best_practices", require: false
-  gem "brakeman", require: false
 end
 
 gem "httparty"
 gem 'sidekiq'
 gem 'geocoder'
 gem 'campaign_cash'
-gem 'fech'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

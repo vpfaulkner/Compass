@@ -66,9 +66,9 @@ class Legislator
     elsif field == "influence_rank"
       @new_legislator_object["influence_rank"] = add_influence_rank
 
+
     elsif field == "aggregated_legislator_issue_scores"
       add_aggregated_legislator_issue_scores
-
     elsif field == "issue_ratings"
       add_issue_ratings
     elsif field == "campaign_finance_hash"
