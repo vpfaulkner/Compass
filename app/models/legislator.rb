@@ -1,5 +1,17 @@
 class Legislator
 
+  def self.ideology_json
+    @ideology_json ||= File.read("#{Rails.root}/app/assets/new_ideology_ratings.json")
+  end
+
+  def self.catcodes
+    @catcodes_json ||= File.read("#{Rails.root}/app/assets/catcodes.json")
+  end
+
+  def self.bill_positions
+    @billpositions113 ||= File.read("#{Rails.root}/app/assets/113_bills_compressed.json")
+  end
+
   attr_reader :new_legislator_object
 
   def initialize(legislator_record, required_fields)
@@ -36,66 +48,62 @@ class Legislator
       add_sunshine_profile_fields unless @legislator_record["twitter_id"]
       @new_legislator_object[field] = @legislator_record["twitter_id"]
     elsif field == "picture_url"
-      add_picture_field
-    elsif field == "ideology_rank"
-      add_ideology_field
-    elsif field == "influence_rank"
-      # FIX LATER
-      @new_legislator_object["influence_rank"] = 65
-    elsif field == "campaign_finance_hash"
-      add_campaign_finance_hash
+      @new_legislator_object["picture_url"] = add_picture_field
     elsif field == "elections_timeline_array"
-      add_elections_timeline_array
-    elsif field == "contributors_by_sector"
-      add_contributors_by_sector
+      @new_legislator_object["elections_timeline_array"] = add_elections_timeline_array
     elsif field == "contributors_by_type"
-      add_contributors_by_type
+      @new_legislator_object["contributors_by_type"] = add_contributors_by_type
     elsif field == "top_contributors"
-      add_top_contributors
-    elsif field == "funding_score_by_category"
-      add_funding_score_by_category
-    elsif field == "voting_score_by_industry"
-      add_voting_score_by_industry
+      @new_legislator_object["top_contributors"] = add_top_contributors
     elsif field == "most_recent_votes"
-      add_most_recent_votes
-    elsif field == "issue_ratings"
-      add_issue_ratings
+      @new_legislator_object["most_recent_votes"] = add_most_recent_votes
+    elsif field == "voting_score_by_industry"
+      @new_legislator_object["voting_score_by_issue"] = add_voting_score_by_industry
+    elsif field == "contributions_by_industry"
+      @new_legislator_object["issue_ratings_dummy"] = add_contributions_by_industry
+    elsif field == "ideology_rank"
+      @new_legislator_object["ideology_rank"] = add_ideology_field
+    elsif field == "influence_rank"
+      @new_legislator_object["influence_rank"] = add_influence_rank
+
     elsif field == "aggregated_legislator_issue_scores"
       add_aggregated_legislator_issue_scores
-    elsif field == "contributions_by_industry"
-      add_contributions_by_industry
+
+    elsif field == "issue_ratings"
+      add_issue_ratings
+    elsif field == "campaign_finance_hash"
+      add_campaign_finance_hash
+    elsif field == "contributors_by_sector"
+      add_contributors_by_sector
     end
   end
 
+  def add_sunshine_profile_fields
+    sunshine_profile = HTTParty.get('http://services.sunlightlabs.com/api/legislators.getList.json',
+    query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
+    @legislator_record.merge!(sunshine_profile["response"]["legislators"][0]["legislator"])
+  end
 
   def add_picture_field
-    @new_legislator_object["picture_url"] = "http://theunitedstates.io/images/congress/225x275/" + @legislator_record["id"]["bioguide"] + ".jpg"
+    picture_url = "http://theunitedstates.io/images/congress/225x275/" + @legislator_record["id"]["bioguide"] + ".jpg"
   end
 
 
   def add_ideology_field
     lastname = @legislator_record["name"]["last"]
     state = @legislator_record["terms"].last["state"]
-    legislator = JSON.parse(File.read("#{Rails.root}/app/assets/new_ideology_ratings.json"))["legislators"].select do |legislator|
+    legislator = JSON.parse(Legislator.ideology_json)["legislators"].select do |legislator|
       legislator["last"] == lastname && legislator["State"] == state
     end
-    @new_legislator_object["ideology_rank"] = legislator[0]["ideology_rank"]
+    ideology_rank = legislator[0]["ideology_rank"]
   end
-
-
-  def add_sunshine_profile_fields
-    sunshine_profile = HTTParty.get('http://services.sunlightlabs.com/api/legislators.getList.json',
-                query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
-    @legislator_record.merge!(sunshine_profile["response"]["legislators"][0]["legislator"])
-  end
-
 
   def add_elections_timeline_array
     elections_timeline_array = Array.new
     @legislator_record["terms"].each do |term|
       elections_timeline_array.push(term)
     end
-    @new_legislator_object["elections_timeline_array"] = elections_timeline_array
+    elections_timeline_array
   end
 
   def add_contributors_by_type
@@ -105,8 +113,6 @@ class Legislator
                     query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
     sunshine_type_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors/type_breakdown.json',
                     query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2014'})
-
-    @new_legislator_object["contributors_by_type"] = sunshine_type_breakdown
   end
 
 
@@ -115,9 +121,30 @@ class Legislator
                     query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
     sunshine_type_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors.json',
                               query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2014', limit: 100})
-    @new_legislator_object["top_contributors"] = sunshine_type_breakdown
   end
 
+  def find_next_passage_vote(individual_legislator_vote)
+    bill_type = individual_legislator_vote["vote"]["question"].split(" ")[0]
+    bill_number = individual_legislator_vote["vote"]["question"].split(" ")[1].split(":")[0]
+    bill_identifier = bill_type + bill_number
+    vote_description = individual_legislator_vote["vote"]["question"]
+    date = Date.parse(individual_legislator_vote["created"]).strftime('%Y-%m-%d')
+    vote_raw_value = individual_legislator_vote["option"]["value"]
+    case vote_raw_value
+    when "Yea"
+      vote_value = "Yes"
+    when "Aye"
+      vote_value = "Yes"
+    when "Nay"
+      vote_value = "No"
+    when "No"
+      vote_value = "No"
+    when "Not Voting"
+      vote_value = "Not Voting"
+    end
+    vote_hash = {date: date, vote_value: vote_value, vote_description: vote_description}
+    vote_hash
+  end
 
   def add_most_recent_votes
     most_recent_votes = Array.new
@@ -132,7 +159,7 @@ class Legislator
       vote_hash = find_next_passage_vote(individual_legislator_vote)
       most_recent_votes.push(vote_hash)
     end
-    @new_legislator_object["most_recent_votes"] = most_recent_votes
+    most_recent_votes
   end
 #
   def add_contributions_by_industry
@@ -148,7 +175,7 @@ class Legislator
       industry = catcodes_directory[catcode]
       contributions_by_industry[industry] += contribution_amount
     end
-    @new_legislator_object["issue_ratings_dummy"] = contributions_by_industry
+    contributions_by_industry
   end
 
   def get_funding_transactions
@@ -158,19 +185,20 @@ class Legislator
         query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2012, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
     funding_contributions2010 = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
         query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2010, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
-    funding_contributions2014.zip(funding_contributions2012, funding_contributions2010).flatten
+    funding_contributions2008 = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
+        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2008, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+    funding_contributions2014.zip(funding_contributions2012, funding_contributions2010, funding_contributions2008).flatten
   end
 #
   def add_voting_score_by_industry
     legislator_votes = get_legislator_votes
     voting_agreements_with_industries = get_voting_agreements_with_industries(legislator_votes)
-    @new_legislator_object["voting_score_by_issue"] = voting_agreements_with_industries
   end
 
   def get_legislator_votes
     legislator_votes = []
     unformatted_legislator_votes = HTTParty.get('https://www.govtrack.us/api/v2/vote_voter',
-    query: {person: @legislator_record["id"]["govtrack"], limit: 4000, order_by: "-created", format: "json", fields: "vote__id,created,option__value,vote__category,vote__question"})
+                                  query: {person: @legislator_record["id"]["govtrack"], limit: 4000, order_by: "-created", format: "json", fields: "vote__id,created,option__value,vote__category,vote__question"})
     unformatted_legislator_votes["objects"].each do |unformatted_legislator_vote|
       next unless unformatted_legislator_vote["vote"]["category"] == "passage"
       bill_type = unformatted_legislator_vote["vote"]["question"].split(" ")[0]
@@ -183,7 +211,7 @@ class Legislator
   end
 
   def get_code_to_industry_hash
-    json = JSON.parse(File.read("#{Rails.root}/app/assets/catcodes.json"))["catcodes"]
+    json = JSON.parse(Legislator.catcodes)["catcodes"]
     code_to_industry_hash = Hash.new
     json.each do |c|
       code_to_industry_hash[c["Catcode"]] = c["Industry"]
@@ -196,7 +224,7 @@ class Legislator
     raw_agreements_per_industry = Hash.new(0)
     agreement_opportunities_per_industry = Hash.new(0)
     catcodes_directory = get_code_to_industry_hash
-    bills_and_org_positions = JSON.parse(File.read("#{Rails.root}/app/assets/113_bills_compressed.json"))["bills"]
+    bills_and_org_positions = JSON.parse(Legislator.bill_positions)["bills"]
     legislator_votes.each do |bill|
       if bill[:vote] == "Yea" || bill[:vote] == "Aye" || bill[:vote] == "Yes"
         legislator_vote = "Yes"
@@ -229,6 +257,19 @@ class Legislator
       end
     end
     voting_agreements_with_industry
+  end
+#
+  def add_influence_rank
+    voting_score_by_industry = add_voting_score_by_industry
+    contributions_by_industry = add_contributions_by_industry
+    influence_score = 0
+    total_funding = contributions_by_industry.inject(0) { |t, (i, c)| t += c if c.is_a? Numeric }
+    voting_score_by_industry.each do |industry, voting_score|
+      next if voting_score < 0
+      next unless contributions_by_industry[industry]
+      influence_score += (contributions_by_industry[industry] * voting_score) / total_funding
+    end
+    influence_score
   end
 #
   def add_aggregated_legislator_issue_scores
@@ -305,17 +346,6 @@ class Legislator
       issue_ratings[issue_index]["funding_score"] += amount.to_i
     end
     @new_legislator_object["issue_ratings_dummy"] = issue_ratings
-  end
-
-  def find_next_passage_vote(individual_legislator_vote)
-    bill_type = individual_legislator_vote["vote"]["question"].split(" ")[0]
-    bill_number = individual_legislator_vote["vote"]["question"].split(" ")[1].split(":")[0]
-    bill_identifier = bill_type + bill_number
-    vote_description = individual_legislator_vote["vote"]["question"]
-    date = Date.parse(individual_legislator_vote["created"]).strftime('%Y-%m-%d')
-    vote_value = individual_legislator_vote["option"]["value"]
-    vote_hash = {date: date, vote_value: vote_value, vote_description: vote_description}
-    vote_hash
   end
 
   def get_individual_voting_record(aggregated_voting_scores_by_legislator)

@@ -38,8 +38,6 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(JSON.parse(response.body)).not_to be_nil
 
       expect(JSON.parse(response.body)["legislators"][0]["twitter_id"]).to eq("SenatorBurr")
-      expect(JSON.parse(response.body)["legislators"][0]["ideology_rank"]).to eq(30)
-
     end
 
     it "returns no legislators if invalid search" do
@@ -113,6 +111,18 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
     it "responds successfully with an HTTP 200 status code" do
       get :contributions_by_industry, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+
+      # expect(JSON.parse(response.body)["legislators"][0]["top_contributors"].first["name"]).not_to be_nil
+    end
+
+  end
+
+  describe "Get #influence_and_ideology_score" do
+
+    it "responds successfully with an HTTP 200 status code" do
+      get :influence_and_ideology_score, { lastname: "Burr", state: "NC", title: "sen" }
       expect(response).to be_success
       expect(response).to have_http_status(200)
 

@@ -10,7 +10,7 @@ class API::V1::LegislatorsController < ApplicationController
   end
 
   def profile
-    required_fields = ["firstname", "lastname", "state", "party", "title", "picture_url", "bioguide_id", "ideology_rank", "influence_rank", "website", "phone", "district", "twitter_id"]
+    required_fields = ["firstname", "lastname", "state", "party", "title", "picture_url", "bioguide_id", "website", "phone", "district", "twitter_id"]
     identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title] }
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
@@ -53,6 +53,13 @@ class API::V1::LegislatorsController < ApplicationController
 
   def voting_score_by_industry
     required_fields = ["firstname", "lastname", "state", "party", "title", "voting_score_by_industry"]
+    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
+  end
+
+  def influence_and_ideology_score
+    required_fields = ["firstname", "lastname", "state", "party", "title", "ideology_rank", "influence_rank"]
     identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
