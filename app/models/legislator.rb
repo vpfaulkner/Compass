@@ -12,6 +12,10 @@ class Legislator
     bill_positions ||= File.read("#{Rails.root}/app/assets/bill_positions113through111.json")
   end
 
+  def self.bill_positions_index
+    bill_positions_index ||= File.read("#{Rails.root}/app/assets/index_for_bill_positions113through111.json")
+  end
+
   attr_reader :new_legislator_object
 
   def initialize(legislator_record, required_fields)
@@ -233,11 +237,12 @@ class Legislator
       else
         legislator_vote = "No"
       end
-      org_positions_on_bill = bills_and_org_positions.select do |bill_and_org_position|
-        bill_and_org_position["identifier"] == bill[:identifier]
-      end
-      next unless org_positions_on_bill.first
-      org_positions_on_bill = org_positions_on_bill.first["organizations"]
+      bill_positions_index = JSON.parse(Legislator.bill_positions_index)
+      index = bill_positions_index[bill[:identifier]]
+      next unless index
+      org_positions_on_bill = bills_and_org_positions[index]
+      next unless org_positions_on_bill
+      org_positions_on_bill = org_positions_on_bill["organizations"]
       org_positions_on_bill.each do |org_position|
         catcode = org_position["catcode"]
         next if catcode.empty?
