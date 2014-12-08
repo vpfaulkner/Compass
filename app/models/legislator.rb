@@ -16,6 +16,10 @@ class Legislator
     @bill_positions_index ||= File.read("#{Rails.root}/app/assets/index_for_bill_positions113through111.json")
   end
 
+  def self.get_influence_and_ideology_json
+    @get_influence_and_ideology_json ||= File.read("#{Rails.root}/app/assets/influence_and_ideology_scores_aggregated.json")
+  end
+
   attr_reader :new_legislator_object
 
   def initialize(legislator_record, required_fields)
@@ -71,6 +75,9 @@ class Legislator
       @new_legislator_object["influence_rank"] = add_influence_rank
     elsif field == "industry_scores"
       add_industry_scores
+    elsif field == "aggregate_influence_and_ideology_scores"
+      add_aggregate_influence_and_ideology_scores
+
     #Depricated
     elsif field == "aggregated_legislator_issue_scores"
       add_aggregated_legislator_issue_scores
@@ -97,7 +104,6 @@ class Legislator
   def add_picture_field
     picture_url = "http://theunitedstates.io/images/congress/225x275/" + @legislator_record["id"]["bioguide"] + ".jpg"
   end
-
 
   def add_ideology_field
     lastname = @legislator_record["name"]["last"]
@@ -289,6 +295,14 @@ def add_industry_scores
   industry = @legislator_record[:industry]
   @new_legislator_object["industry_scores"] = json["industries"][industry]
 end
+
+def add_aggregate_influence_and_ideology_scores
+  json = JSON.parse(Legislator.get_influence_and_ideology_json)
+  @new_legislator_object["aggregate_influence_and_ideology_scores"] = json["legislators"]
+end
+
+
+
 
   # DEPRECATED
 

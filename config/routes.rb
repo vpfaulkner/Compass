@@ -12,8 +12,8 @@ Rails.application.routes.draw do
       get 'contributions_by_industry' => 'legislators#contributions_by_industry'
       get 'agreement_score_by_industry' => 'legislators#agreement_score_by_industry'
       get 'industry_scores' => 'legislators#industry_scores'
-
       get 'influence_and_ideology_score' => 'legislators#influence_and_ideology_score'
+      get 'aggregate_influence_and_ideology_scores' => 'legislators#aggregate_influence_and_ideology_scores'
 
 
       get 'internal_get_norms' => 'legislators#internal_get_norms'

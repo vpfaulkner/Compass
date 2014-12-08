@@ -58,16 +58,16 @@ class API::V1::LegislatorsController < ApplicationController
     render json: @api_response
   end
 
-  def influence_and_ideology_score
-    required_fields = ["firstname", "lastname", "state", "party", "title", "ideology_rank", "influence_rank"]
-    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
-    @api_response = APIResponse.new(identifier, required_fields).api_response
-    render json: @api_response
-  end
-  # Incomplete
   def industry_scores
     required_fields = ["industry_scores"]
     identifier = { all: [], industry: legislator_params[:industry] }
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
+  end
+
+  def aggregate_influence_and_ideology_scores
+    required_fields = ["aggregate_influence_and_ideology_scores"]
+    identifier = { all: [] }
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
   end
@@ -116,9 +116,11 @@ class API::V1::LegislatorsController < ApplicationController
       legislator_hash[:title] = leg["terms"].last["type"]
       all_legislators_array.push(legislator_hash)
     end
-    new_legislators_array = []
+    old_json = JSON.parse(File.read("/Users/vancefaulkner/Desktop/old_influence_scores.json"))
+    new_legislators_array = old_json["legislators"]
     counter = 0
     file_counter = 1
+    all_legislators_array.shift(250)
     all_legislators_array.each do |legislator|
       counter += 1
       required_fields = ["firstname", "lastname", "state", "party", "title", "ideology_rank", "influence_rank"]
