@@ -87,6 +87,12 @@ class Legislator
     sunshine_profile = HTTParty.get('http://services.sunlightlabs.com/api/legislators.getList.json',
     query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
     @legislator_record.merge!(sunshine_profile["response"]["legislators"][0]["legislator"])
+    district_number = Integer(@legislator_record["district"]) rescue nil
+    if district_number
+      district = @legislator_record["district"]
+      @legislator_record["district"] = "District #{district}"
+      binding.pry
+    end
   end
 
   def add_picture_field
