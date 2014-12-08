@@ -1,19 +1,19 @@
 class Legislator
 
   def self.ideology_json
-    ideology_json ||= File.read("#{Rails.root}/app/assets/new_ideology_ratings.json")
+    @ideology_json ||= File.read("#{Rails.root}/app/assets/new_ideology_ratings.json")
   end
 
   def self.catcodes
-    catcodes_json ||= File.read("#{Rails.root}/app/assets/catcodes.json")
+    @catcodes_json ||= File.read("#{Rails.root}/app/assets/catcodes.json")
   end
 
   def self.bill_positions
-    bill_positions ||= File.read("#{Rails.root}/app/assets/bill_positions113through111.json")
+    @bill_positions ||= File.read("#{Rails.root}/app/assets/bill_positions113through111.json")
   end
 
   def self.bill_positions_index
-    bill_positions_index ||= File.read("#{Rails.root}/app/assets/index_for_bill_positions113through111.json")
+    @bill_positions_index ||= File.read("#{Rails.root}/app/assets/index_for_bill_positions113through111.json")
   end
 
   attr_reader :new_legislator_object
@@ -91,7 +91,6 @@ class Legislator
     if district_number
       district = @legislator_record["district"]
       @legislator_record["district"] = "District #{district}"
-      binding.pry
     end
   end
 
