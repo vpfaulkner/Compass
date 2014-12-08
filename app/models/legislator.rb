@@ -77,16 +77,6 @@ class Legislator
       add_industry_scores
     elsif field == "aggregate_influence_and_ideology_scores"
       add_aggregate_influence_and_ideology_scores
-
-    #Depricated
-    elsif field == "aggregated_legislator_issue_scores"
-      add_aggregated_legislator_issue_scores
-    elsif field == "issue_ratings"
-      add_issue_ratings
-    elsif field == "campaign_finance_hash"
-      add_campaign_finance_hash
-    elsif field == "contributors_by_sector"
-      add_contributors_by_sector
     end
   end
 
@@ -290,157 +280,15 @@ class Legislator
     influence_score
   end
 #
-def add_industry_scores
-  json = JSON.parse(File.read("#{Rails.root}/app/assets/industry_scores_aggregated.json"))
-  industry = @legislator_record[:industry]
-  @new_legislator_object["industry_scores"] = json["industries"][industry]
-end
-
-def add_aggregate_influence_and_ideology_scores
-  json = JSON.parse(Legislator.get_influence_and_ideology_json)
-  @new_legislator_object["aggregate_influence_and_ideology_scores"] = json["legislators"]
-end
-
-
-
-
-  # DEPRECATED
-
-  def add_contributors_by_sector
-    # Make iterative over multiple cycles
-    # Add legislator id to JSON
-    # Depricate
-    legislator_id = HTTParty.get('http://transparencydata.org/api/1.0/entities/id_lookup.json',
-    query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
-    sunshine_sector_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors/sectors.json',
-    query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2012'})
-    sector_key = {"A" => "Agribusiness",
-      "B" => "Communications/Electronics",
-      "C" => "Construction",
-      "D" => "Defense",
-      "E" => "Energy/Natural Resources",
-      "F" => "Finance/Insurance/Real Estate",
-      "H" => "Health",
-      "K" => "Lawyers and Lobbyists",
-      "M" => "Transportation",
-      "N" => "Misc. Business",
-      "Q" => "Ideology/Single Issue",
-      "P" => "Labor",
-      "W" => "Other",
-      "Y" => "Unknown",
-      "Z" => "Administrative Use" }
-    sunshine_sector_breakdown.each { |hash|
-      hash["sector"] = sector_key[hash["sector"]]
-    }
-    @new_legislator_object["contributors_by_sector"] = sunshine_sector_breakdown
+  def add_industry_scores
+    json = JSON.parse(File.read("#{Rails.root}/app/assets/industry_scores_aggregated.json"))
+    industry = @legislator_record[:industry]
+    @new_legislator_object["industry_scores"] = json["industries"][industry]
   end
 
-
-
-  def add_aggregated_legislator_issue_scores
-    json = JSON.parse(File.read("#{Rails.root}/app/assets/aggregated_legislator_funding_and_agreement_scores.json"))
-    combined_scores_json = json["legislators"]
-    chosen_issue = @legislator_record[:issue]
-    legislator_issue_ratings = Array.new
-    combined_scores_json.each do |record|
-      issue_hash = Hash.new
-      issue_hash["firstname"] = record["firstname"]
-      issue_hash["lastname"] = record["lastname"]
-      issue_hash["state"] = record["state"]
-      issue_hash["party"] = record["party"]
-      issue_hash["title"] = record["title"]
-      next unless record["issue_ratings_dummy"]
-      issue_match = record["issue_ratings_dummy"].select do |available_issues|
-        available_issues["issue_name"] == chosen_issue
-      end
-      issue_hash["issue_ratings_dummy"] = issue_match
-      legislator_issue_ratings.push(issue_hash)
-    end
-    @new_legislator_object["legislator_issue_scores"] = legislator_issue_ratings
-  end
-
-  def get_individual_voting_record(aggregated_voting_scores_by_legislator)
-    legislator = aggregated_voting_scores_by_legislator.select do |legislator_voting_scores|
-      legislator_voting_scores["firstname"] == @legislator_record["name"]["first"] && legislator_voting_scores["lastname"] == @legislator_record["name"]["last"] && legislator_voting_scores["state"] == @legislator_record["terms"].last["state"]
-    end
-    return unless legislator
-    return unless legislator[0]
-    return unless legislator[0]["voting_score_by_issue"]
-    legislator_voting_record = legislator[0]["voting_score_by_issue"]
-  end
-
-  def get_agreement_score_for_issue_ratings(legislator_voting_record, aggregated_voting_scores_by_issue, issue_ratings)
-    legislator_voting_record.each do |issue|
-      issue_score = issue[1]
-      issue_name = issue[0]
-      scores_below = 0
-      aggregated_voting_scores_by_issue[issue_name][:scores_array].each {|score| scores_below += 1 if score < issue_score }
-      scores_equal = 0
-      aggregated_voting_scores_by_issue[issue_name][:scores_array].each {|score| scores_equal += 1 if score == issue_score }
-      number_of_scores = aggregated_voting_scores_by_issue[issue_name][:scores_array].length
-      normalized_score = ((scores_below.to_f + (0.5 * scores_equal.to_f)) / number_of_scores.to_f) * 100
-      issue_object = {"issue_name" => issue_name, "funding_score" => 0 , "agreement_score" => normalized_score.round}
-      issue_ratings.push(issue_object)
-    end
-    issue_ratings
-  end
-
-  def get_issue_index(contributor_code, issue_ratings)
-    case contributor_code
-    when "J7120"
-      issue_index = issue_ratings.index { |i| i["issue_name"] == "Pro-Life" }
-    when "J7150"
-      issue_index = issue_ratings.index { |i| i["issue_name"] == "Pro-Choice" }
-    when "J6200"
-      issue_index = issue_ratings.index { |i| i["issue_name"] == "Pro-Gun" }
-    when "J6100"
-      issue_index = issue_ratings.index { |i| i["issue_name"] == "Anti-Gun" }
-    when "JE300"
-      issue_index = issue_ratings.index { |i| i["issue_name"] == "Environment" }
-    when /E11\d0/
-      issue_index = issue_ratings.index { |i| i["issue_name"] == "Oil and Energy" }
-    when /L..../
-      issue_index = issue_ratings.index { |i| i["issue_name"] == "Labor and Union" }
-    when /H5\d\d/
-      issue_index = issue_ratings.index { |i| i["issue_name"] == "Education" }
-    when /F1\d\d\d|F2\d\d\d/
-      issue_index = issue_ratings.index { |i| i["issue_name"] == "Financial" }
-    end
-    issue_index
-  end
-
-  def get_bills
-    bills = []
-    bills_and_legislator_votes = HTTParty.get('https://www.govtrack.us/api/v2/vote_voter',
-    query: {person: @legislator_record["id"]["govtrack"], limit: 4000, order_by: "-created", format: "json", fields: "vote__id,created,option__value,vote__category,vote__question"})
-    bills_and_legislator_votes["objects"].each do |bill_and_legislator_vote|
-      next unless bill_and_legislator_vote["vote"]["category"] == "passage"
-      bill_type = bill_and_legislator_vote["vote"]["question"].split(" ")[0]
-      bill_number = bill_and_legislator_vote["vote"]["question"].split(" ")[1].split(":")[0]
-      bill_identifier = bill_type + bill_number
-      bill = {identifier: bill_identifier, vote: bill_and_legislator_vote["option"]["value"]}
-      bills.push(bill)
-    end
-    bills
-  end
-
-  def add_campaign_finance_hash
-
-    campaign_finance_hash = Hash.new
-    years_run_for_office = Array.new
-    years_with_data = [2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014]
-    @legislator_record["terms"].each { |term| years_run_for_office.push(term["start"].to_date.year - 1) }
-    @legislator_record["id"]["fec"].each do |fec|
-      years_with_data.each do |year|
-        # FIGURE OUT HOW TO REDUCE THESE CALLS
-        ny_times_finance_record = Candidate.find(fec, year) rescue nil
-        next unless ny_times_finance_record
-        campaign_finance_hash[year] ? campaign_finance_hash[year] += \
-        ny_times_finance_record.total_contributions : campaign_finance_hash[year] \
-        = ny_times_finance_record.total_contributions
-      end
-    end
-    @new_legislator_object["campaign_finance_hash"] = campaign_finance_hash
+  def add_aggregate_influence_and_ideology_scores
+    json = JSON.parse(Legislator.get_influence_and_ideology_json)
+    @new_legislator_object["aggregate_influence_and_ideology_scores"] = json["legislators"]
   end
 
 end

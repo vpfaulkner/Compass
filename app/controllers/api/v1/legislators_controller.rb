@@ -65,6 +65,13 @@ class API::V1::LegislatorsController < ApplicationController
     render json: @api_response
   end
 
+  def influence_and_ideology_score
+    required_fields = ["firstname", "lastname", "state", "party", "title", "ideology_rank", "influence_rank"]
+    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
+  end
+
   def aggregate_influence_and_ideology_scores
     required_fields = ["aggregate_influence_and_ideology_scores"]
     identifier = { all: [] }
@@ -72,39 +79,7 @@ class API::V1::LegislatorsController < ApplicationController
     render json: @api_response
   end
 
-  # Depricate
-
-
-
-  def issue_ratings
-    required_fields = ["firstname", "lastname", "state", "party", "title", "issue_ratings"]
-    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
-    @api_response = APIResponse.new(identifier, required_fields).api_response
-    render json: @api_response
-  end
-
-  def funding_timeline
-    required_fields = ["firstname", "lastname", "state", "party", "title", "campaign_finance_hash"]
-    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title] }
-    @api_response = APIResponse.new(identifier, required_fields).api_response
-    render json: @api_response
-  end
-
-  def contributors_by_sector
-    required_fields = ["firstname", "lastname", "state", "party", "title", "contributors_by_sector"]
-    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
-    @api_response = APIResponse.new(identifier, required_fields).api_response
-    render json: @api_response
-  end
-
-
-
-  def funding_score_by_category
-    required_fields = ["firstname", "lastname", "state", "party", "title", "funding_score_by_category"]
-    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
-    @api_response = APIResponse.new(identifier, required_fields).api_response
-    render json: @api_response
-  end
+  # Depricated
 
   def internal_get_norms
     all_legislators_array = Array.new
