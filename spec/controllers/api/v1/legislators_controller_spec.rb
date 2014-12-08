@@ -18,12 +18,6 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(JSON.parse(response.body)["legislators"][2]["lastname"]).to eq("Butterfield")
     end
 
-
-    # it "returns message if address is invalid" do
-    #   get :search, { address: "" }
-    #   expect(response.body).to eq("{\"Error\":\"not a valid address\"}")
-    # end
-
   end
 
   describe "GET #profile" do
@@ -47,8 +41,6 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
   end
 
-
-
   describe "Get #elections_timeline" do
 
     it "responds successfully with an HTTP 200 status code" do
@@ -57,18 +49,6 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
       expect(response).to have_http_status(200)
 
       expect(JSON.parse(response.body)["legislators"][0]["elections_timeline_array"][0]["start"]).to eq("1995-01-04")
-    end
-
-  end
-
-  describe "Get #contributors_by_sector" do
-
-    it "responds successfully with an HTTP 200 status code" do
-      get :contributors_by_sector, { lastname: "Burr", state: "NC", title: "sen" }
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-
-      expect(JSON.parse(response.body)["legislators"][0]["contributors_by_sector"][0]["sector"]).not_to be_nil
     end
 
   end
@@ -121,6 +101,16 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
     it "responds successfully with an HTTP 200 status code" do
       get :influence_and_ideology_score, { lastname: "Burr", state: "NC", title: "sen" }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
+  end
+
+  describe "Get #industry_scores" do
+
+    it "responds successfully with an HTTP 200 status code" do
+      get :industry_scores, { industry: "MiscUnions" }
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
