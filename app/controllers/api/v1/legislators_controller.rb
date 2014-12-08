@@ -64,7 +64,7 @@ class API::V1::LegislatorsController < ApplicationController
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
   end
-
+  # Incomplete
   def industry_scores
     required_fields = ["industry_scores"]
     identifier = { all: [], industry: legislator_params[:industry] }
@@ -106,8 +106,6 @@ class API::V1::LegislatorsController < ApplicationController
     render json: @api_response
   end
 
-
-
   def internal_get_norms
     all_legislators_array = Array.new
     @legislator_db ||= YAML.load_file("#{Rails.root}/app/assets/legislators-current.yaml")
@@ -118,40 +116,33 @@ class API::V1::LegislatorsController < ApplicationController
       legislator_hash[:title] = leg["terms"].last["type"]
       all_legislators_array.push(legislator_hash)
     end
-    industries_hash = Hash.new{|h, k| h[k] = []}
+    new_legislators_array = []
     counter = 0
     file_counter = 1
     all_legislators_array.each do |legislator|
       counter += 1
-      required_fields = ["firstname", "lastname", "state", "party", "title", "contributions_by_industry", "agreement_score_by_industry"]
+      required_fields = ["firstname", "lastname", "state", "party", "title", "ideology_rank", "influence_rank"]
       identifier = { lastname: legislator[:last], state: legislator[:state], title: legislator[:title]}
       api_response = APIResponse.new(identifier, required_fields).api_response
-      contribution_scores = api_response["legislators"][0]["contributions_by_industry"]
-      agreement_scores = api_response["legislators"][0]["agreement_score_by_industry"]
-      common_industries = []
-      contribution_scores.keys.each do |contribution_industry|
-        common_industries.push(contribution_industry) if agreement_scores.keys.include?(contribution_industry)
-      end
-      common_industries.each do |industry|
-        legislator_hash = {}
-        legislator_hash["firstname"] = api_response["legislators"][0]["firstname"]
-        legislator_hash["lastname"] = api_response["legislators"][0]["lastname"]
-        legislator_hash["state"] = api_response["legislators"][0]["state"]
-        legislator_hash["party"] = api_response["legislators"][0]["party"]
-        legislator_hash["title"] = api_response["legislators"][0]["title"]
-        legislator_hash["contributions_to_industry"] = contribution_scores[industry]
-        legislator_hash["agreement_score_with_industry"] = agreement_scores[industry]
-        industries_hash[industry] << legislator_hash
-      end
+      legislator_hash = {}
+      legislator_hash["firstname"] = api_response["legislators"][0]["firstname"]
+      legislator_hash["lastname"] = api_response["legislators"][0]["lastname"]
+      legislator_hash["state"] = api_response["legislators"][0]["state"]
+      legislator_hash["party"] = api_response["legislators"][0]["party"]
+      legislator_hash["title"] = api_response["legislators"][0]["title"]
+      legislator_hash["ideology_rank"] = api_response["legislators"][0]["ideology_rank"]
+      legislator_hash["influence_rank"] = api_response["legislators"][0]["influence_rank"]
+      new_legislators_array.push(legislator_hash)
       if counter % 50 == 0
-        json = industries_hash.to_json
-        new_file = File.open("/Users/vancefaulkner/Desktop/industry_scores#{file_counter}.json", "w+") { |file| file.write(json) }
+        mini_wrapper = {"legislators" => new_legislators_array }
+        mini_json = mini_wrapper.to_json
+        mini_new_file = File.open("/Users/vancefaulkner/Desktop/influence_and_ideology_scores#{file_counter}.json", "w+") { |file| file.write(mini_json) }
         file_counter += 1
       end
     end
-    industry_wrapper = {"industries" => industries_hash }
-    json = industry_wrapper.to_json
-    new_file = File.open("/Users/vancefaulkner/Desktop/funding_score#{file_counter}.json", "w+") { |file| file.write(json) }
+    legislator_wrapper = {"legislators" => new_legislators_array }
+    json = legislator_wrapper.to_json
+    new_file = File.open("/Users/vancefaulkner/Desktop/influence_and_ideology_scores.json", "w+") { |file| file.write(json) }
   end
 
   private

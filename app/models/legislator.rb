@@ -96,6 +96,7 @@ class Legislator
     legislator = JSON.parse(Legislator.ideology_json)["legislators"].select do |legislator|
       legislator["last"] == lastname && legislator["State"] == state
     end
+    return nil unless legislator && legislator[0] && legislator[0]["ideology_rank"]
     ideology_rank = legislator[0]["ideology_rank"]
   end
 
@@ -276,7 +277,7 @@ class Legislator
 def add_industry_scores
   json = JSON.parse(File.read("#{Rails.root}/app/assets/industry_scores_aggregated.json"))
   industry = @legislator_record[:industry]
-  @new_legislator_object["issue_ratings_dummy"] = json["industries"][industry]
+  @new_legislator_object["industry_scores"] = json["industries"][industry]
 end
 
   # DEPRECATED
