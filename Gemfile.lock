@@ -155,6 +155,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    unicorn-worker-killer (0.4.2)
+      unicorn (~> 4)
 
 PLATFORMS
   ruby
@@ -178,3 +180,4 @@ DEPENDENCIES
   sidekiq
   spring
   unicorn
+  unicorn-worker-killer

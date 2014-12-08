@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails_12factor', group: :production
 gem 'unicorn'
-
+gem 'unicorn-worker-killer'
 gem 'rails', '4.1.7'
 
 gem 'rails-api'
