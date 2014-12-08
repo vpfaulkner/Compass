@@ -1,7 +1,7 @@
 class Legislator
 
   def self.ideology_json
-    @ideology_json ||= File.read("#{Rails.root}/app/assets/new_ideology_ratings.json")
+    @ideology_json ||= File.read("#{Rails.root}/app/assets/ideology_ratings.json")
   end
 
   def self.catcodes
@@ -121,7 +121,6 @@ class Legislator
     sunshine_type_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors/type_breakdown.json',
                     query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2014'})
   end
-
 
   def add_top_contributors
     legislator_id = HTTParty.get('http://transparencydata.org/api/1.0/entities/id_lookup.json',

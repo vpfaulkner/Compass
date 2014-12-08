@@ -97,20 +97,20 @@ RSpec.describe API::V1::LegislatorsController, :type => :controller do
 
   end
 
-  describe "Get #influence_and_ideology_score" do
+  describe "Get #industry_scores" do
 
     it "responds successfully with an HTTP 200 status code" do
-      get :influence_and_ideology_score, { lastname: "Burr", state: "NC", title: "sen" }
+      get :industry_scores, { industry: "MiscUnions" }
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
 
   end
 
-  describe "Get #industry_scores" do
+  describe "Get #influence_and_ideology_score" do
 
     it "responds successfully with an HTTP 200 status code" do
-      get :industry_scores, { industry: "MiscUnions" }
+      get :influence_and_ideology_score, { lastname: "Burr", state: "NC", title: "sen" }
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
