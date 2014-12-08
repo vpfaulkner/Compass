@@ -237,13 +237,13 @@ class Legislator
     agreement_opportunities_per_industry = Hash.new(0)
     catcodes_directory = get_code_to_industry_hash
     bills_and_org_positions = JSON.parse(Legislator.bill_positions)["bills"]
+    bill_positions_index = JSON.parse(Legislator.bill_positions_index)
     legislator_votes.each do |bill|
       if bill[:vote] == "Yea" || bill[:vote] == "Aye" || bill[:vote] == "Yes"
         legislator_vote = "Yes"
       else
         legislator_vote = "No"
       end
-      bill_positions_index = JSON.parse(Legislator.bill_positions_index)
       index = bill_positions_index[bill[:identifier]]
       next unless index
       org_positions_on_bill = bills_and_org_positions[index]
