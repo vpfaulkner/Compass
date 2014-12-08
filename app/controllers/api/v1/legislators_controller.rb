@@ -65,16 +65,16 @@ class API::V1::LegislatorsController < ApplicationController
     render json: @api_response
   end
 
-
-
-  # Depricate
-
-  def aggregated_legislator_issue_scores
-    required_fields = ["aggregated_legislator_issue_scores"]
-    identifier = { all: [], issue: legislator_params[:issue] }
+  def industry_scores
+    required_fields = ["industry_scores"]
+    identifier = { all: [], industry: legislator_params[:industry] }
     @api_response = APIResponse.new(identifier, required_fields).api_response
     render json: @api_response
   end
+
+  # Depricate
+
+
 
   def issue_ratings
     required_fields = ["firstname", "lastname", "state", "party", "title", "issue_ratings"]
@@ -118,44 +118,46 @@ class API::V1::LegislatorsController < ApplicationController
       legislator_hash[:title] = leg["terms"].last["type"]
       all_legislators_array.push(legislator_hash)
     end
-    # issue_score_stats = { "Pro-Life" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Pro-Choice" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Pro-Gun" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Anti-Gun" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Environment" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Oil and Energy" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Labor and Union" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Education" => {aggregate_score: 0, total_legislators: 0},
-    #                       "Financial" => {aggregate_score: 0, total_legislators: 0} }
-    array_wrapper = []
+    industries_hash = Hash.new{|h, k| h[k] = []}
     counter = 0
     file_counter = 1
     all_legislators_array.each do |legislator|
       counter += 1
-      required_fields = ["firstname", "lastname", "state", "party", "title", "issue_ratings_dummy"]
+      required_fields = ["firstname", "lastname", "state", "party", "title", "contributions_by_industry", "agreement_score_by_industry"]
       identifier = { lastname: legislator[:last], state: legislator[:state], title: legislator[:title]}
       api_response = APIResponse.new(identifier, required_fields).api_response
-      array_wrapper.push(api_response["legislators"][0])
-      if counter % 50 == 0
-        json = array_wrapper.to_json
-        new_file = File.open("/Users/vancefaulkner/Desktop/funding_score#{file_counter}.txt", "w+") { |file| file.write(json) }
-        file_counter += 1
-        array_wrapper = []
+      contribution_scores = api_response["legislators"][0]["contributions_by_industry"]
+      agreement_scores = api_response["legislators"][0]["agreement_score_by_industry"]
+      common_industries = []
+      contribution_scores.keys.each do |contribution_industry|
+        common_industries.push(contribution_industry) if agreement_scores.keys.include?(contribution_industry)
       end
-      # @api_response["legislators"].first["voting_score_by_issue"].each do |issue|
-      #   issue_name = issue[0]
-      #   issue_score = issue[1]
-      #   issue_score_stats[issue_name][:aggregate_score] += issue_score
-      #   issue_score_stats[issue_name][:total_legislators] += 1
-      # end
+      common_industries.each do |industry|
+        legislator_hash = {}
+        legislator_hash["firstname"] = api_response["legislators"][0]["firstname"]
+        legislator_hash["lastname"] = api_response["legislators"][0]["lastname"]
+        legislator_hash["state"] = api_response["legislators"][0]["state"]
+        legislator_hash["party"] = api_response["legislators"][0]["party"]
+        legislator_hash["title"] = api_response["legislators"][0]["title"]
+        legislator_hash["contributions_to_industry"] = contribution_scores[industry]
+        legislator_hash["agreement_score_with_industry"] = agreement_scores[industry]
+        industries_hash[industry] << legislator_hash
+      end
+      if counter % 50 == 0
+        json = industries_hash.to_json
+        new_file = File.open("/Users/vancefaulkner/Desktop/industry_scores#{file_counter}.json", "w+") { |file| file.write(json) }
+        file_counter += 1
+      end
     end
-
+    industry_wrapper = {"industries" => industries_hash }
+    json = industry_wrapper.to_json
+    new_file = File.open("/Users/vancefaulkner/Desktop/funding_score#{file_counter}.json", "w+") { |file| file.write(json) }
   end
 
   private
 
   def legislator_params
-    params.permit(:address, :lastname, :state, :title, :bioguide_id, :issue)
+    params.permit(:address, :lastname, :state, :title, :bioguide_id, :industry)
   end
 
 end

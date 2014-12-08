@@ -11,14 +11,16 @@ Rails.application.routes.draw do
       get 'most_recent_votes' => 'legislators#most_recent_votes'
       get 'contributions_by_industry' => 'legislators#contributions_by_industry'
       get 'agreement_score_by_industry' => 'legislators#agreement_score_by_industry'
+      get 'industry_scores' => 'legislators#industry_scores'
+
       get 'influence_and_ideology_score' => 'legislators#influence_and_ideology_score'
 
-      get 'aggregated_legislator_issue_scores' => 'legislators#aggregated_legislator_issue_scores'
 
+      get 'internal_get_norms' => 'legislators#internal_get_norms'
       get 'issue_ratings' => 'legislators#issue_ratings'
       get 'contributors_by_sector' => 'legislators#contributors_by_sector'
       get 'funding_score_by_category' => 'legislators#funding_score_by_category'
-      get 'internal_get_norms' => 'legislators#internal_get_norms'
+
     end
   end
 

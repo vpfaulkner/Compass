@@ -65,7 +65,8 @@ class Legislator
       @new_legislator_object["ideology_rank"] = add_ideology_field
     elsif field == "influence_rank"
       @new_legislator_object["influence_rank"] = add_influence_rank
-
+    elsif field == "industry_scores"
+      add_industry_scores
     #Depricated
     elsif field == "aggregated_legislator_issue_scores"
       add_aggregated_legislator_issue_scores
@@ -272,27 +273,11 @@ class Legislator
     influence_score
   end
 #
-  def add_aggregated_legislator_issue_scores
-    json = JSON.parse(File.read("#{Rails.root}/app/assets/aggregated_legislator_funding_and_agreement_scores.json"))
-    combined_scores_json = json["legislators"]
-    chosen_issue = @legislator_record[:issue]
-    legislator_issue_ratings = Array.new
-    combined_scores_json.each do |record|
-      issue_hash = Hash.new
-      issue_hash["firstname"] = record["firstname"]
-      issue_hash["lastname"] = record["lastname"]
-      issue_hash["state"] = record["state"]
-      issue_hash["party"] = record["party"]
-      issue_hash["title"] = record["title"]
-      next unless record["issue_ratings_dummy"]
-      issue_match = record["issue_ratings_dummy"].select do |available_issues|
-        available_issues["issue_name"] == chosen_issue
-      end
-      issue_hash["issue_ratings_dummy"] = issue_match
-      legislator_issue_ratings.push(issue_hash)
-    end
-    @new_legislator_object["legislator_issue_scores"] = legislator_issue_ratings
-  end
+def add_industry_scores
+  json = JSON.parse(File.read("#{Rails.root}/app/assets/industry_scores_aggregated.json"))
+  industry = @legislator_record[:industry]
+  @new_legislator_object["issue_ratings_dummy"] = json["industries"][industry]
+end
 
   # DEPRECATED
 
@@ -325,27 +310,28 @@ class Legislator
     @new_legislator_object["contributors_by_sector"] = sunshine_sector_breakdown
   end
 
-  def add_issue_ratings
-    issue_ratings = Array.new
-    legislator_voting_score =
-    voting_json = JSON.parse(File.read("#{Rails.root}/app/assets/aggregated_legislator_voting_scores.json"))
-    aggregated_voting_scores_by_legislator = voting_json["legislators"]
-    aggregated_voting_scores_by_issue = get_aggregated_voting_scores_by_issue(aggregated_voting_scores_by_legislator)
-    legislator_voting_record = get_individual_voting_record(aggregated_voting_scores_by_legislator)
-    return unless legislator_voting_record
-    issue_ratings = get_agreement_score_for_issue_ratings(legislator_voting_record, aggregated_voting_scores_by_issue, issue_ratings)
-    individual_funding_contributions = get_individual_funding_contributions
-    total_funding = 0
-    individual_funding_contributions.each do |funding_hash|
-      contributor_code = funding_hash["contributor_category"]
-      amount = funding_hash["amount"]
-      next if amount.empty?
-      total_funding += amount.to_i
-      issue_index = get_issue_index(contributor_code, issue_ratings)
-      next unless issue_index
-      issue_ratings[issue_index]["funding_score"] += amount.to_i
+
+
+  def add_aggregated_legislator_issue_scores
+    json = JSON.parse(File.read("#{Rails.root}/app/assets/aggregated_legislator_funding_and_agreement_scores.json"))
+    combined_scores_json = json["legislators"]
+    chosen_issue = @legislator_record[:issue]
+    legislator_issue_ratings = Array.new
+    combined_scores_json.each do |record|
+      issue_hash = Hash.new
+      issue_hash["firstname"] = record["firstname"]
+      issue_hash["lastname"] = record["lastname"]
+      issue_hash["state"] = record["state"]
+      issue_hash["party"] = record["party"]
+      issue_hash["title"] = record["title"]
+      next unless record["issue_ratings_dummy"]
+      issue_match = record["issue_ratings_dummy"].select do |available_issues|
+        available_issues["issue_name"] == chosen_issue
+      end
+      issue_hash["issue_ratings_dummy"] = issue_match
+      legislator_issue_ratings.push(issue_hash)
     end
-    @new_legislator_object["issue_ratings_dummy"] = issue_ratings
+    @new_legislator_object["legislator_issue_scores"] = legislator_issue_ratings
   end
 
   def get_individual_voting_record(aggregated_voting_scores_by_legislator)

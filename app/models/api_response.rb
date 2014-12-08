@@ -23,7 +23,7 @@ class APIResponse
   def find_legislators(identifier)
     json_response = Array.new
     if identifier[:all]
-      json_response.push({issue: identifier[:issue]})
+      json_response.push({industry: identifier[:industry]})
     elsif identifier[:address]
       local_legislators = get_local_legislators(identifier[:address])
       local_legislators["response"]["legislators"].each do |l|
