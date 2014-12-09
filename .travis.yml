@@ -9,6 +9,6 @@ deploy:
   provider: heroku
   api_key:
     secure: TRj/gIlmCuGiHGjzXOw3QJm/hhtZpO+j2oDVwoedQdTSvUQ3rJl5DKw2e1aAG6Qc2WNkcVnah2rHG1pRtj5J+Sk4x1SVC8FBQ5Sn83Fu1g2h0aB0NgTZPTbmBLHio/248f9BcJ7rm51rbqwgNeljezenb6hagMr6+8YVS6w3VH4=
-  app: peaceful-sea-4129
+  app: civic-compass
   on:
     repo: vpfaulkner/Compass
