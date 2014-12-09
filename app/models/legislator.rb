@@ -118,14 +118,18 @@ class Legislator
     # Add legislator id to JSON
     legislator_id = HTTParty.get('http://transparencydata.org/api/1.0/entities/id_lookup.json',
                     query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
-    sunshine_type_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors/type_breakdown.json',
+    type_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors/type_breakdown.json',
                     query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2014'})
+    total_amount = type_breakdown["Individuals"][1].to_i + type_breakdown["PACs"][1].to_i
+    type_breakdown["Individuals"] = type_breakdown["Individuals"][1].to_f / total_amount.to_f
+    type_breakdown["PACs"] = type_breakdown["PACs"][1].to_f / total_amount.to_f
+    type_breakdown
   end
 
   def add_top_contributors
     legislator_id = HTTParty.get('http://transparencydata.org/api/1.0/entities/id_lookup.json',
                     query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
-    sunshine_type_breakdown = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors.json',
+    top_contributors = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors.json',
                               query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2014', limit: 100})
   end
 
