@@ -290,6 +290,7 @@ class Legislator
 
   def add_aggregate_influence_and_ideology_scores
     json = JSON.parse(Legislator.get_influence_and_ideology_json)
+    json["legislators"].delete_if {|legislator| !legislator["ideology_rank"] || !legislator["influence_rank"] }   #=> [97]
     @new_legislator_object["aggregate_influence_and_ideology_scores"] = json["legislators"]
   end
 
