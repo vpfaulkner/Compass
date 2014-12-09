@@ -189,13 +189,13 @@ class Legislator
 
   def get_funding_transactions
     funding_contributions2014 = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
-        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2014, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2014, for_against: "for", recipient_ft: "#{@legislator_record["name"]["official_full"]}"})
     funding_contributions2012 = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
-        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2012, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2012, for_against: "for", recipient_ft: "#{@legislator_record["name"]["official_full"]}"})
     funding_contributions2010 = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
-        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2010, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2010, for_against: "for", recipient_ft: "#{@legislator_record["name"]["official_full"]}"})
     funding_contributions2008 = HTTParty.get('http://transparencydata.org/api/1.0/contributions.json',
-        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2008, for_against: "for", recipient_ft: "#{@legislator_record["name"]["first"]} #{@legislator_record["name"]["last"]}"})
+        query: {apikey: ENV['SUNLIGHT_KEY'],amount: "%3E%7C1000", cycle: 2008, for_against: "for", recipient_ft: "#{@legislator_record["name"]["official_full"]}"})
     funding_contributions2014.zip(funding_contributions2012, funding_contributions2010, funding_contributions2008).flatten
   end
 #
