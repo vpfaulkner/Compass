@@ -114,7 +114,6 @@ class Legislator
   end
 
   def add_contributors_by_type
-    # Make iterative over multiple cycles
     # Add legislator id to JSON
     legislator_id = HTTParty.get('http://transparencydata.org/api/1.0/entities/id_lookup.json',
                     query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
@@ -129,8 +128,8 @@ class Legislator
   def add_top_contributors
     legislator_id = HTTParty.get('http://transparencydata.org/api/1.0/entities/id_lookup.json',
                     query: {apikey: ENV['SUNLIGHT_KEY'],bioguide_id: @legislator_record["id"]["bioguide"]})
-    top_contributors = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors.json',
-                              query: {apikey: ENV['SUNLIGHT_KEY'],cycle: '2014', limit: 100})
+    top_contributing_orgs = HTTParty.get('http://transparencydata.com/api/1.0/aggregates/pol/' + legislator_id.first["id"] + '/contributors.json',
+                              query: {apikey: ENV['SUNLIGHT_KEY'], limit: 100})
   end
 
   def find_next_passage_vote(individual_legislator_vote)
