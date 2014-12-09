@@ -4,7 +4,7 @@ gem 'rails_12factor', group: :production
 gem 'unicorn'
 gem 'unicorn-worker-killer'
 gem 'rails', '4.1.7'
-
+gem 'newrelic_rpm'
 gem 'rails-api'
 
 gem 'spring', :group => :development

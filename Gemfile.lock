@@ -63,6 +63,7 @@ GEM
     minitest (5.4.3)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    newrelic_rpm (3.9.8.273)
     oink (0.10.1)
       activerecord
       hodel_3000_compliant_logger
@@ -168,6 +169,7 @@ DEPENDENCIES
   faker
   geocoder
   httparty
+  newrelic_rpm
   oink
   pg
   pry-rails
