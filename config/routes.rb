@@ -14,13 +14,6 @@ Rails.application.routes.draw do
       get 'industry_scores' => 'legislators#industry_scores'
       get 'influence_and_ideology_score' => 'legislators#influence_and_ideology_score'
       get 'aggregate_influence_and_ideology_scores' => 'legislators#aggregate_influence_and_ideology_scores'
-
-
-      get 'internal_get_norms' => 'legislators#internal_get_norms'
-      get 'issue_ratings' => 'legislators#issue_ratings'
-      get 'contributors_by_sector' => 'legislators#contributors_by_sector'
-      get 'funding_score_by_category' => 'legislators#funding_score_by_category'
-
     end
   end
 
