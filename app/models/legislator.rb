@@ -20,6 +20,10 @@ class Legislator
     @get_influence_and_ideology_json ||= File.read("#{Rails.root}/app/assets/influence_and_ideology_scores_aggregated.json")
   end
 
+  def self.industry_scores_aggregated
+    @industry_scores_aggregated ||= File.read("#{Rails.root}/app/assets/industry_scores_aggregated.json")
+  end
+
   attr_reader :new_legislator_object
 
   def initialize(legislator_record, required_fields)
@@ -67,6 +71,8 @@ class Legislator
       @new_legislator_object["most_recent_votes"] = add_most_recent_votes
     elsif field == "agreement_score_by_industry"
       @new_legislator_object["agreement_score_by_industry"] = add_agreement_score_by_industry
+    elsif field == "cached_agreement_score_by_industry"
+      @new_legislator_object["agreement_score_by_industry"] = add_cached_agreement_score_by_industry
     elsif field == "contributions_by_industry"
       @new_legislator_object["contributions_by_industry"] = add_contributions_by_industry
     elsif field == "ideology_rank"
@@ -268,6 +274,10 @@ class Legislator
     end
     voting_agreements_with_industry
   end
+
+  def add_cached_agreement_score_by_industry
+    
+  end
 #
   def add_influence_rank
     agreement_score_by_industry = add_agreement_score_by_industry
@@ -283,7 +293,7 @@ class Legislator
   end
 #
   def add_industry_scores
-    json = JSON.parse(File.read("#{Rails.root}/app/assets/industry_scores_aggregated.json"))
+    json = JSON.parse(Legislator.industry_scores_aggregated)
     industry = @legislator_record[:industry]
     @new_legislator_object["industry_scores"] = json["industries"][industry]
   end
