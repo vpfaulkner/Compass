@@ -69,12 +69,17 @@ class Legislator
       @new_legislator_object["top_contributors"] = add_top_contributors
     elsif field == "most_recent_votes"
       @new_legislator_object["most_recent_votes"] = add_most_recent_votes
+
     elsif field == "agreement_score_by_industry"
       @new_legislator_object["agreement_score_by_industry"] = add_agreement_score_by_industry
     elsif field == "cached_agreement_score_by_industry"
       @new_legislator_object["agreement_score_by_industry"] = add_cached_agreement_score_by_industry
+
     elsif field == "contributions_by_industry"
       @new_legislator_object["contributions_by_industry"] = add_contributions_by_industry
+    elsif field == "cached_contributions_by_industry"
+      @new_legislator_object["contributions_by_industry"] = add_cached_contributions_by_industry
+
     elsif field == "ideology_rank"
       @new_legislator_object["ideology_rank"] = add_ideology_field
     elsif field == "influence_rank"
@@ -205,6 +210,18 @@ class Legislator
     funding_contributions2014.zip(funding_contributions2012, funding_contributions2010, funding_contributions2008).flatten
   end
 #
+def add_cached_contributions_by_industry
+  cached_contributions_by_industry = Hash.new
+  json = JSON.parse(Legislator.industry_scores_aggregated)
+  json["industries"].each do |industry_name, contributions_array|
+    contributions_array.each do |contribution|
+      next unless contribution["firstname"] == @legislator_record["name"]["first"] && contribution["lastname"] == @legislator_record["name"]["last"] && contribution["state"] == @legislator_record["terms"].last["state"] && contribution["title"] == @legislator_record["terms"].last["type"]
+      cached_contributions_by_industry[industry_name] = contribution["contributions_to_industry"]
+    end
+  end
+  cached_contributions_by_industry
+end
+#
   def add_agreement_score_by_industry
     legislator_votes = get_legislator_votes
     agreement_score_by_industry = get_agreement_score_by_industry(legislator_votes)
@@ -274,9 +291,17 @@ class Legislator
     end
     voting_agreements_with_industry
   end
-
+#
   def add_cached_agreement_score_by_industry
-    
+    cached_voting_agreements_with_industry = Hash.new
+    json = JSON.parse(Legislator.industry_scores_aggregated)
+    json["industries"].each do |industry_name, agreement_array|
+      agreement_array.each do |agreement|
+        next unless agreement["firstname"] == @legislator_record["name"]["first"] && agreement["lastname"] == @legislator_record["name"]["last"] && agreement["state"] == @legislator_record["terms"].last["state"] && agreement["title"] == @legislator_record["terms"].last["type"]
+        cached_voting_agreements_with_industry[industry_name] = agreement["agreement_score_with_industry"]
+      end
+    end
+    cached_voting_agreements_with_industry
   end
 #
   def add_influence_rank

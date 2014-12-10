@@ -51,6 +51,14 @@ class API::V1::LegislatorsController < ApplicationController
     render json: @api_response
   end
 
+  def cached_contributions_by_industry
+    required_fields = ["firstname", "lastname", "state", "party", "title", "cached_contributions_by_industry"]
+    identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
+    @api_response = APIResponse.new(identifier, required_fields).api_response
+    render json: @api_response
+  end
+
+
   def agreement_score_by_industry
     required_fields = ["firstname", "lastname", "state", "party", "title", "agreement_score_by_industry"]
     identifier = { lastname: legislator_params[:lastname], state: legislator_params[:state], title: legislator_params[:title]}
