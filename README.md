@@ -36,11 +36,37 @@ Parameters
 
 Example
 
-`http://api.civic-compass.org/api/v1/search.json?address=208%20W.%20Lavendar,%20Ave,%20Durham,%20NC%2027704`
+        http://api.civic-compass.org/api/v1/search.json?address=208%20W.%20Lavendar,%20Ave,%20Durham,%20NC%2027704
 
 Reponse
 
-`{  "legislators": [{    "firstname": "Richard",    "lastname": "Burr",    "state": "NC",    "party": "Republican",    "title": "sen",    "picture_url": "http://theunitedstates.io/images/congress/225x275/B001135.jpg",    "bioguide_id": "B001135"  }, {    "firstname": "Kay",    "lastname": "Hagan",    "state": "NC",    "party": "Democrat",    "title": "sen",    "picture_url": "http://theunitedstates.io/images/congress/225x275/H001049.jpg",    "bioguide_id": "H001049"  }, {    "firstname": "George",    "lastname": "Butterfield",    "state": "NC",    "party": "Democrat",    "title": "rep",    "picture_url": "http://theunitedstates.io/images/congress/225x275/B001251.jpg",    "bioguide_id": "B001251"  }]}`
+      {
+        "legislators": [{
+          "firstname": "Richard",
+          "lastname": "Burr",
+          "state": "NC",
+          "party": "Republican",
+          "title": "sen",
+          "picture_url": "http://theunitedstates.io/images/congress/225x275/B001135.jpg",
+          "bioguide_id": "B001135"
+        }, {
+          "firstname": "Kay",
+          "lastname": "Hagan",
+          "state": "NC",
+          "party": "Democrat",
+          "title": "sen",
+          "picture_url": "http://theunitedstates.io/images/congress/225x275/H001049.jpg",
+          "bioguide_id": "H001049"
+        }, {
+          "firstname": "George",
+          "lastname": "Butterfield",
+          "state": "NC",
+          "party": "Democrat",
+          "title": "rep",
+          "picture_url": "http://theunitedstates.io/images/congress/225x275/B001251.jpg",
+          "bioguide_id": "B001251"
+        }]
+      }
 
 **Get Legislator Profile**
 
@@ -62,7 +88,21 @@ Example
 
 Reponse
 
-`{  "legislators": [{    "firstname": "Richard",    "lastname": "Burr",    "state": "NC",    "party": "Republican",    "title": "sen",    "picture_url": "http://theunitedstates.io/images/congress/225x275/B001135.jpg",    "bioguide_id": "B001135",    "website": "http://www.burr.senate.gov",    "phone": "202-224-3154",    "district": "Senior Seat",    "twitter_id": "SenatorBurr"  }]}`
+        {
+          "legislators": [{
+            "firstname": "Richard",
+            "lastname": "Burr",
+            "state": "NC",
+            "party": "Republican",
+            "title": "sen",
+            "picture_url": "http://theunitedstates.io/images/congress/225x275/B001135.jpg",
+            "bioguide_id": "B001135",
+            "website": "http://www.burr.senate.gov",
+            "phone": "202-224-3154",
+            "district": "Senior Seat",
+            "twitter_id": "SenatorBurr"
+          }]
+        }
 
 **Get Legislator’s Elections Timeline**
 
@@ -84,113 +124,113 @@ Example
 
 Reponse
 
-`{`
-
-`    "legislators": [`
-
-`        {`
-
-`            "firstname": "Richard",`
-
-`            "lastname": "Burr",`
-
-`            "state": "NC",`
-
-`            "party": "Republican",`
-
-`            "title": "sen",`
-
-`            "elections_timeline_array": [`
-
-`                {`
-
-`                    "type": "rep",`
-
-`                    "start": "1995-01-04",`
-
-`                    "end": "1996-10-04",`
-
-`                    "state": "NC",`
-
-`                    "district": 5,`
-
-`                    "party": "Republican"`
-
-`                },`
-
-`                {`
-
-`                    "type": "rep",`
-
-`                    "start": "1997-01-07",`
-
-`                    "end": "1998-12-19",`
-
-`                    "state": "NC",`
-
-`                    "district": 5,`
-
-`                    "party": "Republican"`
-
-`                },`
-
-`                {`
-
-`                    "type": "rep",`
-
-`                    "start": "1999-01-06",`
-
-`                    "end": "2000-12-15",`
-
-`                    "state": "NC",`
-
-`                    "district": 5,`
-
-`                    "party": "Republican"`
-
-`                },`
-
-`                {`
-
-`                    "type": "rep",`
-
-`                    "start": "2001-01-03",`
-
-`                    "end": "2002-11-22",`
-
-`                    "state": "NC",`
-
-`                    "district": 5,`
-
-`                    "party": "Republican"`
-
-`                },`
-
-`                {`
-
-`                    "type": "rep",`
-
-`                    "start": "2003-01-07",`
-
-`                    "end": "2004-12-09",`
-
-`                    "state": "NC",`
-
-`                    "district": 5,`
-
-`                    "party": "Republican",`
-
-`                    "url": "http://www.house.gov/burr"`
-
-`                }`
-
-`            ]`
-
-`        }`
-
-`    ]`
-
-`}`
+            {`
+            
+            `    "legislators": [`
+            
+            `        {`
+            
+            `            "firstname": "Richard",`
+            
+            `            "lastname": "Burr",`
+            
+            `            "state": "NC",`
+            
+            `            "party": "Republican",`
+            
+            `            "title": "sen",`
+            
+            `            "elections_timeline_array": [`
+            
+            `                {`
+            
+            `                    "type": "rep",`
+            
+            `                    "start": "1995-01-04",`
+            
+            `                    "end": "1996-10-04",`
+            
+            `                    "state": "NC",`
+            
+            `                    "district": 5,`
+            
+            `                    "party": "Republican"`
+            
+            `                },`
+            
+            `                {`
+            
+            `                    "type": "rep",`
+            
+            `                    "start": "1997-01-07",`
+            
+            `                    "end": "1998-12-19",`
+            
+            `                    "state": "NC",`
+            
+            `                    "district": 5,`
+            
+            `                    "party": "Republican"`
+            
+            `                },`
+            
+            `                {`
+            
+            `                    "type": "rep",`
+            
+            `                    "start": "1999-01-06",`
+            
+            `                    "end": "2000-12-15",`
+            
+            `                    "state": "NC",`
+            
+            `                    "district": 5,`
+            
+            `                    "party": "Republican"`
+            
+            `                },`
+            
+            `                {`
+            
+            `                    "type": "rep",`
+            
+            `                    "start": "2001-01-03",`
+            
+            `                    "end": "2002-11-22",`
+            
+            `                    "state": "NC",`
+            
+            `                    "district": 5,`
+            
+            `                    "party": "Republican"`
+            
+            `                },`
+            
+            `                {`
+            
+            `                    "type": "rep",`
+            
+            `                    "start": "2003-01-07",`
+            
+            `                    "end": "2004-12-09",`
+            
+            `                    "state": "NC",`
+            
+            `                    "district": 5,`
+            
+            `                    "party": "Republican",`
+            
+            `                    "url": "http://www.house.gov/burr"`
+            
+            `                }`
+            
+            `            ]`
+            
+            `        }`
+            
+            `    ]`
+            
+            `}
 
 **Get Legislator’s Contributors by Type**
 
