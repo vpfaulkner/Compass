@@ -219,7 +219,11 @@ def add_cached_contributions_by_industry
       cached_contributions_by_industry[industry_name] = contribution["contributions_to_industry"]
     end
   end
-  cached_contributions_by_industry
+  if cached_contributions_by_industry.empty?
+    add_contributions_by_industry
+  else
+    cached_contributions_by_industry
+  end
 end
 #
   def add_agreement_score_by_industry
@@ -301,7 +305,11 @@ end
         cached_voting_agreements_with_industry[industry_name] = agreement["agreement_score_with_industry"]
       end
     end
-    cached_voting_agreements_with_industry
+    if cached_voting_agreements_with_industry.empty?
+      add_agreement_score_by_industry
+    else
+      cached_voting_agreements_with_industry
+    end
   end
 #
   def add_influence_rank
